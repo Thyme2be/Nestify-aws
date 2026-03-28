@@ -1,0 +1,391 @@
+<html class="light" lang="en"><head></head><body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">```html
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Purchase Journey | The Curated Architect</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "surface-container-high": "#dfe8ff",
+              "on-surface": "#081b38",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#8c1520",
+              "secondary-container": "#00ccf9",
+              "inverse-primary": "#b6c7eb",
+              "surface": "#f9f9ff",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c5c6ce",
+              "tertiary-container": "#5e000d",
+              "surface-container-highest": "#d7e2ff",
+              "background": "#f9f9ff",
+              "on-primary": "#ffffff",
+              "secondary": "#00677f",
+              "on-primary-fixed": "#081b38",
+              "primary-fixed": "#d7e2ff",
+              "primary-container": "#1a2b48",
+              "surface-variant": "#d7e2ff",
+              "error": "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#004e60",
+              "surface-container-low": "#f1f3ff",
+              "tertiary": "#370004",
+              "on-secondary-container": "#005266",
+              "on-tertiary-fixed": "#410006",
+              "surface-dim": "#cadaff",
+              "inverse-surface": "#20304e",
+              "on-primary-fixed-variant": "#374765",
+              "surface-tint": "#4e5f7e",
+              "on-surface-variant": "#44474d",
+              "surface-container": "#e8eeff",
+              "primary": "#031632",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "outline": "#75777e",
+              "primary-fixed-dim": "#b6c7eb",
+              "surface-bright": "#f9f9ff",
+              "on-secondary-fixed": "#001f28",
+              "on-tertiary-container": "#f36263",
+              "secondary-fixed-dim": "#4cd6ff",
+              "on-primary-container": "#8293b5",
+              "tertiary-fixed": "#ffdad8",
+              "inverse-on-surface": "#ecf0ff",
+              "secondary-fixed": "#b7eaff",
+              "on-background": "#081b38"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-ai {
+        background: rgba(0, 204, 249, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 204, 249, 0.2);
+      }
+    </style>
+<!-- TopNavBar (Full Width) -->
+<header class="bg-slate-50 flex justify-between items-center w-full px-6 py-4 max-w-full sticky top-0 z-50 shadow-sm">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-[#031632] font-headline uppercase" style=""><a href="../ai_matcher_updated_sidebar_icons/code.html" class="no-underline text-inherit">The Curated Architect</a></span>
+<nav class="hidden lg:flex gap-6">
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 rounded-full transition-all" style="">
+<span class="material-symbols-outlined text-primary" data-icon="notifications" style="">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="professional headshot of a middle-aged male architect with glasses and a clean-shaven face, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzNOx8xQeN-EGnVZxb_OAGCFkVXNQY4HO9-L67ETkOT-Uu79B2Lxzuu0sqhkW8vxfU3RVdlE_pwOuja_d41lrNxCS2irpcL5pOQoC8R1QMupCcz-A03wJo0idL_fAnKUyhf8aVlOWHhWaGSLxBbo3OEYGrl9DADl_P3rGnXsAnPFL8vhKNed7ek-o_S_Nym0P9T9raLr3T83WBhuwazax_Dgv2aLWCMUXO7yEAlVDCrRh9N6gEh39rsehohX1GTekw-aiZ1Jud" style=""/>
+</div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- SideNavBar (Starts below TopNavBar) -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-72px)] w-64 bg-[#031632] py-6 gap-2 border-r border-white/10 shrink-0 sticky top-[72px]">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-bold text-white font-headline" style="">Editorial Intel</h1>
+<p class="text-[10px] text-secondary-fixed-dim uppercase tracking-widest font-label mt-1" style="">AI-Driven Insights</p>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 transition-all hover:bg-white/5" href="../ai_matcher_updated_sidebar_icons/code.html" style="">
+<span class="material-symbols-outlined" data-icon="home" style="">home</span>
+<span class="font-label text-sm" style="">Matched Homes</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 transition-all hover:bg-white/5" href="../portfolio_comparison_updated_sidebar_navigation/code.html" style="">
+<span class="material-symbols-outlined" data-icon="compare_arrows" style="">compare_arrows</span>
+<span class="font-label text-sm" style="">Compare Homes</span>
+</a>
+<a class="flex items-center gap-3 bg-[#1A2B48] text-[#00CCF9] rounded-lg px-4 py-3 mx-2 translate-x-1 transition-transform" href="#" style="">
+<span class="material-symbols-outlined" data-icon="donut_large" style="">donut_large</span>
+<span class="font-label text-sm" style="">Status</span>
+</a>
+</nav>
+</aside>
+<main class="flex-1 overflow-x-hidden">
+<!-- Content Canvas -->
+<div class="p-6 md:p-12 max-w-7xl mx-auto space-y-12">
+<!-- Hero Title Section -->
+<div class="space-y-2">
+<span class="text-secondary font-label text-xs uppercase tracking-[0.2em] font-bold" style="">Current Journey</span>
+<h2 class="text-primary font-headline text-4xl md:text-5xl font-extrabold tracking-tight" style="">Acquisition Portal</h2>
+<p class="text-on-surface-variant max-w-xl" style="">Finalizing your purchase of the <span class="text-primary font-bold" style="">Brutalist Glass Villa</span>. Your AI Concierge has updated your closing roadmap.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 gap-8">
+<!-- Main Status Tracker (Col 1 & 2) -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Timeline Section -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] space-y-8">
+<div class="flex justify-between items-end">
+<h3 class="font-headline text-2xl font-bold" style="">Timeline to Closing</h3>
+<span id="timeline-percent" class="text-secondary font-bold text-sm bg-secondary-fixed px-3 py-1 rounded-sm" style="">42% Complete</span>
+</div>
+<div class="relative pt-4">
+<!-- Progress Bar Base -->
+<div class="absolute top-[4.25rem] left-0 w-full h-[2px] bg-surface-container"></div>
+<!-- Active Progress Bar -->
+<div id="timeline-bar" class="absolute top-[4.25rem] left-0 w-[30%] h-[2px] bg-on-tertiary-container transition-all duration-1000"></div>
+<div class="grid grid-cols-5 relative">
+<!-- Step 1: Reservation -->
+<div class="flex flex-col items-center text-center gap-4">
+<div class="z-10 w-10 h-10 rounded-full bg-on-tertiary-container text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-base" data-icon="check" style='font-variation-settings: "FILL" 1;'>check</span>
+</div>
+<div class="space-y-1">
+<p class="font-bold text-[11px] md:text-xs text-primary" style="">Reservation</p>
+<p class="text-[9px] text-green-600 uppercase font-semibold" style="">Completed</p>
+</div>
+</div>
+<!-- Step 2: Documents Upload -->
+<div id="step2" class="flex flex-col items-center text-center gap-4">
+<div id="step2-circle" class="z-10 w-10 h-10 rounded-full bg-white text-on-tertiary-container flex items-center justify-center border-2 border-on-tertiary-container shadow-[0_0_15px_rgba(243,98,99,0.3)] transition-all duration-700">
+<span id="step2-icon" class="material-symbols-outlined text-base animate-pulse" data-icon="upload_file" style="">upload_file</span>
+</div>
+<div class="space-y-1">
+<p class="font-bold text-[11px] md:text-xs text-primary" style="">Docs Upload</p>
+<p id="step2-status" class="text-[9px] text-on-tertiary-container uppercase font-bold" style="">In Progress</p>
+</div>
+</div>
+<!-- Step 3: Loan Contract -->
+<div id="step3" class="flex flex-col items-center text-center gap-4">
+<div id="step3-circle" class="z-10 w-10 h-10 rounded-full bg-surface-container text-slate-400 flex items-center justify-center border-2 border-surface-container transition-all duration-700">
+<span id="step3-icon" class="material-symbols-outlined text-base" data-icon="contract" style="">contract</span>
+</div>
+<div class="space-y-1">
+<p id="step3-label" class="font-bold text-[11px] md:text-xs text-slate-400 transition-colors duration-500" style="">Loan Contract</p>
+<p id="step3-status" class="text-[9px] text-slate-400 uppercase font-medium" style="">Upcoming</p>
+</div>
+</div>
+<!-- Step 4: Home Inspection -->
+<div class="flex flex-col items-center text-center gap-4">
+<div class="z-10 w-10 h-10 rounded-full bg-surface-container text-slate-400 flex items-center justify-center border-2 border-surface-container">
+<span class="material-symbols-outlined text-base" data-icon="home_health" style="">home_health</span>
+</div>
+<div class="space-y-1">
+<p class="font-bold text-[11px] md:text-xs text-slate-400" style="">Inspection</p>
+<p class="text-[9px] text-slate-400 uppercase font-medium" style="">Upcoming</p>
+</div>
+</div>
+<!-- Step 5: Transfer -->
+<div class="flex flex-col items-center text-center gap-4">
+<div class="z-10 w-10 h-10 rounded-full bg-surface-container text-slate-400 flex items-center justify-center border-2 border-surface-container">
+<span class="material-symbols-outlined text-base" data-icon="key" style="">key</span>
+</div>
+<div class="space-y-1">
+<p class="font-bold text-[11px] md:text-xs text-slate-400" style="">Transfer</p>
+<p class="text-[9px] text-slate-400 uppercase font-medium" style="">Upcoming</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Documents Checklist Section -->
+<div class="bg-surface-container-low p-8 rounded-xl space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="folder_managed" style="">folder_managed</span>
+<h3 class="font-headline text-xl font-bold" style="">Documents &amp; Bank Financing</h3>
+</div>
+<div class="flex items-center gap-4">
+<span id="doc-counter" class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded" style="">2/4 REQUIRED</span>
+<button id="upload-missing-btn" class="text-secondary font-bold text-sm hover:underline" style="" onclick="document.getElementById('doc3-input').click()">Upload Missing</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Doc 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between group border border-transparent hover:border-secondary/20 transition-all">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-green-50 text-green-600 rounded">
+<span class="material-symbols-outlined" data-icon="verified" style='font-variation-settings: "FILL" 1;'>verified</span>
+</div>
+<div>
+<p class="text-sm font-bold text-primary" style="">Bank Statements (3mo)</p>
+<p class="text-xs text-slate-400" style="">Verified by AI Concierge</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer" data-icon="visibility" style="">visibility</span>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer" data-icon="download" style="">download</span>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-error hover:scale-110 transition-transform cursor-pointer" data-icon="delete" style="" title="Remove File">delete</span></div>
+</div>
+<!-- Doc 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between group border border-transparent hover:border-secondary/20 transition-all">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-green-50 text-green-600 rounded">
+<span class="material-symbols-outlined" data-icon="verified" style='font-variation-settings: "FILL" 1;'>verified</span>
+</div>
+<div>
+<p class="text-sm font-bold text-primary" style="">Proof of Employment</p>
+<p class="text-xs text-slate-400" style="">KYC &amp; HR Verified</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer" data-icon="visibility" style="">visibility</span>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-error hover:scale-110 transition-transform cursor-pointer" data-icon="delete" style="" title="Remove File">delete</span></div>
+</div>
+<!-- Doc 3 (Active Item - Interactive Upload) -->
+<div id="doc3-card" class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between group border-2 border-dashed border-on-tertiary-container/40 ring-4 ring-on-tertiary-container/5 transition-all duration-500">
+<input type="file" id="doc3-input" class="hidden" onchange="handleDoc3Upload(this)" />
+<div class="flex items-center gap-4">
+<div id="doc3-icon" class="p-2 bg-on-tertiary-container/10 text-on-tertiary-container rounded transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<p id="doc3-title" class="text-sm font-bold text-primary">Loan Pre-Approval Letter</p>
+<p id="doc3-status" class="text-xs text-on-tertiary-container font-medium">Awaiting Bank Upload</p>
+</div>
+</div>
+<!-- Upload button (initial state) -->
+<button id="doc3-btn" onclick="document.getElementById('doc3-input').click()" class="bg-on-tertiary-container text-white text-[10px] font-bold px-3 py-1 rounded-full hover:scale-105 transition-transform flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="upload">upload</span> UPLOAD
+</button>
+<!-- Loading spinner (hidden) -->
+<div id="doc3-loader" class="hidden items-center gap-2">
+<svg class="animate-spin h-5 w-5 text-on-tertiary-container" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+</svg>
+<span class="text-[10px] font-bold text-on-tertiary-container uppercase tracking-widest">Uploading...</span>
+</div>
+<!-- Success actions (hidden) -->
+<div id="doc3-success" class="hidden items-center gap-2">
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer">visibility</span>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-error hover:scale-110 transition-transform cursor-pointer" title="Remove File">delete</span>
+</div>
+</div>
+<script>
+function handleDoc3Upload(input) {
+  if (!input.files || !input.files.length) return;
+  var fileName = input.files[0].name;
+  var card = document.getElementById('doc3-card');
+  var btn = document.getElementById('doc3-btn');
+  var loader = document.getElementById('doc3-loader');
+  var success = document.getElementById('doc3-success');
+  var icon = document.getElementById('doc3-icon');
+  var title = document.getElementById('doc3-title');
+  var status = document.getElementById('doc3-status');
+
+  // Phase 1: Show loading
+  btn.classList.add('hidden');
+  loader.classList.remove('hidden');
+  loader.classList.add('flex');
+  status.textContent = 'Uploading ' + fileName + '...';
+  card.classList.remove('border-dashed', 'border-on-tertiary-container/40', 'ring-4', 'ring-on-tertiary-container/5');
+  card.classList.add('border-solid', 'border-secondary/30');
+
+  // Phase 2: After 2s, show success
+  setTimeout(function() {
+    loader.classList.add('hidden');
+    loader.classList.remove('flex');
+    success.classList.remove('hidden');
+    success.classList.add('flex');
+
+    // Update card to verified state
+    card.classList.remove('border-secondary/30', 'border-2');
+    card.classList.add('border', 'border-transparent', 'hover:border-secondary/20');
+    icon.className = 'p-2 bg-green-50 text-green-600 rounded transition-all duration-300';
+    icon.innerHTML = '<span class="material-symbols-outlined" style="font-variation-settings: \'FILL\' 1;">verified</span>';
+    title.textContent = 'Loan Pre-Approval Letter';
+    status.className = 'text-xs text-slate-400';
+    status.textContent = 'Verified by AI Concierge';
+
+    // Update counter
+    document.getElementById('doc-counter').textContent = '3/4 REQUIRED';
+    document.getElementById('upload-missing-btn').textContent = 'All Uploaded';
+    document.getElementById('upload-missing-btn').classList.remove('text-secondary');
+    document.getElementById('upload-missing-btn').classList.add('text-green-600');
+    document.getElementById('upload-missing-btn').onclick = null;
+
+    // Phase 3: After 5s, advance timeline to Loan Contract step
+    setTimeout(function() {
+      // Step 2 → completed
+      var s2circle = document.getElementById('step2-circle');
+      s2circle.className = 'z-10 w-10 h-10 rounded-full bg-on-tertiary-container text-white flex items-center justify-center shadow-md transition-all duration-700';
+      var s2icon = document.getElementById('step2-icon');
+      s2icon.className = 'material-symbols-outlined text-base';
+      s2icon.style.fontVariationSettings = "'FILL' 1";
+      s2icon.textContent = 'check';
+      document.getElementById('step2-status').className = 'text-[9px] text-green-600 uppercase font-semibold';
+      document.getElementById('step2-status').textContent = 'Completed';
+
+      // Step 3 → in progress
+      var s3circle = document.getElementById('step3-circle');
+      s3circle.className = 'z-10 w-10 h-10 rounded-full bg-white text-on-tertiary-container flex items-center justify-center border-2 border-on-tertiary-container shadow-[0_0_15px_rgba(243,98,99,0.3)] transition-all duration-700';
+      var s3icon = document.getElementById('step3-icon');
+      s3icon.classList.add('animate-pulse');
+      document.getElementById('step3-label').className = 'font-bold text-[11px] md:text-xs text-primary transition-colors duration-500';
+      document.getElementById('step3-status').className = 'text-[9px] text-on-tertiary-container uppercase font-bold';
+      document.getElementById('step3-status').textContent = 'In Progress';
+
+      // Advance progress bar
+      document.getElementById('timeline-bar').style.width = '50%';
+      document.getElementById('timeline-percent').textContent = '58% Complete';
+
+      // Smooth scroll to timeline
+      document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 5000);
+  }, 2000);
+}
+</script>
+<!-- Doc 4 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between group border border-transparent hover:border-secondary/20 transition-all opacity-60">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-slate-100 text-slate-400 rounded">
+<span class="material-symbols-outlined" data-icon="description" style="">description</span>
+</div>
+<div>
+<p class="text-sm font-bold text-primary" style="">Property Appraisal Report</p>
+<p class="text-xs text-slate-400" style="">Scheduled after Doc Review</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300" data-icon="lock" style="">lock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar (AI & Booking) -->
+</div>
+<!-- Visual Separator (Background Shift) -->
+<div class="h-20"></div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Visible on Mobile) -->
+<nav class="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex justify-around items-center px-4 py-3 bg-[#031632]/90 backdrop-blur-xl w-[90%] max-w-2xl rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10">
+<a class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200" href="#" style="">
+<span class="material-symbols-outlined" data-icon="trending_up" style="">trending_up</span>
+<span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">Increase Down Payment</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200" href="#" style="">
+<span class="material-symbols-outlined" data-icon="calendar_today" style="">calendar_today</span>
+<span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">Book a Tour</span>
+</a>
+<a class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200" href="#" style="">
+<span class="material-symbols-outlined" data-icon="tune" style="">tune</span>
+<span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">Refine Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#F36263] p-2 hover:scale-105 transition-transform active:scale-95 duration-200" href="#" style="">
+<span class="material-symbols-outlined" data-icon="auto_awesome" style='font-variation-settings: "FILL" 1;'>auto_awesome</span>
+<span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">View Matches</span>
+</a>
+</nav>
+```</body></html>

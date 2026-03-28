@@ -1,0 +1,706 @@
+<!DOCTYPE html><html class="light" lang="en"><head></head><body class="bg-surface font-body text-on-surface selection:bg-secondary-container">```html
+
+
+    <meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>The Curated Architect | Smart Suggestion Engine</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "surface-container-high": "#dfe8ff",
+              "on-surface": "#081b38",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#8c1520",
+              "secondary-container": "#00ccf9",
+              "inverse-primary": "#b6c7eb",
+              "surface": "#f9f9ff",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c5c6ce",
+              "tertiary-container": "#5e000d",
+              "surface-container-highest": "#d7e2ff",
+              "background": "#f9f9ff",
+              "on-primary": "#ffffff",
+              "secondary": "#00677f",
+              "on-primary-fixed": "#081b38",
+              "primary-fixed": "#d7e2ff",
+              "primary-container": "#1a2b48",
+              "surface-variant": "#d7e2ff",
+              "error": "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#004e60",
+              "surface-container-low": "#f1f3ff",
+              "tertiary": "#370004",
+              "on-secondary-container": "#005266",
+              "on-tertiary-fixed": "#410006",
+              "surface-dim": "#cadaff",
+              "inverse-surface": "#20304e",
+              "on-primary-fixed-variant": "#374765",
+              "surface-tint": "#4e5f7e",
+              "on-surface-variant": "#44474d",
+              "surface-container": "#e8eeff",
+              "primary": "#031632",
+              "tertiary-fixed-dim": "#ffb3b0",
+              "outline": "#75777e",
+              "primary-fixed-dim": "#b6c7eb",
+              "surface-bright": "#f9f9ff",
+              "on-secondary-fixed": "#001f28",
+              "on-tertiary-container": "#f36263",
+              "secondary-fixed-dim": "#4cd6ff",
+              "on-primary-container": "#8293b5",
+              "tertiary-fixed": "#ffdad8",
+              "inverse-on-surface": "#ecf0ff",
+              "secondary-fixed": "#b7eaff",
+              "on-background": "#081b38"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-gradient {
+            background: linear-gradient(135deg, #031632 0%, #1A2B48 100%);
+        }
+        .glass-ai {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .ai-glow {
+            box-shadow: 0 0 25px rgba(0, 103, 127, 0.2);
+        }
+        .scanning-line {
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 103, 127, 0.05) 50%, transparent 100%);
+            background-size: 100% 4px;
+        }
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .animate-scan {
+            animation: scan 4s linear infinite;
+        }
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-bounce-subtle {
+            animation: bounce-subtle 3s ease-in-out infinite;
+        }
+        /* Tab functionality simulation */
+        #tab-simulation:checked ~ #content-simulation { display: block; }
+        #tab-simulation:checked ~ #content-details { display: none; }
+        #tab-details:checked ~ #content-details { display: block; }
+        #tab-details:checked ~ #content-simulation { display: none; }
+        /* Custom scrollbar for thumbnails */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<!-- TopNavBar -->
+<nav class="bg-slate-50 dark:bg-[#031632] shadow-sm dark:shadow-none fixed top-0 z-50 flex justify-between items-center w-full px-6 py-4 max-w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-[#031632] dark:text-white font-headline" style=""><a href="../ai_matcher_updated_sidebar_icons/code.html" class="no-underline text-inherit">Nestify</a></span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-full" style="">
+<span class="material-symbols-outlined text-[#031632] dark:text-white" data-icon="notifications" style="">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-full" style="">
+<span class="material-symbols-outlined text-[#031632] dark:text-white" data-icon="account_circle" style="">account_circle</span>
+</button>
+</div>
+</nav>
+<main class="flex min-h-screen pt-[72px]">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col py-6 gap-2 bg-[#031632] dark:bg-[#020d1d] border-r border-white/10 fixed left-0 w-64 shadow-2xl overflow-y-auto top-0 h-screen z-40" style="top: 72px; height: calc(100vh - 72px);">
+<div class="px-6 mb-8">
+<h2 class="text-xl font-bold text-white font-headline" style="">Editorial Intel</h2>
+<p class="text-xs font-label" style="color: rgb(0, 204, 249);">AI-Driven Insights</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all" href="../ai_matcher_updated_sidebar_icons/code.html" style="">
+<span class="material-symbols-outlined" data-icon="home" style="">home</span>
+<span class="font-label text-sm font-bold" style="">Matched Homes</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all" href="../portfolio_comparison_updated_sidebar_navigation/code.html" style="">
+<span class="material-symbols-outlined" data-icon="compare_arrows" style="">compare_arrows</span>
+<span class="font-label text-sm" style="">Compare Homes</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all" href="../acquisition_portal_focused_journey_view/code.html" style="">
+<span class="material-symbols-outlined" data-icon="donut_large" style="">donut_large</span>
+<span class="font-label text-sm" style="">Status</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<section class="flex-1 md:ml-64 px-8 py-12 bg-surface">
+<div class="max-w-7xl mx-auto">
+<!-- Editorial Header -->
+<header class="mb-12">
+<span class="text-secondary font-label font-bold text-xs uppercase tracking-[0.2em] mb-2 block" style="">Exclusive Listing • Bangkok Riverside</span>
+<h1 class="text-primary font-headline font-extrabold text-5xl tracking-tight mb-4" style="">The Obsidian Penthouse</h1>
+<div class="flex items-center gap-4 text-on-surface-variant font-body">
+<span class="flex items-center gap-1" style=""><span class="material-symbols-outlined text-sm" data-icon="location_on" style="">location_on</span> Charoen Nakhon, Bangkok</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="font-bold text-primary" style="">฿45,000,000</span>
+</div>
+</header>
+<!-- Top Row: Hero Image and Sidebar -->
+<div class="grid grid-cols-12 gap-8 items-start mb-12">
+<!-- Left: Visuals -->
+<div class="col-span-12 lg:col-span-7 space-y-4">
+<div class="relative group">
+<img alt="ultra-modern luxury penthouse interior with floor-to-ceiling windows overlooking a city river at twilight" class="w-full h-[500px] object-cover rounded-xl shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtfdtQfT8HBkDIkObTzPSFs9WEYjbPwB6sddozY0Vlt_k1Io1FJg2cYUJzYFqWCykCsKKXxSAp6SCeklVH5PbWqxKtHCPlXzpFLXkd-SEbm7XxCa6hBUM9dc7tAGVOfgG_qpSPd0PeWBMDfNgZmANEU2_LqZ2-T7ycXwNQcRzwhY4_L0rM6_F9UfhoXjcnyGvtra2tsBrjAlfVtX3nHESsfu_vgcqZeKHDfxf2JSRx4eOcjQWqBpAP739vfmMo67oucVeccu4d" style="">
+<div class="absolute top-6 right-6 flex gap-2">
+<span class="bg-primary/80 backdrop-blur-md text-white px-4 py-2 rounded-full font-label text-xs font-bold flex items-center gap-2" style="">
+<span class="material-symbols-outlined text-sm" data-icon="photo_camera" style="">photo_camera</span> 1/12
+                                </span>
+</div>
+</div>
+<!-- Horizontal Scrollable Gallery (thumbnails) -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+<img alt="Thumb 1" class="w-24 h-24 object-cover rounded-lg ring-2 ring-primary cursor-pointer shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtfdtQfT8HBkDIkObTzPSFs9WEYjbPwB6sddozY0Vlt_k1Io1FJg2cYUJzYFqWCykCsKKXxSAp6SCeklVH5PbWqxKtHCPlXzpFLXkd-SEbm7XxCa6hBUM9dc7tAGVOfgG_qpSPd0PeWBMDfNgZmANEU2_LqZ2-T7ycXwNQcRzwhY4_L0rM6_F9UfhoXjcnyGvtra2tsBrjAlfVtX3nHESsfu_vgcqZeKHDfxf2JSRx4eOcjQWqBpAP739vfmMo67oucVeccu4d" style="">
+<img alt="Thumb 2" class="w-24 h-24 object-cover rounded-lg opacity-70 hover:opacity-100 transition-opacity cursor-pointer shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPCe8aHj4R6qs8MQJlskBBTb9I0UIfRFqQ_mrjisbEXEr-aCmV-SdVzJdtlAruq5cgJkUgDez7TPkv6WYDWhKQMQfYMkcRlN3VWZif33CK3X6-k21WtbDbYgs7Sz9Yyk_REzfBy2jHdG98Sv1jwZ3sTN5N1YK7LZN00MF8X1lYPYKYrADUtlfYDVWIAgQdZPhD9Aq8Gjc0U3e_elTPfZ3uSwUkXS2jVsD53LQcwxUxioKtPlWWotweERkZnqgK9eSgcAVMNE3f" style="">
+<img alt="Thumb 3" class="w-24 h-24 object-cover rounded-lg opacity-70 hover:opacity-100 transition-opacity cursor-pointer shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhqTiTqvQ9S38SiUr5D39f6Ejwpg3UbQLvdRNmnBL0rFGlPlH4EskERQjPL-bmiUftxSexhzH1EoiXjfXNQT14H02Efcb_iUjx5-8q-2LTNdYUjux6WFFBAlbqrwAsUMZXkSuMGxjA6jGjCu8nUsRcn_y-yXRyujwnGwIFvCAXW4qFZPPkUfoX7Gorvy_4yAQbup4oTsiQ9cXU3ZEHH4DSNQT4O7-R7BG7mW4_U90VgYFucww5Q3o_7HFOxR6EKo6FyBtyIbsd" style="">
+<div class="w-24 h-24 bg-slate-200 rounded-lg flex items-center justify-center text-slate-500 font-bold shrink-0" style="">+9</div>
+</div>
+<!-- Comparison Tray -->
+<div class="bg-white p-4 rounded-xl border border-outline-variant/30 shadow-sm flex items-center gap-6 mt-4">
+<div class="flex-none pr-6 border-r border-outline-variant/20">
+<h5 class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1" style="">Compare List</h5>
+<p class="text-xs font-bold text-primary" style="">2 Properties Selected</p>
+</div>
+<div class="flex flex-1 gap-4 overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-3 bg-surface-container-low/50 p-2 rounded-lg border border-outline-variant/20 flex-shrink-0">
+<img alt="The Glass Pavilion" class="h-10 w-10 rounded-md object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPCe8aHj4R6qs8MQJlskBBTb9I0UIfRFqQ_mrjisbEXEr-aCmV-SdVzJdtlAruq5cgJkUgDez7TPkv6WYDWhKQMQfYMkcRlN3VWZif33CK3X6-k21WtbDbYgs7Sz9Yyk_REzfBy2jHdG98Sv1jwZ3sTN5N1YK7LZN00MF8X1lYPYKYrADUtlfYDVWIAgQdZPhD9Aq8Gjc0U3e_elTPfZ3uSwUkXS2jVsD53LQcwxUxioKtPlWWotweERkZnqgK9eSgcAVMNE3f" style="">
+<div class="hidden sm:block">
+<p class="text-[11px] font-bold text-primary truncate max-w-[100px]" style="">The Glass Pavilion</p>
+<p class="text-[10px] text-on-surface-variant" style="">$4.25M</p>
+</div>
+<button class="text-outline hover:text-error transition-colors" style="">
+<span class="material-symbols-outlined text-sm" style="">close</span>
+</button>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low/50 p-2 rounded-lg border border-outline-variant/20 flex-shrink-0">
+<img alt="The Cedar Retreat" class="h-10 w-10 rounded-md object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhqTiTqvQ9S38SiUr5D39f6Ejwpg3UbQLvdRNmnBL0rFGlPlH4EskERQjPL-bmiUftxSexhzH1EoiXjfXNQT14H02Efcb_iUjx5-8q-2LTNdYUjux6WFFBAlbqrwAsUMZXkSuMGxjA6jGjCu8nUsRcn_y-yXRyujwnGwIFvCAXW4qFZPPkUfoX7Gorvy_4yAQbup4oTsiQ9cXU3ZEHH4DSNQT4O7-R7BG7mW4_U90VgYFucww5Q3o_7HFOxR6EKo6FyBtyIbsd" style="">
+<div class="hidden sm:block">
+<p class="text-[11px] font-bold text-primary truncate max-w-[100px]" style="">The Cedar Retreat</p>
+<p class="text-[10px] text-on-surface-variant" style="">$2.1M</p>
+</div>
+<button class="text-outline hover:text-error transition-colors" style="">
+<span class="material-symbols-outlined text-sm" style="">close</span>
+</button>
+</div>
+</div>
+<a href="../portfolio_comparison_updated_sidebar_navigation/code.html" class="bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-6 py-3 rounded-lg hover:brightness-110 transition-all flex items-center gap-2 flex-shrink-0 no-underline" style="">
+                                Compare Now
+                                <span class="material-symbols-outlined text-sm" style="">analytics</span>
+</a>
+</div>
+</div>
+<!-- Right Side: Sidebar items -->
+<div class="col-span-12 lg:col-span-5 space-y-6">
+<!-- Book a Tour Section -->
+<div class="bg-white p-6 rounded-2xl border border-outline-variant/30 shadow-xl shadow-black/5 space-y-6 relative overflow-hidden">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="calendar_month" style="">calendar_month</span>
+</div>
+<h4 class="font-headline text-lg font-bold text-primary" style="">Book a Personal Tour</h4>
+</div>
+<span class="text-[10px] font-bold text-secondary-container bg-primary px-3 py-1 rounded-full uppercase tracking-widest" style="">Available</span>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-7 gap-1 text-center text-[10px] text-on-surface-variant font-bold uppercase tracking-widest opacity-60">
+<span class="" style="">M</span><span class="" style="">T</span><span class="" style="">W</span><span class="" style="">T</span><span class="" style="">F</span><span class="" style="">S</span><span class="" style="">S</span>
+</div>
+<div class="grid grid-cols-7 gap-3">
+<div class="h-8 flex items-center justify-center text-xs text-outline/40" style="">26</div>
+<div class="h-8 flex items-center justify-center text-xs text-outline/40" style="">27</div>
+<div class="h-8 flex items-center justify-center text-xs text-outline/40" style="">28</div>
+<div class="h-8 flex items-center justify-center text-xs text-outline/40" style="">29</div>
+<div class="h-8 flex items-center justify-center text-xs font-bold text-primary hover:bg-surface-container-low rounded-full cursor-pointer transition-colors" style="">30</div>
+<div class="h-8 flex items-center justify-center text-xs font-bold text-primary hover:bg-surface-container-low rounded-full cursor-pointer transition-colors" style="">31</div>
+<div class="h-8 flex items-center justify-center text-xs font-bold bg-secondary text-white rounded-full shadow-md shadow-secondary/20 scale-110" style="">01</div>
+</div>
+<div class="pt-4 space-y-3">
+<div class="flex items-center justify-between bg-surface-container-low/60 p-4 rounded-xl border border-outline-variant/20 group hover:border-secondary/40 transition-colors cursor-pointer">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1" style="">Proposed Slot</p>
+<div class="text-sm font-bold text-primary" style="">Friday, Nov 01 • 10:30 AM</div>
+</div>
+<span class="material-symbols-outlined text-secondary group-hover:scale-110 transition-transform" data-icon="edit_calendar" style="">edit_calendar</span>
+</div>
+<button class="w-full bg-secondary-container text-primary font-bold py-4 rounded-xl text-sm hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg shadow-secondary-container/20" style="">
+                                        Confirm Viewing
+                                        <span class="material-symbols-outlined text-base" style="">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Choose Your Path Section -->
+<div class="bg-surface-container-low/30 p-6 rounded-2xl border border-outline-variant/20 space-y-6">
+<div class="space-y-1">
+<h4 class="font-headline font-bold text-primary" style="">Choose Your Path</h4>
+<p class="text-xs text-on-surface-variant font-medium" style="">Continue with the ownership option that fits your plan</p>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<button class="flex items-center justify-between py-4 px-5 rounded-xl bg-white border border-[#1A2B48]/20 hover:border-[#1A2B48] hover:bg-slate-50 transition-all group" style="">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-[#1A2B48] group-hover:bg-[#1A2B48]/10 transition-colors">
+<span class="material-symbols-outlined" data-icon="key" style="">key</span>
+</div>
+<div class="text-left">
+<p class="text-sm font-bold text-primary" style="">Rent This Home</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" style="">chevron_right</span>
+</button>
+<button class="flex items-center justify-between py-5 px-6 rounded-xl border-none transition-all group hover:brightness-105" onclick="window.location.href='../acquisition_portal_focused_journey_view/code.html'" style="background-color: rgb(255, 107, 107); box-shadow: rgba(255, 107, 107, 0.3) 0px 0px 20px;">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="shopping_cart" style="">shopping_cart</span>
+</div>
+<div class="text-left">
+<p class="text-sm font-extrabold text-white" style="">Buy This Home</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white group-hover:translate-x-1 transition-transform" style="">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- New Full-Width Section for Tabbed Interface -->
+<div class="w-full mt-12">
+<!-- Tabbed Navigation -->
+<div class="flex border-b border-outline-variant/30 mb-8 overflow-x-auto">
+<label class="cursor-pointer" style="">
+<input checked="" class="hidden peer" id="tab-details" name="main-tabs" type="radio">
+<div class="px-6 py-4 text-sm font-bold uppercase tracking-widest text-[#F36263] peer-checked:text-[#F36263] transition-all relative bg-[#F36263]/5 font-extrabold" style="transition: 0.3s;">
+                                Property Details
+                                <div class="absolute bottom-0 left-0 w-full h-1 bg-[#F36263] rounded-t-full shadow-[0_-2px_8px_rgba(243,98,99,0.4)]"></div>
+</div>
+</label>
+<label class="cursor-pointer" style="">
+<input class="hidden peer" id="tab-simulation" name="main-tabs" type="radio">
+<div class="px-6 py-4 text-sm font-bold uppercase tracking-widest text-on-surface-variant peer-checked:text-primary peer-checked:border-b-2 peer-checked:border-primary transition-all flex items-center gap-2 hover:bg-surface-container-low transition-colors duration-300" style="">
+<span class="material-symbols-outlined text-lg" data-icon="auto_awesome" style="">auto_awesome</span>
+                                Rent vs Buy
+                            </div>
+</label>
+</div>
+<!-- Property Details Tab Content -->
+<div class="space-y-8" id="content-details">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Architecture & Design -->
+<div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10">
+<h3 class="font-headline font-bold text-lg text-primary mb-4 flex items-center gap-2" style="">
+<span class="material-symbols-outlined text-secondary" data-icon="architecture" style="">architecture</span> Architecture &amp; Design
+                                </h3>
+<ul class="space-y-3">
+<li class="flex justify-between items-center text-sm" style="">
+<span class="text-on-surface-variant" style="">Bedrooms</span>
+<span class="font-bold text-primary" style="">5 Beds</span>
+</li>
+<li class="flex justify-between items-center text-sm" style="">
+<span class="text-on-surface-variant" style="">Bathrooms</span>
+<span class="font-bold text-primary" style="">4 Baths</span>
+</li>
+<li class="flex justify-between items-center text-sm" style="">
+<span class="text-on-surface-variant" style="">Total Area</span>
+<span class="font-bold text-primary" style="">4,500 sqft</span>
+</li>
+<li class="flex items-center gap-2 pt-2 border-t border-outline-variant/30 mt-2" style="">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="smart_home" style="">smart_home</span>
+<span class="text-xs font-medium text-on-surface" style="">Integrated Smart Home System</span>
+</li>
+</ul>
+</div>
+<!-- Neighborhood Intel -->
+<div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10">
+<h3 class="font-headline font-bold text-lg text-primary mb-4 flex items-center gap-2" style="">
+<span class="material-symbols-outlined text-secondary" data-icon="map" style="">map</span> Neighborhood Intel
+                                </h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3" style="">
+<span class="material-symbols-outlined text-secondary mt-0.5" data-icon="directions_walk" style="">directions_walk</span>
+<div>
+<p class="text-sm font-bold text-primary" style="">5 min to MRT Krung Thon Buri</p>
+<p class="text-xs text-on-surface-variant" style="">Seamless city connection</p>
+</div>
+</li>
+<li class="flex items-start gap-3" style="">
+<span class="material-symbols-outlined text-secondary mt-0.5" data-icon="school" style="">school</span>
+<div>
+<p class="text-sm font-bold text-primary" style="">Top-Rated Int. Schools</p>
+<p class="text-xs text-on-surface-variant" style="">Within 3km radius</p>
+</div>
+</li>
+<li class="flex items-start gap-3" style="">
+<span class="material-symbols-outlined text-secondary mt-0.5" data-icon="local_hospital" style="">local_hospital</span>
+<div>
+<p class="text-sm font-bold text-primary" style="">Bumrungrad Hospital</p>
+<p class="text-xs text-on-surface-variant" style="">1.8km distance</p>
+</div>
+</li>
+<li class="flex items-start gap-3" style="">
+<span class="material-symbols-outlined text-secondary mt-0.5" data-icon="shopping_bag" style="">shopping_bag</span>
+<div>
+<p class="text-sm font-bold text-primary" style="">EmQuartier Mall</p>
+<p class="text-xs text-on-surface-variant" style="">800m distance</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Sustainability -->
+<div class="bg-secondary/5 rounded-xl p-6 border border-outline-variant/10 col-span-1 lg:col-span-1">
+<h3 class="font-headline font-bold text-lg text-secondary mb-4 flex items-center gap-2" style="">
+<span class="material-symbols-outlined" data-icon="eco" style="">eco</span> Sustainability Features
+                                </h3>
+<div class="grid grid-cols-1 gap-4">
+<div class="flex items-center gap-3 bg-white/50 p-3 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="solar_power" style="">solar_power</span>
+<div>
+<p class="text-xs font-black uppercase tracking-wider text-primary" style="">Energy</p>
+<p class="text-sm font-medium" style="">Hybrid Solar Panel Array</p>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-white/50 p-3 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="ev_station" style="">ev_station</span>
+<div>
+<p class="text-xs font-black uppercase tracking-wider text-primary" style="">Transport</p>
+<p class="text-sm font-medium" style="">Dual EV Fast Charging Ports</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Lifestyle Match Section -->
+<div class="bg-blue-50/50 rounded-2xl p-8 border border-blue-100/50">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-secondary-container bg-primary p-2 rounded-lg text-2xl" data-icon="auto_awesome" style="">auto_awesome</span>
+<div>
+<h3 class="font-headline font-bold text-2xl text-primary" style="">AI Lifestyle Match</h3>
+<p class="text-on-surface-variant text-sm font-medium" style="">Personalized insights based on your mobility profile</p>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-white p-6 rounded-xl border border-blue-100/50 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="work_history" style="">work_history</span>
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider" style="">9.2/10 Commute Fit</span>
+</div>
+<h4 class="font-bold text-primary mb-1" style="">10 mins to work</h4>
+<p class="text-xs text-on-surface-variant font-medium" style="">Short commute reduces daily fatigue.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-blue-100/50 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="train" style="">train</span>
+<span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider" style="">Excellent Transit Access</span>
+</div>
+<h4 class="font-bold text-primary mb-1" style="">5 mins to BTS / MRT</h4>
+<p class="text-xs text-on-surface-variant font-medium" style="">Stronger long-term location value.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-blue-100/50 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="pets" style="">pets</span>
+<span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider" style="">High Pet Compatibility</span>
+</div>
+<h4 class="font-bold text-primary mb-1" style="">Pet-Friendly Living</h4>
+<p class="text-xs text-on-surface-variant font-medium" style="">Prioritizing your flexible lifestyle.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-blue-100/50 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="celebration" style="">celebration</span>
+<span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider" style="">High Lifestyle Match</span>
+</div>
+<h4 class="font-bold text-primary mb-1" style="">Social &amp; Active</h4>
+<p class="text-xs text-on-surface-variant font-medium" style="">Near cafés, gym &amp; social spots.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-blue-100/50 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="home_work" style="">home_work</span>
+</div>
+<h4 class="font-bold text-primary mb-1" style="">Work-Life Convenience</h4>
+<p class="text-xs text-on-surface-variant font-medium" style="">Balance between city access and comfort.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-blue-100/50 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="analytics" style="">analytics</span>
+</div>
+<h4 class="font-bold text-primary mb-1" style="">Everyday Fit Score</h4>
+<p class="text-xs text-on-surface-variant font-medium" style="">Matches your unique mobility needs.</p>
+</div>
+</div>
+</div>
+<!-- Your Financial Health Check -->
+<div class="bg-surface-container-low p-8 rounded-xl mt-8">
+<h3 class="font-headline text-xl font-bold mb-8 text-primary" style="">Your Financial Health Check</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="">payments</span>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-label uppercase" style="">Annual Income</p>
+<p class="text-xl font-bold font-headline" style="">$215k</p>
+</div>
+</div>
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded uppercase" style="">Verified</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-on-tertiary-container/10 flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" style="">credit_card_off</span>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-label uppercase" style="">Monthly Debt</p>
+<p class="text-xl font-bold font-headline" style="">$1,250</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs text-slate-400 font-label" style="">DTI 7.2%</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" style="">verified_user</span>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-label uppercase" style="">FICO Score</p>
+<p class="text-xl font-bold font-headline" style="">812</p>
+</div>
+</div>
+<span class="text-secondary font-bold text-sm" style="">Excellent</span>
+</div>
+</div>
+</div>
+<!-- Smart Suggestion Section (MOVED UP) -->
+<div class="relative overflow-hidden p-12 rounded-2xl border border-outline-variant/20 mt-12 shadow-sm ai-glow bg-[#f0f9ff]">
+<div class="relative z-10">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-12 mb-12">
+<div class="space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<div class="bg-gradient-to-r from-[#00CCF9] to-[#00677F] text-white font-black text-[10px] px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-md" style="">
+                                                AI Optimized Strategy
+                                            </div>
+</div>
+<h3 class="font-headline font-black text-4xl text-primary tracking-tight" style="">
+<span class="material-symbols-outlined text-3xl align-middle mr-2 text-secondary-fixed-dim" data-icon="auto_awesome" style="">auto_awesome</span>Smart Suggestion
+                                        </h3>
+<div class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10 max-w-xl shadow-sm">
+<h4 class="text-secondary font-bold text-sm uppercase tracking-widest mb-2 flex items-center gap-2" style="">
+<span class="material-symbols-outlined text-lg" data-icon="lightbulb" style="">lightbulb</span> AI Strategic Recommendation
+                                            </h4>
+<p class="text-on-surface-variant text-sm leading-relaxed font-medium" style="">
+                                                Based on your 10-year horizon and FICO profile, the AI recommends immediate acquisition. Equity growth in riverside plots outpaces high-yield investment alternatives by 4.2% annually.
+                                            </p>
+</div>
+</div>
+<!-- Circular Gauge -->
+<div class="flex flex-col items-center">
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full -rotate-90 transform" viewBox="0 0 100 100">
+<defs>
+<linearGradient id="gaugeGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#00CCF9"></stop>
+<stop offset="100%" stop-color="#00677F"></stop>
+</linearGradient>
+</defs>
+<circle class="text-surface-container-high" cx="50" cy="50" fill="transparent" r="45" stroke="currentColor" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" r="45" stroke="url(#gaugeGradient)" stroke-dasharray="282.7" stroke-dashoffset="79.1" stroke-linecap="round" stroke-width="10" style="filter: drop-shadow(0 0 8px rgba(0, 204, 249, 0.4))"></circle>
+</svg>
+<div class="text-center">
+<span class="block text-5xl font-black text-primary font-headline" style="">72<span class="text-2xl text-[#00CCF9]" style="">%</span></span>
+<span class="text-[10px] text-on-surface-variant font-black uppercase tracking-widest mt-1 block" style="">Approval Chance</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Lifestyle Match Card -->
+<div class="relative p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10 group hover:border-[#00CCF9]/50 transition-all duration-300 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[#00677F] font-label text-[10px] font-black uppercase tracking-widest" style="">Lifestyle</span>
+<span class="material-symbols-outlined text-[#00CCF9] text-xl" data-icon="grid_view" style="">grid_view</span>
+</div>
+<div class="text-4xl font-headline font-black text-primary" style="">9<span class="text-lg text-[#00CCF9]" style="">/10</span></div>
+<div class="mt-4 h-2 bg-surface-container-low rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-[#00CCF9] to-[#00677F] h-full w-[90%] rounded-full"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-4 leading-relaxed font-semibold" style="">Matches your proximity to CBD and pet-friendly requirements.</p>
+</div>
+<!-- Financials Match Card -->
+<div class="relative p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10 group hover:border-rose-400/50 transition-all duration-300 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="text-rose-600 font-label text-[10px] font-black uppercase tracking-widest" style="">Financials</span>
+<span class="material-symbols-outlined text-rose-500 text-xl" data-icon="account_balance" style="">account_balance</span>
+</div>
+<div class="text-4xl font-headline font-black text-primary" style="">7<span class="text-lg text-rose-300" style="">/10</span></div>
+<div class="mt-4 h-2 bg-surface-container-low rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-rose-400 to-[#F36263] h-full w-[70%] rounded-full"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-4 leading-relaxed font-semibold" style="">Monthly repayments exceed target by 12% at current rates.</p>
+</div>
+<!-- Future Value Match Card -->
+<div class="relative p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10 group hover:border-indigo-400/50 transition-all duration-300 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="text-indigo-600 font-label text-[10px] font-black uppercase tracking-widest" style="">Future Value</span>
+<span class="material-symbols-outlined text-indigo-500 text-xl" data-icon="monitoring" style="">monitoring</span>
+</div>
+<div class="text-4xl font-headline font-black text-primary" style="">8<span class="text-lg text-indigo-300" style="">/10</span></div>
+<div class="mt-4 h-2 bg-surface-container-low rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-indigo-400 to-primary h-full w-[80%] rounded-full"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-4 leading-relaxed font-semibold" style="">Projected +15% equity growth via new transit hub nearby.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Deep AI Simulation & Decision Intel Section (MOVED DOWN & TEXT REDUCED) -->
+<div class="mt-12 space-y-12 bg-white rounded-2xl border border-outline-variant/20 p-8 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary text-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="psychology" style="">psychology</span>
+</div>
+<div>
+<h2 class="font-headline text-3xl font-black text-primary" style="">AI Simulation &amp; Decision Intel</h2>
+<p class="text-on-surface-variant font-medium" style="">Predictive modeling for your specific profile</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Why AI Recommends This -->
+<div class="space-y-6">
+<h3 class="font-headline text-xl font-bold text-primary flex items-center gap-2" style="">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="">check_circle</span> Why AI Recommends This
+                                    </h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-4 bg-secondary/5 border border-secondary/10 rounded-xl">
+<p class="text-[10px] font-black uppercase tracking-widest text-secondary mb-1" style="">Affordability Fit</p>
+<p class="text-sm font-semibold text-primary" style="">Your DTI remains healthy even with potential rate spikes.</p>
+</div>
+<div class="p-4 bg-secondary/5 border border-secondary/10 rounded-xl">
+<p class="text-[10px] font-black uppercase tracking-widest text-secondary mb-1" style="">Location Match</p>
+<p class="text-sm font-semibold text-primary" style="">Riverside plots consistently outperform the central market.</p>
+</div>
+<div class="p-4 bg-secondary/5 border border-secondary/10 rounded-xl">
+<p class="text-[10px] font-black uppercase tracking-widest text-secondary mb-1" style="">Growth Potential</p>
+<p class="text-sm font-semibold text-primary" style="">Transit expansion will drive double-digit value gains.</p>
+</div>
+<div class="p-4 bg-secondary/5 border border-secondary/10 rounded-xl">
+<p class="text-[10px] font-black uppercase tracking-widest text-secondary mb-1" style="">Lifestyle Alignment</p>
+<p class="text-sm font-semibold text-primary" style="">Smart-home features perfectly match your tech profile.</p>
+</div>
+</div>
+</div>
+<!-- AI Risk Watchouts -->
+<div class="space-y-6">
+<h3 class="font-headline text-xl font-bold text-primary flex items-center gap-2" style="">
+<span class="material-symbols-outlined text-error" data-icon="warning" style="">warning</span> AI Risk Watchouts
+                                    </h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-4 bg-error/5 border border-error/10 rounded-xl">
+<p class="text-[10px] font-black uppercase tracking-widest text-error mb-1" style="">Payment Comfort</p>
+<p class="text-sm font-semibold text-primary" style="">Monthly surplus will be tighter than your current baseline.</p>
+</div>
+<div class="p-4 bg-error/5 border border-error/10 rounded-xl">
+<p class="text-[10px] font-black uppercase tracking-widest text-error mb-1" style="">Liquidity Pressure</p>
+<p class="text-sm font-semibold text-primary" style="">Down payment requires a large share of your cash reserves.</p>
+</div>
+<div class="p-4 bg-error/5 border border-error/10 rounded-xl">
+<p class="text-[10px] font-black uppercase tracking-widest text-error mb-1" style="">Market Horizon</p>
+<p class="text-sm font-semibold text-primary" style="">Net profitability requires a minimum 4-year hold.</p>
+</div>
+<div class="p-4 bg-error/5 border border-error/10 rounded-xl">
+<p class="text-[10px] font-black uppercase tracking-widest text-error mb-1" style="">Premium Upkeep</p>
+<p class="text-sm font-semibold text-primary" style="">Maintenance fees are higher than district averages.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- What If You Adjust One Variable? -->
+<div class="space-y-6 border-t border-outline-variant/20 pt-10">
+<h3 class="font-headline text-xl font-bold text-primary" style="">
+<p class="p1" style=""><span class="s1"></span></p></h3><h3 class="" style=""><b>How to Make This Home Fit Better</b></h3><p class="" style=""></p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<button class="p-6 bg-surface-container-low border border-outline-variant/30 rounded-xl hover:border-secondary transition-all text-left group" style="">
+<span class="material-symbols-outlined text-secondary mb-3 group-hover:scale-110 transition-transform" style="">add_chart</span>
+<p class="font-bold text-primary mb-1" style="">Increase Down Payment</p>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider" style="">Reduces monthly burden</p>
+</button>
+<button class="p-6 bg-surface-container-low border border-outline-variant/30 rounded-xl hover:border-secondary transition-all text-left group" style="">
+<span class="material-symbols-outlined text-secondary mb-3 group-hover:scale-110 transition-transform" style="">update</span>
+<p class="font-bold text-primary mb-1" style="">Extend Loan Term</p>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider" style="">Lowers cash flow stress</p>
+</button>
+<button class="p-6 bg-surface-container-low border border-outline-variant/30 rounded-xl hover:border-secondary transition-all text-left group" style="">
+<span class="material-symbols-outlined text-secondary mb-3 group-hover:scale-110 transition-transform" style="">calendar_today</span>
+<p class="font-bold text-primary mb-1" style="">Wait 12 Months</p>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider" style="">Projected cost increase</p>
+</button>
+</div>
+</div>
+<!-- The Architect's Verdict -->
+<div class="p-8 bg-primary text-white rounded-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="">format_quote</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary-container" data-icon="verified" style="">verified</span>
+<h4 class="font-headline font-extrabold uppercase tracking-widest text-sm" style="">The Architect's Verdict</h4>
+</div>
+<p class="text-xl font-medium leading-relaxed max-w-4xl" style="">
+                                        "The Obsidian Penthouse is a high-conviction asset that perfectly aligns your long-term wealth trajectory with Bangkok’s upcoming infrastructure boom."
+                                    </p>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Simulation Tab Content -->
+<div class="hidden space-y-8" id="content-simulation">
+<div class="bg-white p-8 rounded-xl border border-outline-variant/30 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<h3 class="font-headline font-bold text-2xl text-primary" style="">Rent vs. Buy Simulation</h3>
+<p class="text-on-surface-variant text-sm mt-1" style="">AI-powered long-term financial projection</p>
+</div>
+<div class="bg-green-100 text-green-800 px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="recommend" style="">recommend</span>
+<span class="text-xs font-bold uppercase tracking-widest" style="">AI Recommended: Buy</span>
+</div>
+</div>
+<div class="mb-12 p-6 bg-surface-container-low rounded-xl">
+<label class="block text-sm font-bold text-primary mb-4 uppercase tracking-widest" style="">Planned Duration of Residency</label>
+<div class="flex items-center gap-6">
+<input class="flex-1 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer accent-primary" max="30" min="1" type="range" value="10">
+<div class="w-24 px-4 py-2 bg-white border border-outline-variant/30 rounded-lg text-center font-bold text-primary" style="">
+                                        10 Years
+                                    </div>
+</div>
+<p class="text-xs text-on-surface-variant mt-4" style="">Calculations adjusted for market volatility and projected 4.2% annual growth in the riverside district.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative p-8 rounded-2xl border-2 border-secondary/30 bg-secondary/5">
+</div></div></div></div></div></div></section></main></body></html>
