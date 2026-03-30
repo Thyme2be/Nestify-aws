@@ -1,410 +1,549 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>The Curated Architect | AI Home Matching Engine</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "on-error": "#ffffff",
-              "surface-container-high": "#dfe8ff",
-              "on-surface": "#081b38",
-              "error-container": "#ffdad6",
-              "on-tertiary": "#ffffff",
-              "on-error-container": "#93000a",
-              "on-tertiary-fixed-variant": "#8c1520",
-              "secondary-container": "#00ccf9",
-              "inverse-primary": "#b6c7eb",
-              "surface": "#f9f9ff",
-              "on-secondary": "#ffffff",
-              "outline-variant": "#c5c6ce",
-              "tertiary-container": "#5e000d",
-              "surface-container-highest": "#d7e2ff",
-              "background": "#f9f9ff",
-              "on-primary": "#ffffff",
-              "secondary": "#00677f",
-              "on-primary-fixed": "#081b38",
-              "primary-fixed": "#d7e2ff",
-              "primary-container": "#1a2b48",
-              "surface-variant": "#d7e2ff",
-              "error": "#ba1a1a",
-              "surface-container-lowest": "#ffffff",
-              "on-secondary-fixed-variant": "#004e60",
-              "surface-container-low": "#f1f3ff",
-              "tertiary": "#370004",
-              "on-secondary-container": "#005266",
-              "on-tertiary-fixed": "#410006",
-              "surface-dim": "#cadaff",
-              "inverse-surface": "#20304e",
-              "on-primary-fixed-variant": "#374765",
-              "surface-tint": "#4e5f7e",
-              "on-surface-variant": "#44474d",
-              "surface-container": "#e8eeff",
-              "primary": "#031632",
-              "tertiary-fixed-dim": "#ffb3b0",
-              "outline": "#75777e",
-              "primary-fixed-dim": "#b6c7eb",
-              "surface-bright": "#f9f9ff",
-              "on-secondary-fixed": "#001f28",
-              "on-tertiary-container": "#f36263",
-              "secondary-fixed-dim": "#4cd6ff",
-              "on-primary-container": "#8293b5",
-              "tertiary-fixed": "#ffdad8",
-              "inverse-on-surface": "#ecf0ff",
-              "secondary-fixed": "#b7eaff",
-              "on-background": "#081b38"
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Curated Architect | AI Home Matching Engine</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dfe8ff",
+                        "on-surface": "#081b38",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#8c1520",
+                        "secondary-container": "#00ccf9",
+                        "inverse-primary": "#b6c7eb",
+                        "surface": "#f9f9ff",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c5c6ce",
+                        "tertiary-container": "#5e000d",
+                        "surface-container-highest": "#d7e2ff",
+                        "background": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "secondary": "#00677f",
+                        "on-primary-fixed": "#081b38",
+                        "primary-fixed": "#d7e2ff",
+                        "primary-container": "#1a2b48",
+                        "surface-variant": "#d7e2ff",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "surface-container-low": "#f1f3ff",
+                        "tertiary": "#370004",
+                        "on-secondary-container": "#005266",
+                        "on-tertiary-fixed": "#410006",
+                        "surface-dim": "#cadaff",
+                        "inverse-surface": "#20304e",
+                        "on-primary-fixed-variant": "#374765",
+                        "surface-tint": "#4e5f7e",
+                        "on-surface-variant": "#44474d",
+                        "surface-container": "#e8eeff",
+                        "primary": "#031632",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "outline": "#75777e",
+                        "primary-fixed-dim": "#b6c7eb",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed": "#001f28",
+                        "on-tertiary-container": "#f36263",
+                        "secondary-fixed-dim": "#4cd6ff",
+                        "on-primary-container": "#8293b5",
+                        "tertiary-fixed": "#ffdad8",
+                        "inverse-on-surface": "#ecf0ff",
+                        "secondary-fixed": "#b7eaff",
+                        "on-background": "#081b38"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
             },
-            fontFamily: {
-              "headline": ["Manrope"],
-              "body": ["Inter"],
-              "label": ["Inter"]
-            },
-            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-          },
-        },
-      }
+        }
     </script>
-<style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
         .glass-panel {
             background: rgba(0, 204, 249, 0.6);
             backdrop-filter: blur(12px);
         }
+
         .satin-button {
             background: linear-gradient(135deg, #031632 0%, #1a2b48 100%);
         }
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
-        @keyframes bounce-subtle {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+
+        body {
+            font-family: 'Inter', sans-serif;
         }
+
+        h1,
+        h2,
+        h3,
+        .font-headline {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        @keyframes bounce-subtle {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
         .animate-bounce-subtle {
             animation: bounce-subtle 3s ease-in-out infinite;
         }
     </style>
 </head>
+
 <body class="bg-surface text-on-surface pb-32 md:pb-0">
-<!-- Top Navigation Bar -->
-<header class="bg-slate-50 dark:bg-[#031632] shadow-sm dark:shadow-none docked full-width top-0 z-50 flex justify-between items-center w-full px-6 py-4 max-w-full">
-<div class="flex items-center gap-8">
-<span class="text-2xl font-black tracking-tighter text-[#031632] dark:text-white" style=""><a href="../ai_matcher_updated_sidebar_icons/code.html" class="no-underline text-inherit">Nestify</a></span>
-<nav class="hidden md:flex gap-6">
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-full" style="">
-<span class="material-symbols-outlined text-[#031632] dark:text-white" data-icon="notifications" style="">notifications</span>
-</button>
-<div class="h-10 w-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/20">
-<img alt="User Profile Avatar" class="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWcwmzMMNFLaC0Mb5nMmOVzvXTpZ4LPPK15rwAeDbu4KxFf-NFmBdLjwumhsl08kkyfdHP_bWkKQddAE1qXzeZVIhTRQ6J_-osqJo2UDavqEmHN2vMKexLt2kMoqJ2CR77Myl29tbUN2KCVz2A5URNKGH3gij-tcTfHFm3p4DHMv5Hoi4KctQt7JwvJRNUfFpHaz9gJA6_LRU7wQttvsmJOXTzXi1IuqKfZVU3QcaC5LyEGNVstDxxgR2DrHgG9A0JDyvsu-pb" style=""/>
-</div>
-</div>
-</header>
-<div class="flex min-h-screen">
-<!-- Side Navigation -->
-<aside class="hidden md:flex flex-col h-screen w-64 bg-[#031632] dark:bg-[#020d1d] border-r border-white/10 py-6 gap-2 sticky top-0">
-<div class="px-6 mb-8">
-<h2 class="text-white text-xl font-bold font-headline" style="">Editorial Intel</h2>
-<p class="text-[#00CCF9] text-xs font-label uppercase tracking-widest" style="">AI-Driven Insights</p>
-</div>
-<nav class="flex-1">
-<a class="flex items-center gap-3 bg-[#1A2B48] text-[#00CCF9] rounded-lg px-4 py-3 mx-2 Active: translate-x-1 transition-transform" href="#" style="">
-<span class="material-symbols-outlined" data-icon="home" style="">home</span>
-<span class="font-label text-sm" style="">
-<p class="p1"><span class="s1"></span></p><ol start="2"><li>
-<p class="p1"><b>Matched Homes</b></p>
-</li></ol><p></p></span>
-</a>
-<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all" href="../portfolio_comparison_updated_sidebar_navigation/code.html" style="">
-<span class="material-symbols-outlined" data-icon="favorite" style="">compare_arrows</span>
-<span class="font-label text-sm" style="">Compare Homes</span>
-</a>
-<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all" href="../acquisition_portal_focused_journey_view/code.html" style="">
-<span class="material-symbols-outlined" data-icon="account_balance_wallet" style="">donut_large</span>
-<span class="font-label text-sm" style="">Status</span>
-</a>
-</nav>
-</aside>
-<!-- Main Content Canvas -->
-<main class="flex-1 p-6 md:p-12 bg-surface">
-<!-- Header Section -->
-<div class="mb-12">
-<span class="text-secondary font-label text-xs font-medium uppercase tracking-wider mb-2 block" style="">Curation Engine</span>
-<h1 class="text-display-lg text-primary font-headline text-5xl font-extrabold tracking-tight mb-4" style="">Your Intelligent Match.</h1>
-<p class="text-on-surface-variant max-w-2xl text-lg" style="">We’ve analyzed 42 personal data points to curate properties that don't just fit your budget, but your life rhythm.</p>
-</div>
-<!-- Dashboard Bento Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-<!-- Property Card 1 (Large Featured) -->
-<div class="lg:col-span-8 group">
-<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(8,27,56,0.04)] border border-outline-variant/10 hover:shadow-xl transition-shadow duration-300">
-<div class="relative h-96">
-<img alt="Anasiri Krungthep - Pathumthani 2" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-krungthep-pathumthani-2/img/housetype/anasiri-krungthep-pathumthani2-housetype-fuyu.webp" style=""/>
-<!-- AI Match Badge -->
-<div class="absolute top-6 left-6 glass-panel rounded-lg p-4 text-primary flex flex-col items-center">
-<span class="text-3xl font-black" style="">94%</span>
-<span class="text-[10px] uppercase font-bold tracking-tighter" style="">AI Match</span>
-</div>
-</div>
-<div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="md:col-span-2">
-<div class="flex justify-between items-start mb-4">
-<div>
-<p class="text-xs font-bold text-secondary uppercase tracking-widest mb-1" style="">Detached House</p>
-<h3 class="text-2xl font-bold text-primary font-headline" style="">Anasiri Krungthep - Pathumthani 2</h3>
-<p class="text-on-surface-variant font-medium" style="">Bangkhuwat, Mueang Pathum Thani, Pathum Thani</p>
-<p class="text-sm text-on-surface-variant mt-2 font-medium" style="">3 Beds, 3 Baths <span class="mx-1 opacity-40" style="">•</span> 136 sq.m.</p>
-</div>
-<div class="text-right">
-<p class="text-2xl font-black text-primary" style="">฿4.19M+</p>
-</div>
-</div>
-<div class="flex gap-2 flex-wrap mb-6">
-<span class="bg-secondary-fixed text-on-secondary-container px-3 py-1 rounded-sm text-xs font-bold flex items-center gap-1" style="">
-<span class="material-symbols-outlined text-sm" data-icon="commute" style="">commute</span> 15 mins to Don Mueang
+    <!-- Top Navigation System (Injected via components.js) -->
+    <div id="topbar-placeholder"></div>
+    <div class="flex min-h-screen pt-16">
+        <!-- Sidebar Navigation System -->
+        <div id="sidebar-placeholder"></div>
+        <main class="flex-1 md:ml-64 overflow-x-hidden p-6 md:p-12">
+            <!-- Header Section -->
+            <div class="mb-12">
+                <span class="text-secondary font-label text-sm font-bold uppercase tracking-widest mb-2 block"
+                    style="">Curation Engine</span>
+                <h1 class="text-display-lg text-primary font-headline text-5xl font-extrabold tracking-tight mb-4"
+                    style="">Your Intelligent Match.</h1>
+                <p class="text-on-surface-variant max-w-2xl text-lg" style="">We’ve analyzed 42 personal data points to
+                    curate properties that don't just fit your budget, but your life rhythm.</p>
+            </div>
+            <!-- Dashboard Bento Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Property Card 1 (Large Featured) -->
+                <div class="lg:col-span-8 group">
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(8,27,56,0.04)] border border-outline-variant/10 hover:shadow-xl transition-shadow duration-300">
+                        <div class="relative h-96">
+                            <img alt="Anasiri Krungthep - Pathumthani 2"
+                                class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                                src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-krungthep-pathumthani-2/img/housetype/anasiri-krungthep-pathumthani2-housetype-fuyu.webp"
+                                style="" />
+                            <!-- AI Match Badge -->
+                            <div
+                                class="absolute top-6 left-6 glass-panel rounded-lg p-4 text-primary flex flex-col items-center">
+                                <span class="text-3xl font-black" style="">94%</span>
+                                <span class="text-[10px] uppercase font-bold tracking-tighter" style="">AI Match</span>
+                            </div>
+                        </div>
+                        <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="md:col-span-2">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <p class="text-xs font-bold text-secondary uppercase tracking-widest mb-1"
+                                            style="">Detached House</p>
+                                        <h3 class="text-2xl font-bold text-primary font-headline" style="">Anasiri
+                                            Krungthep - Pathumthani 2</h3>
+                                        <p class="text-on-surface-variant font-medium" style="">Bangkhuwat, Mueang
+                                            Pathum Thani, Pathum Thani</p>
+                                        <p class="text-sm text-on-surface-variant mt-2 font-medium" style="">3 Beds, 3
+                                            Baths <span class="mx-1 opacity-40" style="">•</span> 136 sq.m.</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-black text-primary" style="">฿4.19M+</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 flex-wrap mb-6">
+                                    <span
+                                        class="bg-secondary-fixed text-on-secondary-container px-3 py-1 rounded-sm text-xs font-bold flex items-center gap-1"
+                                        style="">
+                                        <span class="material-symbols-outlined text-sm" data-icon="commute"
+                                            style="">commute</span> 15 mins to Don Mueang
                                     </span>
-<span class="bg-secondary-fixed text-on-secondary-container px-3 py-1 rounded-sm text-xs font-bold flex items-center gap-1" style="">
-<span class="material-symbols-outlined text-sm" data-icon="train" style="">train</span> Near Expressway
+                                    <span
+                                        class="bg-secondary-fixed text-on-secondary-container px-3 py-1 rounded-sm text-xs font-bold flex items-center gap-1"
+                                        style="">
+                                        <span class="material-symbols-outlined text-sm" data-icon="train"
+                                            style="">train</span> Near Expressway
                                     </span>
-<span class="bg-secondary-fixed text-on-secondary-container px-3 py-1 rounded-sm text-xs font-bold flex items-center gap-1" style="">
-<span class="material-symbols-outlined text-sm" data-icon="pool" style="">pool</span> Swimming Pool
+                                    <span
+                                        class="bg-secondary-fixed text-on-secondary-container px-3 py-1 rounded-sm text-xs font-bold flex items-center gap-1"
+                                        style="">
+                                        <span class="material-symbols-outlined text-sm" data-icon="pool"
+                                            style="">pool</span> Swimming Pool
                                     </span>
-<span class="bg-secondary-fixed text-on-secondary-container px-3 py-1 rounded-sm text-xs font-bold flex items-center gap-1" style="">
-<span class="material-symbols-outlined text-sm" data-icon="fitness_center" style="">fitness_center</span> Fitness
+                                    <span
+                                        class="bg-secondary-fixed text-on-secondary-container px-3 py-1 rounded-sm text-xs font-bold flex items-center gap-1"
+                                        style="">
+                                        <span class="material-symbols-outlined text-sm" data-icon="fitness_center"
+                                            style="">fitness_center</span> Fitness
                                     </span>
-</div>
-<div class="bg-surface-container-low p-4 rounded-lg flex items-start gap-3">
-<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome" style="">auto_awesome</span>
-<p class="text-sm text-on-surface-variant leading-relaxed" style=""><strong class="text-primary">Match Why:</strong> <span class="line-clamp-2" style="">Modern Japanese style inspired by Kyoto, prime location with easy city access, full clubhouse amenities.</span></p>
-</div>
-</div>
-<div class="bg-primary-container rounded-xl p-6 text-white flex flex-col justify-between">
-<div>
-<p class="text-secondary-container text-[10px] uppercase font-bold tracking-widest mb-1" style="">Nestify Insight</p>
-<ul class="space-y-1 mt-4 mb-6">
-<li class="flex items-center gap-2 text-xs" style=""><span class="material-symbols-outlined text-[14px] text-secondary-container" style="">check_circle</span> Ready to move in</li>
-<li class="flex items-center gap-2 text-xs" style=""><span class="material-symbols-outlined text-[14px] text-secondary-container" style="">check_circle</span> 15 mins to Don Mueang</li>
-<li class="flex items-center gap-2 text-xs" style=""><span class="material-symbols-outlined text-[14px] text-secondary-container" style="">check_circle</span> Modern Japanese design</li>
-<li class="flex items-center gap-2 text-xs" style=""><span class="material-symbols-outlined text-[14px] text-secondary-container" style="">check_circle</span> Full amenities with Co-Working</li>
-</ul>
-</div>
-<a href="../property_details_unified_navigation/code.html" class="w-full py-3 satin-button rounded-lg text-sm font-bold border border-white/10 hover:opacity-90 transition-opacity text-center text-white no-underline block" style="">Details</a>
-<button class="w-full py-3 mt-2 border border-white/20 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors flex items-center justify-center gap-2" style="" title="Add to Compare"><span class="material-symbols-outlined text-lg" style="">compare_arrows</span>Add to Compare</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Side Small Cards Stack -->
-<div class="lg:col-span-4 flex flex-col gap-8">
-<!-- Smaller Property 2 -->
-<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
-<div class="relative h-48">
-<img alt="Siri Place Rangsit 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/townhome/siri-place-rangsit2/img/housetype/siri-place-rangsit-2-townhome-singel.webp" style=""/>
-<div class="absolute bottom-3 right-3 glass-panel px-3 py-1 rounded-full text-primary font-black text-sm" style="">
+                                </div>
+                                <div class="bg-surface-container-low p-4 rounded-lg flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-secondary" data-icon="auto_awesome"
+                                        style="">auto_awesome</span>
+                                    <p class="text-sm text-on-surface-variant leading-relaxed" style=""><strong
+                                            class="text-primary">Match Why:</strong> <span class="line-clamp-2"
+                                            style="">Modern Japanese style inspired by Kyoto, prime location with easy
+                                            city access, full clubhouse amenities.</span></p>
+                                </div>
+                            </div>
+                            <div class="bg-primary-container rounded-xl p-6 text-white flex flex-col justify-between">
+                                <div>
+                                    <p class="text-secondary-container text-[10px] uppercase font-bold tracking-widest mb-1"
+                                        style="">Nestify Insight</p>
+                                    <ul class="space-y-1 mt-4 mb-6">
+                                        <li class="flex items-center gap-2 text-xs" style=""><span
+                                                class="material-symbols-outlined text-[14px] text-secondary-container"
+                                                style="">check_circle</span> Ready to move in</li>
+                                        <li class="flex items-center gap-2 text-xs" style=""><span
+                                                class="material-symbols-outlined text-[14px] text-secondary-container"
+                                                style="">check_circle</span> 15 mins to Don Mueang</li>
+                                        <li class="flex items-center gap-2 text-xs" style=""><span
+                                                class="material-symbols-outlined text-[14px] text-secondary-container"
+                                                style="">check_circle</span> Modern Japanese design</li>
+                                        <li class="flex items-center gap-2 text-xs" style=""><span
+                                                class="material-symbols-outlined text-[14px] text-secondary-container"
+                                                style="">check_circle</span> Full amenities with Co-Working</li>
+                                    </ul>
+                                </div>
+                                <a href="../property_details_unified_navigation/code.html"
+                                    class="w-full py-3 satin-button rounded-lg text-sm font-bold border border-white/10 hover:opacity-90 transition-opacity text-center text-white no-underline block"
+                                    style="">Details</a>
+                                <button
+                                    class="w-full py-3 mt-2 border border-white/20 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
+                                    style="" title="Add to Compare"><span class="material-symbols-outlined text-lg"
+                                        style="">compare_arrows</span>Add to Compare</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Side Small Cards Stack -->
+                <div class="lg:col-span-4 flex flex-col gap-8">
+                    <!-- Smaller Property 2 -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
+                        <div class="relative h-48">
+                            <img alt="Siri Place Rangsit 2"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/townhome/siri-place-rangsit2/img/housetype/siri-place-rangsit-2-townhome-singel.webp"
+                                style="" />
+                            <div class="absolute bottom-3 right-3 glass-panel px-3 py-1 rounded-full text-primary font-black text-sm"
+                                style="">
                                 89% Match
                             </div>
-</div>
-<div class="p-6">
-<div class="flex flex-col mb-4">
-<p class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-0.5" style="">Townhome</p>
-<div class="flex justify-between items-start">
-<h4 class="font-bold text-lg font-headline" style="">Siri Place Rangsit 2</h4>
-<span class="text-primary font-black" style="">฿2.19M+</span>
-</div>
-<p class="text-xs text-on-surface-variant font-medium" style="">Rangsit, Pathum Thani</p>
-<p class="text-xs text-on-surface-variant mt-1 font-medium" style="">3 Beds, 3 Baths <span class="mx-1 opacity-40" style="">•</span> 99 sq.m.</p>
-</div>
-<div class="flex gap-2 mb-4">
-<span class="text-[10px] px-2 py-1 bg-surface-container border border-outline-variant/30 rounded uppercase font-bold text-on-surface-variant" style="">Near Expressway</span>
-<span class="text-[10px] px-2 py-1 bg-surface-container border border-outline-variant/30 rounded uppercase font-bold text-on-surface-variant" style="">Amsterdam Style</span>
-</div>
-<div class="flex items-center justify-end gap-3">
-<button class="flex items-center gap-1 text-secondary hover:bg-secondary/10 px-2 py-1 rounded transition-colors" style="" title="Compare">
-<span class="material-symbols-outlined text-lg" style="">compare_arrows</span>
-<span class="text-[10px] font-bold uppercase tracking-widest" style="">Compare</span>
-</button>
-<button class="text-secondary font-bold text-xs uppercase tracking-widest" style="" onclick="window.location.href='../property_details_blue_sidebar_label/code.html'">Details</button>
-</div>
-</div>
-</div>
-<!-- Smaller Property 3 -->
-<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
-<div class="relative h-48">
-<img alt="Setthasiri Krungthep - Pathumthani 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/setthasiri-krungthep-pathumthani-2/img/plan/setthasiri-krungthep-pathumthani2-singlehouse-housetype-glory-200.webp" style=""/>
-<div class="absolute bottom-3 right-3 glass-panel px-3 py-1 rounded-full text-primary font-black text-sm" style="">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex flex-col mb-4">
+                                <p class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-0.5"
+                                    style="">Townhome</p>
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg font-headline" style="">Siri Place Rangsit 2</h4>
+                                    <span class="text-primary font-black" style="">฿2.19M+</span>
+                                </div>
+                                <p class="text-xs text-on-surface-variant font-medium" style="">Rangsit, Pathum Thani
+                                </p>
+                                <p class="text-xs text-on-surface-variant mt-1 font-medium" style="">3 Beds, 3 Baths
+                                    <span class="mx-1 opacity-40" style="">•</span> 99 sq.m.</p>
+                            </div>
+                            <div class="flex gap-2 mb-4">
+                                <span
+                                    class="text-[10px] px-2 py-1 bg-surface-container border border-outline-variant/30 rounded uppercase font-bold text-on-surface-variant"
+                                    style="">Near Expressway</span>
+                                <span
+                                    class="text-[10px] px-2 py-1 bg-surface-container border border-outline-variant/30 rounded uppercase font-bold text-on-surface-variant"
+                                    style="">Amsterdam Style</span>
+                            </div>
+                            <div class="flex items-center justify-end gap-3">
+                                <button
+                                    class="flex items-center gap-1 text-secondary hover:bg-secondary/10 px-2 py-1 rounded transition-colors"
+                                    style="" title="Compare">
+                                    <span class="material-symbols-outlined text-lg" style="">compare_arrows</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest"
+                                        style="">Compare</span>
+                                </button>
+                                <button class="text-secondary font-bold text-xs uppercase tracking-widest" style=""
+                                    onclick="window.location.href='../property_details_blue_sidebar_label/code.html'">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Smaller Property 3 -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
+                        <div class="relative h-48">
+                            <img alt="Setthasiri Krungthep - Pathumthani 2"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/setthasiri-krungthep-pathumthani-2/img/plan/setthasiri-krungthep-pathumthani2-singlehouse-housetype-glory-200.webp"
+                                style="" />
+                            <div class="absolute bottom-3 right-3 glass-panel px-3 py-1 rounded-full text-primary font-black text-sm"
+                                style="">
                                 87% Match
                             </div>
-</div>
-<div class="p-6">
-<div class="flex flex-col mb-4">
-<p class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-0.5" style="">Detached House</p>
-<div class="flex justify-between items-start">
-<h4 class="font-bold text-lg font-headline" style="">Setthasiri KTP 2</h4>
-<span class="text-primary font-black" style="">฿8.99M+</span>
-</div>
-<p class="text-xs text-on-surface-variant font-medium" style="">Krungthep - Pathumthani</p>
-<p class="text-xs text-on-surface-variant mt-1 font-medium" style="">4 Beds, 4 Baths <span class="mx-1 opacity-40" style="">•</span> 200 sq.m.</p>
-</div>
-<div class="flex gap-2 mb-4">
-<span class="text-[10px] px-2 py-1 bg-surface-container border border-outline-variant/30 rounded uppercase font-bold text-on-surface-variant" style="">Golf View</span>
-<span class="text-[10px] px-2 py-1 bg-surface-container border border-outline-variant/30 rounded uppercase font-bold text-on-surface-variant" style="">Modern Classic</span>
-</div>
-<div class="flex items-center justify-end gap-3">
-<button class="flex items-center gap-1 text-secondary hover:bg-secondary/10 px-2 py-1 rounded transition-colors" style="" title="Compare">
-<span class="material-symbols-outlined text-lg" style="">compare_arrows</span>
-<span class="text-[10px] font-bold uppercase tracking-widest" style="">Compare</span>
-</button>
-<button class="text-secondary font-bold text-xs uppercase tracking-widest" style="" onclick="window.location.href='../property_details_unified_navigation/code.html'">Details</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- More Tailored Matches Section -->
-<section class="mt-20 p-8 md:p-12 bg-surface-container-low rounded-3xl">
-<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-<div>
-<span class="text-secondary font-label text-xs font-medium uppercase tracking-wider mb-2 block" style="">Extended Curation</span>
-<h2 class="text-4xl font-extrabold text-primary font-headline" style="">More Tailored Matches</h2>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-<!-- Property Card 5 (Anasiri Rangsit-Klong 3 - 86% Match) -->
-<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
-<div class="relative h-48">
-<img alt="Anasiri Rangsit - Klong 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-rangsit-klong-3/img/floorplan/anasiri-rangsit-klong3-floorplan-134-fuyu.webp" style=""/>
-<div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]" style="">86% Match</div>
-</div>
-<div class="p-5">
-<p class="text-[10px] font-bold text-secondary uppercase mb-1" style="">Detached House</p>
-<div class="flex justify-between items-start mb-1">
-<h4 class="font-bold text-primary font-headline" style="">Anasiri Rangsit - Klong 3</h4>
-<span class="text-primary font-bold" style="">฿4.19M+</span>
-</div>
-<p class="text-[10px] text-on-surface-variant mb-1" style="">Rangsit - Klong 3, Pathum Thani</p>
-<p class="text-[10px] text-on-surface-variant mb-4 font-medium" style="">3 Beds, 3 Baths <span class="mx-1 opacity-40" style="">•</span> 134 sq.m.</p>
-<div class="flex gap-2">
-<a href="../property_details_unified_navigation/code.html" class="flex-1 py-2 border border-primary/20 hover:bg-primary/5 rounded-lg text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit" style="">Details</a>
-<button class="px-3 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center" style="" title="Add to Compare"><span class="material-symbols-outlined text-base" style="">compare_arrows</span></button>
-</div></div></div>
-<!-- Property Card 4 (Anasiri Wongwaen-Lamlukka - 82% Match) -->
-<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
-<div class="relative h-48">
-<img alt="Anasiri Wongwaen - Lamlukka" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-wongwaen-lamlukka/img/plan/anasiri-ayutthaya2-single-house-plan-177-haru.webp" style=""/>
-<div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]" style="">82% Match</div>
-</div>
-<div class="p-5">
-<p class="text-[10px] font-bold text-secondary uppercase mb-1" style="">Detached House</p>
-<div class="flex justify-between items-start mb-1">
-<h4 class="font-bold text-primary font-headline" style="">Anasiri Wongwaen - Lamlukka</h4>
-<span class="text-primary font-bold" style="">฿3.99M+</span>
-</div>
-<p class="text-[10px] text-on-surface-variant mb-1" style="">Wongwaen - Lamlukka</p>
-<p class="text-[10px] text-on-surface-variant mb-4 font-medium" style="">4 Beds, 4 Baths <span class="mx-1 opacity-40" style="">•</span> 177 sq.m.</p>
-<div class="flex gap-2">
-<a href="../property_details_blue_sidebar_label/code.html" class="flex-1 py-2 border border-primary/20 hover:bg-primary/5 rounded-lg text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit" style="">Details</a>
-<button class="px-3 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center" style="" title="Add to Compare"><span class="material-symbols-outlined text-base" style="">compare_arrows</span></button>
-</div></div></div>
-<!-- Property Card 6 (Siri Place Wongwaen-Lamlukka - 79% Match) -->
-<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
-<div class="relative h-48">
-<img alt="Siri Place Wongwaen - Lamlukka" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/townhome/siri-place-wongwaen-lumlukka/img/housetype/siri-place-wongwaen-lamlukka-housetype-natsu.webp" style=""/>
-<div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]" style="">79% Match</div>
-</div>
-<div class="p-5">
-<p class="text-[10px] font-bold text-secondary uppercase mb-1" style="">Townhome</p>
-<div class="flex justify-between items-start mb-1">
-<h4 class="font-bold text-primary font-headline" style="">Siri Place Wongwaen - Lamlukka</h4>
-<span class="text-primary font-bold" style="">฿1.99M+</span>
-</div>
-<p class="text-[10px] text-on-surface-variant mb-1" style="">Wongwaen - Lamlukka</p>
-<p class="text-[10px] text-on-surface-variant mb-4 font-medium" style="">3 Beds, 3 Baths <span class="mx-1 opacity-40" style="">•</span> 99 sq.m.</p>
-<div class="flex gap-2">
-<a href="../property_details_unified_navigation/code.html" class="flex-1 py-2 border border-primary/20 hover:bg-primary/5 rounded-lg text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit" style="">Details</a>
-<button class="px-3 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center" style="" title="Add to Compare"><span class="material-symbols-outlined text-base" style="">compare_arrows</span></button>
-</div></div></div>
-<!-- Property Card 7 (Setthasiri Don Mueang - 75% Match) -->
-<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
-<div class="relative h-48">
-<img alt="Setthasiri Don Mueang" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/setthasiri-don-mueang/img/housetype/setthasiri-donmueang-single-house-plan-monro.webp" style=""/>
-<div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]" style="">75% Match</div>
-</div>
-<div class="p-5">
-<p class="text-[10px] font-bold text-secondary uppercase mb-1" style="">Detached House</p>
-<div class="flex justify-between items-start mb-1">
-<h4 class="font-bold text-primary font-headline" style="">Setthasiri Don Mueang</h4>
-<span class="text-primary font-bold" style="">฿12.99M+</span>
-</div>
-<p class="text-[10px] text-on-surface-variant mb-1" style="">Don Mueang, Bangkok</p>
-<p class="text-[10px] text-on-surface-variant mb-4 font-medium" style="">4 Beds, 4 Baths <span class="mx-1 opacity-40" style="">•</span> 205 sq.m.</p>
-<div class="flex gap-2">
-<a href="../property_details_blue_sidebar_label/code.html" class="flex-1 py-2 border border-primary/20 hover:bg-primary/5 rounded-lg text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit" style="">Details</a>
-<button class="px-3 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center" style="" title="Add to Compare"><span class="material-symbols-outlined text-base" style="">compare_arrows</span></button>
-</div></div></div>
-</div>
-</section>
-</main>
-</div>
-<!-- Floating Selection Toast / Comparison Tray -->
-<div class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[60] hidden" id="comparison-tray">
-<div class="bg-[#031632] text-white p-3 rounded-xl shadow-2xl border border-white/10 flex flex-col gap-2.5 w-72 md:w-80">
-<div class="flex items-center justify-between border-b border-white/10 pb-1.5 cursor-pointer" onclick="document.getElementById('tray-content').classList.toggle('hidden');this.querySelector('.material-symbols-outlined').textContent=document.getElementById('tray-content').classList.contains('hidden')?'open_in_full':'close_fullscreen'">
-<span class="text-[10px] text-[#00CCF9] font-bold uppercase tracking-widest" id="tray-count">0 Properties Selected</span>
-<button class="text-white/40 hover:text-white transition-colors" style=""><span class="material-symbols-outlined text-sm" style="">close_fullscreen</span></button>
-</div>
-<div id="tray-content" class="flex flex-col gap-2.5"><div id="tray-items" class="flex flex-col gap-2"></div></div>
-<a href="../portfolio_comparison_updated_sidebar_navigation/code.html" class="w-full py-2.5 bg-[#00CCF9] hover:bg-[#00b5dd] text-[#031632] rounded-lg font-black text-xs transition-colors flex items-center justify-center gap-2 shadow-lg group no-underline" style="">Compare Now <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" style="">analytics</span></a>
-</div>
-</div>
-<script>
-const compareItems = new Map();
-const tray = document.getElementById('comparison-tray');
-const trayItems = document.getElementById('tray-items');
-const trayCount = document.getElementById('tray-count');
-function updateTray() {
-    trayItems.innerHTML = '';
-    compareItems.forEach((prop, name) => {
-        const item = document.createElement('div');
-        item.className = 'flex items-center gap-3 group';
-        item.innerHTML = '<div class="h-10 w-10 rounded-md overflow-hidden border border-white/20 shrink-0"><img alt="'+name+'" class="w-full h-full object-cover" src="'+prop.img+'" /></div><div class="flex-1 min-w-0"><p class="text-xs font-bold truncate">'+name+'</p><p class="text-[9px] text-white/50">'+prop.price+'</p></div><button class="h-5 w-5 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors" onclick="removeCompare(\''+name.replace(/'/g,"\\'")+'\')"><span class="material-symbols-outlined text-xs text-white/60">close</span></button>';
-        trayItems.appendChild(item);
-    });
-    trayCount.textContent = compareItems.size + ' Properties Selected';
-    tray.classList.toggle('hidden', compareItems.size === 0);
-}
-function removeCompare(name) {
-    compareItems.delete(name);
-    document.querySelectorAll('[data-compare-btn]').forEach(function(btn) {
-        if (btn.dataset.compareName === name) { btn.classList.remove('bg-primary','text-white','border-primary'); btn.classList.add('border-primary/20'); }
-    });
-    updateTray();
-}
-document.querySelectorAll('[title="Add to Compare"], [title="Compare"]').forEach(function(btn) {
-    btn.setAttribute('data-compare-btn', '');
-    var card = btn.closest('.group') || btn.closest('.bg-surface-container-lowest');
-    if (!card) return;
-    var nameEl = card.querySelector('h3, h4');
-    var imgEl = card.querySelector('img');
-    var priceEl = card.querySelector('[class*="font-black"], [class*="font-bold"]');
-    if (!nameEl) return;
-    var name = nameEl.textContent.trim();
-    btn.dataset.compareName = name;
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (compareItems.has(name)) { compareItems.delete(name); btn.classList.remove('bg-primary','text-white','border-primary'); btn.classList.add('border-primary/20'); }
-        else { compareItems.set(name, { img: imgEl ? imgEl.src : '', price: priceEl ? priceEl.textContent.trim() : '' }); btn.classList.add('bg-primary','text-white','border-primary'); btn.classList.remove('border-primary/20'); }
-        updateTray();
-    });
-});
-</script>
-</body></html>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex flex-col mb-4">
+                                <p class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-0.5"
+                                    style="">Detached House</p>
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg font-headline" style="">Setthasiri KTP 2</h4>
+                                    <span class="text-primary font-black" style="">฿8.99M+</span>
+                                </div>
+                                <p class="text-xs text-on-surface-variant font-medium" style="">Krungthep - Pathumthani
+                                </p>
+                                <p class="text-xs text-on-surface-variant mt-1 font-medium" style="">4 Beds, 4 Baths
+                                    <span class="mx-1 opacity-40" style="">•</span> 200 sq.m.</p>
+                            </div>
+                            <div class="flex gap-2 mb-4">
+                                <span
+                                    class="text-[10px] px-2 py-1 bg-surface-container border border-outline-variant/30 rounded uppercase font-bold text-on-surface-variant"
+                                    style="">Golf View</span>
+                                <span
+                                    class="text-[10px] px-2 py-1 bg-surface-container border border-outline-variant/30 rounded uppercase font-bold text-on-surface-variant"
+                                    style="">Modern Classic</span>
+                            </div>
+                            <div class="flex items-center justify-end gap-3">
+                                <button
+                                    class="flex items-center gap-1 text-secondary hover:bg-secondary/10 px-2 py-1 rounded transition-colors"
+                                    style="" title="Compare">
+                                    <span class="material-symbols-outlined text-lg" style="">compare_arrows</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest"
+                                        style="">Compare</span>
+                                </button>
+                                <button class="text-secondary font-bold text-xs uppercase tracking-widest" style=""
+                                    onclick="window.location.href='../property_details_unified_navigation/code.html'">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- More Tailored Matches Section -->
+            <section class="mt-20 p-8 md:p-12 bg-surface-container-low rounded-3xl">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                    <div>
+                        <span class="text-secondary font-label text-xs font-medium uppercase tracking-wider mb-2 block"
+                            style="">Extended Curation</span>
+                        <h2 class="text-4xl font-extrabold text-primary font-headline" style="">More Tailored Matches
+                        </h2>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <!-- Property Card 5 (Anasiri Rangsit-Klong 3 - 86% Match) -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
+                        <div class="relative h-48">
+                            <img alt="Anasiri Rangsit - Klong 3"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-rangsit-klong-3/img/floorplan/anasiri-rangsit-klong3-floorplan-134-fuyu.webp"
+                                style="" />
+                            <div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]"
+                                style="">86% Match</div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-[10px] font-bold text-secondary uppercase mb-1" style="">Detached House</p>
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="font-bold text-primary font-headline" style="">Anasiri Rangsit - Klong 3</h4>
+                                <span class="text-primary font-bold" style="">฿4.19M+</span>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant mb-1" style="">Rangsit - Klong 3, Pathum Thani
+                            </p>
+                            <p class="text-[10px] text-on-surface-variant mb-4 font-medium" style="">3 Beds, 3 Baths
+                                <span class="mx-1 opacity-40" style="">•</span> 134 sq.m.</p>
+                            <div class="flex gap-2">
+                                <a href="../property_details_unified_navigation/code.html"
+                                    class="flex-1 py-2 border border-primary/20 hover:bg-primary/5 rounded-lg text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit"
+                                    style="">Details</a>
+                                <button
+                                    class="px-3 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center"
+                                    style="" title="Add to Compare"><span class="material-symbols-outlined text-base"
+                                        style="">compare_arrows</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Property Card 4 (Anasiri Wongwaen-Lamlukka - 82% Match) -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
+                        <div class="relative h-48">
+                            <img alt="Anasiri Wongwaen - Lamlukka"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-wongwaen-lamlukka/img/plan/anasiri-ayutthaya2-single-house-plan-177-haru.webp"
+                                style="" />
+                            <div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]"
+                                style="">82% Match</div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-[10px] font-bold text-secondary uppercase mb-1" style="">Detached House</p>
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="font-bold text-primary font-headline" style="">Anasiri Wongwaen - Lamlukka
+                                </h4>
+                                <span class="text-primary font-bold" style="">฿3.99M+</span>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant mb-1" style="">Wongwaen - Lamlukka</p>
+                            <p class="text-[10px] text-on-surface-variant mb-4 font-medium" style="">4 Beds, 4 Baths
+                                <span class="mx-1 opacity-40" style="">•</span> 177 sq.m.</p>
+                            <div class="flex gap-2">
+                                <a href="../property_details_blue_sidebar_label/code.html"
+                                    class="flex-1 py-2 border border-primary/20 hover:bg-primary/5 rounded-lg text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit"
+                                    style="">Details</a>
+                                <button
+                                    class="px-3 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center"
+                                    style="" title="Add to Compare"><span class="material-symbols-outlined text-base"
+                                        style="">compare_arrows</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Property Card 6 (Siri Place Wongwaen-Lamlukka - 79% Match) -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
+                        <div class="relative h-48">
+                            <img alt="Siri Place Wongwaen - Lamlukka"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/townhome/siri-place-wongwaen-lumlukka/img/housetype/siri-place-wongwaen-lamlukka-housetype-natsu.webp"
+                                style="" />
+                            <div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]"
+                                style="">79% Match</div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-[10px] font-bold text-secondary uppercase mb-1" style="">Townhome</p>
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="font-bold text-primary font-headline" style="">Siri Place Wongwaen - Lamlukka
+                                </h4>
+                                <span class="text-primary font-bold" style="">฿1.99M+</span>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant mb-1" style="">Wongwaen - Lamlukka</p>
+                            <p class="text-[10px] text-on-surface-variant mb-4 font-medium" style="">3 Beds, 3 Baths
+                                <span class="mx-1 opacity-40" style="">•</span> 99 sq.m.</p>
+                            <div class="flex gap-2">
+                                <a href="../property_details_unified_navigation/code.html"
+                                    class="flex-1 py-2 border border-primary/20 hover:bg-primary/5 rounded-lg text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit"
+                                    style="">Details</a>
+                                <button
+                                    class="px-3 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center"
+                                    style="" title="Add to Compare"><span class="material-symbols-outlined text-base"
+                                        style="">compare_arrows</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Property Card 7 (Setthasiri Don Mueang - 75% Match) -->
+                    <div
+                        class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/10 group">
+                        <div class="relative h-48">
+                            <img alt="Setthasiri Don Mueang"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/setthasiri-don-mueang/img/housetype/setthasiri-donmueang-single-house-plan-monro.webp"
+                                style="" />
+                            <div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]"
+                                style="">75% Match</div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-[10px] font-bold text-secondary uppercase mb-1" style="">Detached House</p>
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="font-bold text-primary font-headline" style="">Setthasiri Don Mueang</h4>
+                                <span class="text-primary font-bold" style="">฿12.99M+</span>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant mb-1" style="">Don Mueang, Bangkok</p>
+                            <p class="text-[10px] text-on-surface-variant mb-4 font-medium" style="">4 Beds, 4 Baths
+                                <span class="mx-1 opacity-40" style="">•</span> 205 sq.m.</p>
+                            <div class="flex gap-2">
+                                <a href="../property_details_blue_sidebar_label/code.html"
+                                    class="flex-1 py-2 border border-primary/20 hover:bg-primary/5 rounded-lg text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit"
+                                    style="">Details</a>
+                                <button
+                                    class="px-3 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center"
+                                    style="" title="Add to Compare"><span class="material-symbols-outlined text-base"
+                                        style="">compare_arrows</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- Floating Selection Toast / Comparison Tray -->
+    <div class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[60] hidden" id="comparison-tray">
+        <div
+            class="bg-[#031632] text-white p-3 rounded-xl shadow-2xl border border-white/10 flex flex-col gap-2.5 w-72 md:w-80">
+            <div class="flex items-center justify-between border-b border-white/10 pb-1.5 cursor-pointer"
+                onclick="document.getElementById('tray-content').classList.toggle('hidden');this.querySelector('.material-symbols-outlined').textContent=document.getElementById('tray-content').classList.contains('hidden')?'open_in_full':'close_fullscreen'">
+                <span class="text-[10px] text-[#00CCF9] font-bold uppercase tracking-widest" id="tray-count">0
+                    Properties Selected</span>
+                <button class="text-white/40 hover:text-white transition-colors" style=""><span
+                        class="material-symbols-outlined text-sm" style="">close_fullscreen</span></button>
+            </div>
+            <div id="tray-content" class="flex flex-col gap-2.5">
+                <div id="tray-items" class="flex flex-col gap-2"></div>
+            </div>
+            <a href="../portfolio_comparison_updated_sidebar_navigation/code.html"
+                class="w-full py-2.5 bg-[#00CCF9] hover:bg-[#00b5dd] text-[#031632] rounded-lg font-black text-xs transition-colors flex items-center justify-center gap-2 shadow-lg group no-underline"
+                style="">Compare Now <span
+                    class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform"
+                    style="">analytics</span></a>
+        </div>
+    </div>
+    <script>
+        const compareItems = new Map();
+        const tray = document.getElementById('comparison-tray');
+        const trayItems = document.getElementById('tray-items');
+        const trayCount = document.getElementById('tray-count');
+        function updateTray() {
+            trayItems.innerHTML = '';
+            compareItems.forEach((prop, name) => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center gap-3 group';
+                item.innerHTML = '<div class="h-10 w-10 rounded-md overflow-hidden border border-white/20 shrink-0"><img alt="' + name + '" class="w-full h-full object-cover" src="' + prop.img + '" /></div><div class="flex-1 min-w-0"><p class="text-xs font-bold truncate">' + name + '</p><p class="text-[9px] text-white/50">' + prop.price + '</p></div><button class="h-5 w-5 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors" onclick="removeCompare(\'' + name.replace(/'/g, "\\'") + '\')"><span class="material-symbols-outlined text-xs text-white/60">close</span></button>';
+                trayItems.appendChild(item);
+            });
+            trayCount.textContent = compareItems.size + ' Properties Selected';
+            tray.classList.toggle('hidden', compareItems.size === 0);
+        }
+        function removeCompare(name) {
+            compareItems.delete(name);
+            document.querySelectorAll('[data-compare-btn]').forEach(function (btn) {
+                if (btn.dataset.compareName === name) { btn.classList.remove('bg-primary', 'text-white', 'border-primary'); btn.classList.add('border-primary/20'); }
+            });
+            updateTray();
+        }
+        document.querySelectorAll('[title="Add to Compare"], [title="Compare"]').forEach(function (btn) {
+            btn.setAttribute('data-compare-btn', '');
+            var card = btn.closest('.group') || btn.closest('.bg-surface-container-lowest');
+            if (!card) return;
+            var nameEl = card.querySelector('h3, h4');
+            var imgEl = card.querySelector('img');
+            var priceEl = card.querySelector('[class*="font-black"], [class*="font-bold"]');
+            if (!nameEl) return;
+            var name = nameEl.textContent.trim();
+            btn.dataset.compareName = name;
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (compareItems.has(name)) { compareItems.delete(name); btn.classList.remove('bg-primary', 'text-white', 'border-primary'); btn.classList.add('border-primary/20'); }
+                else { compareItems.set(name, { img: imgEl ? imgEl.src : '', price: priceEl ? priceEl.textContent.trim() : '' }); btn.classList.add('bg-primary', 'text-white', 'border-primary'); btn.classList.remove('border-primary/20'); }
+                updateTray();
+            });
+        });
+    </script>
+    <!-- Injection Script -->
+    <script src="../components.js"></script>
+    <script>
+        document.getElementById('topbar-placeholder').innerHTML = renderTopbar();
+        document.getElementById('sidebar-placeholder').innerHTML = renderSidebar('homes');
+    </script>
+</body>
+
+</html>
