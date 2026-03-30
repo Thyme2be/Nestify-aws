@@ -1,365 +1,742 @@
-<html class="light" lang="en"><head></head><body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">```html
+<!DOCTYPE html>
+<html class="light" lang="en">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Purchase Journey | The Curated Architect</title>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "on-error": "#ffffff",
-              "surface-container-high": "#dfe8ff",
-              "on-surface": "#081b38",
-              "error-container": "#ffdad6",
-              "on-tertiary": "#ffffff",
-              "on-error-container": "#93000a",
-              "on-tertiary-fixed-variant": "#8c1520",
-              "secondary-container": "#00ccf9",
-              "inverse-primary": "#b6c7eb",
-              "surface": "#f9f9ff",
-              "on-secondary": "#ffffff",
-              "outline-variant": "#c5c6ce",
-              "tertiary-container": "#5e000d",
-              "surface-container-highest": "#d7e2ff",
-              "background": "#f9f9ff",
-              "on-primary": "#ffffff",
-              "secondary": "#00677f",
-              "on-primary-fixed": "#081b38",
-              "primary-fixed": "#d7e2ff",
-              "primary-container": "#1a2b48",
-              "surface-variant": "#d7e2ff",
-              "error": "#ba1a1a",
-              "surface-container-lowest": "#ffffff",
-              "on-secondary-fixed-variant": "#004e60",
-              "surface-container-low": "#f1f3ff",
-              "tertiary": "#370004",
-              "on-secondary-container": "#005266",
-              "on-tertiary-fixed": "#410006",
-              "surface-dim": "#cadaff",
-              "inverse-surface": "#20304e",
-              "on-primary-fixed-variant": "#374765",
-              "surface-tint": "#4e5f7e",
-              "on-surface-variant": "#44474d",
-              "surface-container": "#e8eeff",
-              "primary": "#031632",
-              "tertiary-fixed-dim": "#ffb3b0",
-              "outline": "#75777e",
-              "primary-fixed-dim": "#b6c7eb",
-              "surface-bright": "#f9f9ff",
-              "on-secondary-fixed": "#001f28",
-              "on-tertiary-container": "#f36263",
-              "secondary-fixed-dim": "#4cd6ff",
-              "on-primary-container": "#8293b5",
-              "tertiary-fixed": "#ffdad8",
-              "inverse-on-surface": "#ecf0ff",
-              "secondary-fixed": "#b7eaff",
-              "on-background": "#081b38"
-            },
-            fontFamily: {
-              "headline": ["Manrope"],
-              "body": ["Inter"],
-              "label": ["Inter"]
-            },
-            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Purchase Journey | The Curated Architect</title>
+  <!-- Material Symbols -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-error": "#ffffff",
+            "surface-container-high": "#dfe8ff",
+            "on-surface": "#081b38",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#8c1520",
+            "secondary-container": "#00ccf9",
+            "inverse-primary": "#b6c7eb",
+            "surface": "#f9f9ff",
+            "on-secondary": "#ffffff",
+            "outline-variant": "#c5c6ce",
+            "tertiary-container": "#5e000d",
+            "surface-container-highest": "#d7e2ff",
+            "background": "#f9f9ff",
+            "on-primary": "#ffffff",
+            "secondary": "#00677f",
+            "on-primary-fixed": "#081b38",
+            "primary-fixed": "#d7e2ff",
+            "primary-container": "#1a2b48",
+            "surface-variant": "#d7e2ff",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed-variant": "#004e60",
+            "surface-container-low": "#f1f3ff",
+            "tertiary": "#370004",
+            "on-secondary-container": "#005266",
+            "on-tertiary-fixed": "#410006",
+            "surface-dim": "#cadaff",
+            "inverse-surface": "#20304e",
+            "on-primary-fixed-variant": "#374765",
+            "surface-tint": "#4e5f7e",
+            "on-surface-variant": "#44474d",
+            "surface-container": "#e8eeff",
+            "primary": "#031632",
+            "tertiary-fixed-dim": "#ffb3b0",
+            "outline": "#75777e",
+            "primary-fixed-dim": "#b6c7eb",
+            "surface-bright": "#f9f9ff",
+            "on-secondary-fixed": "#001f28",
+            "on-tertiary-container": "#f36263",
+            "secondary-fixed-dim": "#4cd6ff",
+            "on-primary-container": "#8293b5",
+            "tertiary-fixed": "#ffdad8",
+            "inverse-on-surface": "#ecf0ff",
+            "secondary-fixed": "#b7eaff",
+            "on-background": "#081b38"
           },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
         },
-      }
-    </script>
-<style>
-      .material-symbols-outlined {
-        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      }
-      .glass-ai {
-        background: rgba(0, 204, 249, 0.1);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(0, 204, 249, 0.2);
-      }
-    </style>
-    <!-- Top Navigation System (Injected via components.js) -->
-    <div id="topbar-placeholder"></div>
-    <div class="flex min-h-screen pt-16">
-        <!-- Sidebar Navigation System -->
-        <div id="sidebar-placeholder"></div>
-        <main class="flex-1 md:ml-64 overflow-x-hidden">
-<!-- Content Canvas -->
-<div class="p-6 md:p-12 max-w-7xl mx-auto space-y-12">
-<!-- Hero Title Section -->
-<div class="space-y-2">
-<span class="text-secondary font-label text-xs uppercase tracking-[0.2em] font-bold" style="">Current Journey</span>
-<h2 class="text-primary font-headline text-4xl md:text-5xl font-extrabold tracking-tight" style="">Acquisition Portal</h2>
-<p class="text-on-surface-variant max-w-xl" style="">Finalizing your purchase of the <span class="text-primary font-bold" style="">Brutalist Glass Villa</span>. Your AI Concierge has updated your closing roadmap.</p>
-</div>
-<!-- Bento Grid Layout -->
-<div class="grid grid-cols-1 gap-8">
-<!-- Main Status Tracker (Col 1 & 2) -->
-<div class="lg:col-span-2 space-y-8">
-<!-- Timeline Section -->
-<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] space-y-8">
-<div class="flex justify-between items-end">
-<h3 class="font-headline text-2xl font-bold" style="">Timeline to Closing</h3>
-<span id="timeline-percent" class="text-secondary font-bold text-sm bg-secondary-fixed px-3 py-1 rounded-sm" style="">42% Complete</span>
-</div>
-<div class="relative pt-4">
-<!-- Progress Bar Base -->
-<div class="absolute top-[4.25rem] left-0 w-full h-[2px] bg-surface-container"></div>
-<!-- Active Progress Bar -->
-<div id="timeline-bar" class="absolute top-[4.25rem] left-0 w-[30%] h-[2px] bg-on-tertiary-container transition-all duration-1000"></div>
-<div class="grid grid-cols-5 relative">
-<!-- Step 1: Reservation -->
-<div class="flex flex-col items-center text-center gap-4">
-<div class="z-10 w-10 h-10 rounded-full bg-on-tertiary-container text-white flex items-center justify-center shadow-md">
-<span class="material-symbols-outlined text-base" data-icon="check" style='font-variation-settings: "FILL" 1;'>check</span>
-</div>
-<div class="space-y-1">
-<p class="font-bold text-[11px] md:text-xs text-primary" style="">Reservation</p>
-<p class="text-[9px] text-green-600 uppercase font-semibold" style="">Completed</p>
-</div>
-</div>
-<!-- Step 2: Documents Upload -->
-<div id="step2" class="flex flex-col items-center text-center gap-4">
-<div id="step2-circle" class="z-10 w-10 h-10 rounded-full bg-white text-on-tertiary-container flex items-center justify-center border-2 border-on-tertiary-container shadow-[0_0_15px_rgba(243,98,99,0.3)] transition-all duration-700">
-<span id="step2-icon" class="material-symbols-outlined text-base animate-pulse" data-icon="upload_file" style="">upload_file</span>
-</div>
-<div class="space-y-1">
-<p class="font-bold text-[11px] md:text-xs text-primary" style="">Docs Upload</p>
-<p id="step2-status" class="text-[9px] text-on-tertiary-container uppercase font-bold" style="">In Progress</p>
-</div>
-</div>
-<!-- Step 3: Loan Contract -->
-<div id="step3" class="flex flex-col items-center text-center gap-4">
-<div id="step3-circle" class="z-10 w-10 h-10 rounded-full bg-surface-container text-slate-400 flex items-center justify-center border-2 border-surface-container transition-all duration-700">
-<span id="step3-icon" class="material-symbols-outlined text-base" data-icon="contract" style="">contract</span>
-</div>
-<div class="space-y-1">
-<p id="step3-label" class="font-bold text-[11px] md:text-xs text-slate-400 transition-colors duration-500" style="">Loan Contract</p>
-<p id="step3-status" class="text-[9px] text-slate-400 uppercase font-medium" style="">Upcoming</p>
-</div>
-</div>
-<!-- Step 4: Home Inspection -->
-<div class="flex flex-col items-center text-center gap-4">
-<div class="z-10 w-10 h-10 rounded-full bg-surface-container text-slate-400 flex items-center justify-center border-2 border-surface-container">
-<span class="material-symbols-outlined text-base" data-icon="home_health" style="">home_health</span>
-</div>
-<div class="space-y-1">
-<p class="font-bold text-[11px] md:text-xs text-slate-400" style="">Inspection</p>
-<p class="text-[9px] text-slate-400 uppercase font-medium" style="">Upcoming</p>
-</div>
-</div>
-<!-- Step 5: Transfer -->
-<div class="flex flex-col items-center text-center gap-4">
-<div class="z-10 w-10 h-10 rounded-full bg-surface-container text-slate-400 flex items-center justify-center border-2 border-surface-container">
-<span class="material-symbols-outlined text-base" data-icon="key" style="">key</span>
-</div>
-<div class="space-y-1">
-<p class="font-bold text-[11px] md:text-xs text-slate-400" style="">Transfer</p>
-<p class="text-[9px] text-slate-400 uppercase font-medium" style="">Upcoming</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Documents Checklist Section -->
-<div class="bg-surface-container-low p-8 rounded-xl space-y-6">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary" data-icon="folder_managed" style="">folder_managed</span>
-<h3 class="font-headline text-xl font-bold" style="">Documents &amp; Bank Financing</h3>
-</div>
-<div class="flex items-center gap-4">
-<span id="doc-counter" class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded" style="">2/4 REQUIRED</span>
-<button id="upload-missing-btn" class="text-secondary font-bold text-sm hover:underline" style="" onclick="document.getElementById('doc3-input').click()">Upload Missing</button>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<!-- Doc 1 -->
-<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between group border border-transparent hover:border-secondary/20 transition-all">
-<div class="flex items-center gap-4">
-<div class="p-2 bg-green-50 text-green-600 rounded">
-<span class="material-symbols-outlined" data-icon="verified" style='font-variation-settings: "FILL" 1;'>verified</span>
-</div>
-<div>
-<p class="text-sm font-bold text-primary" style="">Bank Statements (3mo)</p>
-<p class="text-xs text-slate-400" style="">Verified by AI Concierge</p>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer" data-icon="visibility" style="">visibility</span>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer" data-icon="download" style="">download</span>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-error hover:scale-110 transition-transform cursor-pointer" data-icon="delete" style="" title="Remove File">delete</span></div>
-</div>
-<!-- Doc 2 -->
-<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between group border border-transparent hover:border-secondary/20 transition-all">
-<div class="flex items-center gap-4">
-<div class="p-2 bg-green-50 text-green-600 rounded">
-<span class="material-symbols-outlined" data-icon="verified" style='font-variation-settings: "FILL" 1;'>verified</span>
-</div>
-<div>
-<p class="text-sm font-bold text-primary" style="">Proof of Employment</p>
-<p class="text-xs text-slate-400" style="">KYC &amp; HR Verified</p>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer" data-icon="visibility" style="">visibility</span>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-error hover:scale-110 transition-transform cursor-pointer" data-icon="delete" style="" title="Remove File">delete</span></div>
-</div>
-<!-- Doc 3 (Active Item - Interactive Upload) -->
-<div id="doc3-card" class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between group border-2 border-dashed border-on-tertiary-container/40 ring-4 ring-on-tertiary-container/5 transition-all duration-500">
-<input type="file" id="doc3-input" class="hidden" onchange="handleDoc3Upload(this)" />
-<div class="flex items-center gap-4">
-<div id="doc3-icon" class="p-2 bg-on-tertiary-container/10 text-on-tertiary-container rounded transition-all duration-300">
-<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
-</div>
-<div>
-<p id="doc3-title" class="text-sm font-bold text-primary">Loan Pre-Approval Letter</p>
-<p id="doc3-status" class="text-xs text-on-tertiary-container font-medium">Awaiting Bank Upload</p>
-</div>
-</div>
-<!-- Upload button (initial state) -->
-<button id="doc3-btn" onclick="document.getElementById('doc3-input').click()" class="bg-on-tertiary-container text-white text-[10px] font-bold px-3 py-1 rounded-full hover:scale-105 transition-transform flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]" data-icon="upload">upload</span> UPLOAD
-</button>
-<!-- Loading spinner (hidden) -->
-<div id="doc3-loader" class="hidden items-center gap-2">
-<svg class="animate-spin h-5 w-5 text-on-tertiary-container" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-</svg>
-<span class="text-[10px] font-bold text-on-tertiary-container uppercase tracking-widest">Uploading...</span>
-</div>
-<!-- Success actions (hidden) -->
-<div id="doc3-success" class="hidden items-center gap-2">
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer">visibility</span>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-error hover:scale-110 transition-transform cursor-pointer" title="Remove File">delete</span>
-</div>
-</div>
-<script>
-function handleDoc3Upload(input) {
-  if (!input.files || !input.files.length) return;
-  var fileName = input.files[0].name;
-  var card = document.getElementById('doc3-card');
-  var btn = document.getElementById('doc3-btn');
-  var loader = document.getElementById('doc3-loader');
-  var success = document.getElementById('doc3-success');
-  var icon = document.getElementById('doc3-icon');
-  var title = document.getElementById('doc3-title');
-  var status = document.getElementById('doc3-status');
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
 
-  // Phase 1: Show loading
-  btn.classList.add('hidden');
-  loader.classList.remove('hidden');
-  loader.classList.add('flex');
-  status.textContent = 'Uploading ' + fileName + '...';
-  card.classList.remove('border-dashed', 'border-on-tertiary-container/40', 'ring-4', 'ring-on-tertiary-container/5');
-  card.classList.add('border-solid', 'border-secondary/30');
+    .glass-ai {
+      background: rgba(0, 204, 249, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 204, 249, 0.2);
+    }
+  </style>
+</head>
 
-  // Phase 2: After 2s, show success
-  setTimeout(function() {
-    loader.classList.add('hidden');
-    loader.classList.remove('flex');
-    success.classList.remove('hidden');
-    success.classList.add('flex');
+<body class="bg-surface text-on-surface pb-32 md:pb-0">
+  <!-- Top Navigation Bar -->
+  <header
+    class="bg-slate-50 dark:bg-[#031632] shadow-sm dark:shadow-none docked full-width top-0 z-50 flex justify-between items-center w-full px-6 py-4 max-w-full">
+    <div class="flex items-center gap-8">
+      <span class="text-2xl font-black font-headline tracking-tighter text-[#031632] dark:text-white" style=""><a
+          href="../ai_matcher_updated_sidebar_icons/code.html" class="no-underline text-inherit">Nestify</a></span>
+      <nav class="hidden md:flex gap-6">
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-full" style="">
+        <span class="material-symbols-outlined text-[#031632] dark:text-white" data-icon="notifications"
+          style="">notifications</span>
+      </button>
+      <div class="h-10 w-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/20">
+        <img alt="User Profile Avatar" class=""
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWcwmzMMNFLaC0Mb5nMmOVzvXTpZ4LPPK15rwAeDbu4KxFf-NFmBdLjwumhsl08kkyfdHP_bWkKQddAE1qXzeZVIhTRQ6J_-osqJo2UDavqEmHN2vMKexLt2kMoqJ2CR77Myl29tbUN2KCVz2A5URNKGH3gij-tcTfHFm3p4DHMv5Hoi4KctQt7JwvJRNUfFpHaz9gJA6_LRU7wQttvsmJOXTzXi1IuqKfZVU3QcaC5LyEGNVstDxxgR2DrHgG9A0JDyvsu-pb"
+          style="" />
+      </div>
+    </div>
+  </header>
+  <div class="flex min-h-screen">
+    <!-- Side Navigation -->
+    <aside
+      class="hidden md:flex flex-col h-screen w-64 bg-[#031632] dark:bg-[#020d1d] border-r border-white/10 py-6 gap-2 sticky top-0">
+      <div class="px-6 mb-8">
+        <h2 class="text-white text-xl font-bold font-headline" style="">Editorial Intel</h2>
+        <p class="text-[#00CCF9] text-xs font-label uppercase tracking-widest" style="">AI-Driven Insights</p>
+      </div>
+      <nav class="flex-1">
+        <a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all"
+          href="../ai_matcher_updated_sidebar_icons/code.html" style="">
+          <span class="material-symbols-outlined" data-icon="home" style="">home</span>
+          <span class="font-label text-sm" style="">Matched Homes</span>
+        </a>
+        <a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all"
+          href="../portfolio_comparison_updated_sidebar_navigation/code.html" style="">
+          <span class="material-symbols-outlined" data-icon="favorite" style="">compare_arrows</span>
+          <span class="font-label text-sm" style="">Compare Homes</span>
+        </a>
+        <a class="flex items-center gap-3 bg-[#1A2B48] text-[#00CCF9] rounded-lg px-4 py-3 mx-2 Active: translate-x-1 transition-transform"
+          href="#" style="">
+          <span class="material-symbols-outlined" data-icon="account_balance_wallet" style="">donut_large</span>
+          <span class="font-label text-sm" style="">Status</span>
+        </a>
+      </nav>
+    </aside>
+    <main class="flex-1 overflow-x-hidden">
+      <!-- Content Canvas -->
+      <div class="p-6 md:p-12 max-w-7xl mx-auto space-y-12">
+        <!-- Hero Title Section -->
+        <div class="space-y-2">
+          <span class="text-secondary font-label text-xs uppercase tracking-[0.2em] font-bold" style="">Current
+            Journey</span>
+          <h2 class="text-primary font-headline text-4xl md:text-5xl font-extrabold tracking-tight" style="">Acquisition
+            Portal</h2>
+          <p class="text-on-surface-variant max-w-xl" style="">Finalizing your purchase of the <span
+              class="text-primary font-bold" style="">Brutalist Glass Villa</span>. Your AI Concierge has updated your
+            closing roadmap.</p>
+        </div>
+        <!-- Bento Grid Layout -->
+        <div class="grid grid-cols-1 gap-8">
+          <!-- Main Status Tracker (Col 1 & 2) -->
+          <div class="lg:col-span-2 space-y-8">
+            <!-- Timeline Section -->
+            <div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] space-y-8">
+              <div class="flex justify-between items-end">
+                <h3 class="font-headline text-2xl font-bold" style="">Timeline to Closing</h3>
+                <span id="timeline-percent"
+                  class="text-secondary font-bold text-sm bg-secondary-fixed px-3 py-1 rounded-sm" style="">42%
+                  Complete</span>
+              </div>
+              <div class="relative pt-4">
+                <!-- Circles Row with progress bar running through -->
+                <div class="grid grid-cols-5 relative">
+                  <!-- Progress Bar Base (behind circles) -->
+                  <div class="absolute top-5 left-[10%] right-[10%] h-[2px] bg-surface-container z-0"></div>
+                  <!-- Active Progress Bar -->
+                  <div id="timeline-bar"
+                    class="absolute top-5 left-[10%] h-[2px] bg-on-tertiary-container transition-all duration-1000 z-0" style="width:30%">
+                  </div>
 
-    // Update card to verified state
-    card.classList.remove('border-secondary/30', 'border-2');
-    card.classList.add('border', 'border-transparent', 'hover:border-secondary/20');
-    icon.className = 'p-2 bg-green-50 text-green-600 rounded transition-all duration-300';
-    icon.innerHTML = '<span class="material-symbols-outlined" style="font-variation-settings: \'FILL\' 1;">verified</span>';
-    title.textContent = 'Loan Pre-Approval Letter';
-    status.className = 'text-xs text-slate-400';
-    status.textContent = 'Verified by AI Concierge';
+                  <!-- Step 1: Reservation -->
+                  <div class="flex flex-col items-center text-center gap-3">
+                    <div
+                      class="z-10 w-10 h-10 rounded-full bg-on-tertiary-container text-white flex items-center justify-center shadow-md">
+                      <span class="material-symbols-outlined text-base" data-icon="check"
+                        style='font-variation-settings: "FILL" 1;'>check</span>
+                    </div>
+                    <div class="space-y-0.5">
+                      <p class="font-bold text-[11px] md:text-xs text-primary" style="">Reservation</p>
+                      <p class="text-[9px] text-green-600 uppercase font-semibold" style="">Completed</p>
+                    </div>
+                  </div>
 
-    // Update counter
-    document.getElementById('doc-counter').textContent = '3/4 REQUIRED';
-    document.getElementById('upload-missing-btn').textContent = 'All Uploaded';
-    document.getElementById('upload-missing-btn').classList.remove('text-secondary');
-    document.getElementById('upload-missing-btn').classList.add('text-green-600');
-    document.getElementById('upload-missing-btn').onclick = null;
+                  <!-- Step 2: Documents Upload -->
+                  <div id="step2" class="flex flex-col items-center text-center gap-3">
+                    <div id="step2-circle"
+                      class="z-10 w-10 h-10 rounded-full bg-white text-on-tertiary-container flex items-center justify-center border-2 border-on-tertiary-container shadow-[0_0_15px_rgba(243,98,99,0.3)] transition-all duration-700">
+                      <span id="step2-icon" class="material-symbols-outlined text-base animate-pulse"
+                        data-icon="upload_file" style="">upload_file</span>
+                    </div>
+                    <div class="space-y-0.5">
+                      <p class="font-bold text-[11px] md:text-xs text-primary" style="">Docs Upload</p>
+                      <p id="step2-status" class="text-[9px] text-on-tertiary-container uppercase font-bold" style="">In Progress</p>
+                    </div>
+                  </div>
 
-    // Phase 3: After 5s, advance timeline to Loan Contract step
-    setTimeout(function() {
-      // Step 2 → completed
-      var s2circle = document.getElementById('step2-circle');
-      s2circle.className = 'z-10 w-10 h-10 rounded-full bg-on-tertiary-container text-white flex items-center justify-center shadow-md transition-all duration-700';
-      var s2icon = document.getElementById('step2-icon');
-      s2icon.className = 'material-symbols-outlined text-base';
-      s2icon.style.fontVariationSettings = "'FILL' 1";
-      s2icon.textContent = 'check';
-      document.getElementById('step2-status').className = 'text-[9px] text-green-600 uppercase font-semibold';
-      document.getElementById('step2-status').textContent = 'Completed';
+                  <!-- Step 3: Loan Contract -->
+                  <div id="step3" class="flex flex-col items-center text-center gap-3">
+                    <div id="step3-circle"
+                      class="z-10 w-10 h-10 rounded-full bg-surface-container text-slate-400 flex items-center justify-center border-2 border-surface-container transition-all duration-700">
+                      <span id="step3-icon" class="material-symbols-outlined text-base" data-icon="contract"
+                        style="">contract</span>
+                    </div>
+                    <div class="space-y-0.5">
+                      <p id="step3-label" class="font-bold text-[11px] md:text-xs text-slate-400 transition-colors duration-500" style="">Loan Contract</p>
+                      <p id="step3-status" class="text-[9px] text-slate-400 uppercase font-medium" style="">Upcoming</p>
+                    </div>
+                  </div>
 
-      // Step 3 → in progress
-      var s3circle = document.getElementById('step3-circle');
-      s3circle.className = 'z-10 w-10 h-10 rounded-full bg-white text-on-tertiary-container flex items-center justify-center border-2 border-on-tertiary-container shadow-[0_0_15px_rgba(243,98,99,0.3)] transition-all duration-700';
-      var s3icon = document.getElementById('step3-icon');
-      s3icon.classList.add('animate-pulse');
-      document.getElementById('step3-label').className = 'font-bold text-[11px] md:text-xs text-primary transition-colors duration-500';
-      document.getElementById('step3-status').className = 'text-[9px] text-on-tertiary-container uppercase font-bold';
-      document.getElementById('step3-status').textContent = 'In Progress';
+                  <!-- Step 4: Home Inspection -->
+                  <div id="step4" class="flex flex-col items-center text-center gap-3">
+                    <div id="step4-circle"
+                      class="z-10 w-10 h-10 rounded-full bg-surface-container text-slate-400 flex items-center justify-center border-2 border-surface-container transition-all duration-700">
+                      <span id="step4-icon" class="material-symbols-outlined text-base" data-icon="home_health"
+                        style="">home_health</span>
+                    </div>
+                    <div class="space-y-0.5">
+                      <p id="step4-label" class="font-bold text-[11px] md:text-xs text-slate-400 transition-colors duration-500" style="">Inspection</p>
+                      <p id="step4-status" class="text-[9px] text-slate-400 uppercase font-medium" style="">Upcoming</p>
+                    </div>
+                  </div>
 
-      // Advance progress bar
-      document.getElementById('timeline-bar').style.width = '50%';
-      document.getElementById('timeline-percent').textContent = '58% Complete';
+                  <!-- Step 5: Transfer -->
+                  <div id="step5" class="flex flex-col items-center text-center gap-3">
+                    <div id="step5-circle"
+                      class="z-10 w-10 h-10 rounded-full bg-surface-container text-slate-400 flex items-center justify-center border-2 border-surface-container transition-all duration-700">
+                      <span id="step5-icon" class="material-symbols-outlined text-base" data-icon="key"
+                        style="">key</span>
+                    </div>
+                    <div class="space-y-0.5">
+                      <p id="step5-label" class="font-bold text-[11px] md:text-xs text-slate-400 transition-colors duration-500" style="">Transfer</p>
+                      <p id="step5-status" class="text-[9px] text-slate-400 uppercase font-medium" style="">Upcoming</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Documents Checklist Section -->
+            <div class="bg-surface-container-low p-8 rounded-xl space-y-6">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary" data-icon="folder_managed"
+                    style="">folder_managed</span>
+                  <h3 class="font-headline text-xl font-bold" style="">Documents &amp; Bank Financing</h3>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span id="doc-counter"
+                    class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded"
+                    style="">2/4 REQUIRED</span>
+                  <button id="upload-missing-btn" class="text-secondary font-bold text-sm hover:underline" style=""
+                    onclick="document.getElementById('doc3-upload-btn').click()">Upload Missing</button>
+                </div>
+              </div>
 
-      // Smooth scroll to timeline
-      document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 5000);
-  }, 2000);
-}
-</script>
-<!-- Doc 4 -->
-<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center justify-between group border border-transparent hover:border-secondary/20 transition-all opacity-60">
-<div class="flex items-center gap-4">
-<div class="p-2 bg-slate-100 text-slate-400 rounded">
-<span class="material-symbols-outlined" data-icon="description" style="">description</span>
-</div>
-<div>
-<p class="text-sm font-bold text-primary" style="">Property Appraisal Report</p>
-<p class="text-xs text-slate-400" style="">Scheduled after Doc Review</p>
-</div>
-</div>
-<span class="material-symbols-outlined text-slate-300" data-icon="lock" style="">lock</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Sidebar (AI & Booking) -->
-</div>
-<!-- Visual Separator (Background Shift) -->
-<div class="h-20"></div>
-</div>
-</main>
-</div>
-<!-- BottomNavBar (Visible on Mobile) -->
-<nav class="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex justify-around items-center px-4 py-3 bg-[#031632]/90 backdrop-blur-xl w-[90%] max-w-2xl rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10">
-<a class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200" href="#" style="">
-<span class="material-symbols-outlined" data-icon="trending_up" style="">trending_up</span>
-<span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">Increase Down Payment</span>
-</a>
-<a class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200" href="#" style="">
-<span class="material-symbols-outlined" data-icon="calendar_today" style="">calendar_today</span>
-<span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">Book a Tour</span>
-</a>
-<a class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200" href="#" style="">
-<span class="material-symbols-outlined" data-icon="tune" style="">tune</span>
-<span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">Refine Search</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#F36263] p-2 hover:scale-105 transition-transform active:scale-95 duration-200" href="#" style="">
-<span class="material-symbols-outlined" data-icon="auto_awesome" style='font-variation-settings: "FILL" 1;'>auto_awesome</span>
-<span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">View Matches</span>
-</a>
-</nav>
-    <!-- Injection Script -->
-    <script src="../components.js"></script>
-    <script>
-        document.getElementById('topbar-placeholder').innerHTML = renderTopbar();
-        document.getElementById('sidebar-placeholder').innerHTML = renderSidebar('status');
-    </script>
+              <!-- 2-Column Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <!-- Doc 1: Bank Statements (Verified) -->
+                <div id="doc1-card"
+                  class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group border border-outline-variant/20 hover:border-secondary/20 transition-all shadow-sm">
+                  <div class="flex items-center gap-4">
+                    <div id="doc1-icon" class="p-2 bg-green-50 text-green-600 rounded-lg">
+                      <span class="material-symbols-outlined" data-icon="verified"
+                        style='font-variation-settings: "FILL" 1;'>verified</span>
+                    </div>
+                    <div>
+                      <p class="text-sm font-bold text-primary">Bank Statements (3mo)</p>
+                      <p class="text-xs text-slate-400">Verified by AI Concierge</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer text-xl">visibility</span>
+                    <span
+                      class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer text-xl">download</span>
+                    <span
+                      class="material-symbols-outlined text-slate-300 group-hover:text-error cursor-pointer text-xl hover:scale-110 transition-transform"
+                      title="Remove File">delete</span>
+                  </div>
+                </div>
+
+                <!-- Doc 2: Proof of Employment (Awaiting Upload) -->
+                <div id="doc2-card"
+                  class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group border-2 border-dashed border-[#F36263]/50 bg-[#FFF5F5] transition-all duration-500 shadow-sm">
+                  <div class="flex items-center gap-4">
+                    <div id="doc2-icon"
+                      class="p-2 bg-[#F36263]/10 text-[#F36263] rounded-lg transition-all duration-300">
+                      <span class="material-symbols-outlined text-xl">badge</span>
+                    </div>
+                    <div>
+                      <p id="doc2-title" class="text-sm font-bold text-primary">Proof of Employment</p>
+                      <p id="doc2-status" class="text-xs text-[#F36263] font-semibold">Awaiting Upload</p>
+                    </div>
+                  </div>
+                  <!-- States -->
+                  <div id="doc2-state-pending">
+                    <button id="doc2-upload-btn"
+                      class="bg-[#F36263] hover:bg-[#e05555] text-white text-[11px] font-bold px-4 py-2 rounded-full transition-all hover:scale-105 flex items-center gap-1.5 shadow-md">
+                      <span class="material-symbols-outlined text-[14px]">upload</span> UPLOAD
+                    </button>
+                  </div>
+                  <div id="doc2-state-uploading" class="hidden items-center gap-2">
+                    <svg class="animate-spin h-5 w-5 text-[#F36263]" xmlns="http://www.w3.org/2000/svg" fill="none"
+                      viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z">
+                      </path>
+                    </svg>
+                    <span class="text-[10px] font-bold text-[#F36263] uppercase tracking-widest">Uploading...</span>
+                  </div>
+                  <div id="doc2-state-done" class="hidden items-center gap-2">
+                    <span
+                      class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer text-xl">visibility</span>
+                    <span
+                      class="material-symbols-outlined text-slate-300 group-hover:text-error cursor-pointer text-xl hover:scale-110 transition-transform"
+                      title="Remove File">delete</span>
+                  </div>
+                </div>
+
+                <!-- Doc 3: Loan Pre-Approval (Active — Awaiting Upload) -->
+                <div id="doc3-card"
+                  class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group border-2 border-dashed border-[#F36263]/50 bg-[#FFF5F5] transition-all duration-500 shadow-sm">
+                  <div class="flex items-center gap-4">
+                    <div id="doc3-icon"
+                      class="p-2 bg-[#F36263]/10 text-[#F36263] rounded-lg transition-all duration-300">
+                      <span class="material-symbols-outlined text-xl">account_balance</span>
+                    </div>
+                    <div>
+                      <p id="doc3-title" class="text-sm font-bold text-primary">Loan Pre-Approval Letter</p>
+                      <p id="doc3-status" class="text-xs text-[#F36263] font-semibold">Awaiting Bank Upload</p>
+                    </div>
+                  </div>
+                  <!-- States -->
+                  <div id="doc3-state-pending">
+                    <button id="doc3-upload-btn"
+                      class="bg-[#F36263] hover:bg-[#e05555] text-white text-[11px] font-bold px-4 py-2 rounded-full transition-all hover:scale-105 flex items-center gap-1.5 shadow-md">
+                      <span class="material-symbols-outlined text-[14px]">upload</span> UPLOAD
+                    </button>
+                  </div>
+                  <div id="doc3-state-uploading" class="hidden items-center gap-2">
+                    <svg class="animate-spin h-5 w-5 text-[#F36263]" xmlns="http://www.w3.org/2000/svg" fill="none"
+                      viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z">
+                      </path>
+                    </svg>
+                    <span class="text-[10px] font-bold text-[#F36263] uppercase tracking-widest">Uploading...</span>
+                  </div>
+                  <div id="doc3-state-done" class="hidden items-center gap-2">
+                    <span
+                      class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer text-xl">visibility</span>
+                    <span
+                      class="material-symbols-outlined text-slate-300 group-hover:text-error cursor-pointer text-xl hover:scale-110 transition-transform"
+                      title="Remove File">delete</span>
+                  </div>
+                </div>
+
+                <!-- Doc 4: Property Appraisal (Locked) -->
+                <div id="doc4-card"
+                  class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group border border-outline-variant/10 transition-all duration-500 shadow-sm opacity-50">
+                  <div class="flex items-center gap-4">
+                    <div id="doc4-icon" class="p-2 bg-slate-100 text-slate-400 rounded-lg transition-all duration-300">
+                      <span class="material-symbols-outlined text-xl">description</span>
+                    </div>
+                    <div>
+                      <p id="doc4-title" class="text-sm font-bold text-slate-400">Property Appraisal Report</p>
+                      <p id="doc4-status" class="text-xs text-slate-400">Scheduled after Doc Review</p>
+                    </div>
+                  </div>
+                  <div id="doc4-state-locked">
+                    <span class="material-symbols-outlined text-slate-300 text-xl">lock</span>
+                  </div>
+                  <div id="doc4-state-uploading" class="hidden items-center gap-2">
+                    <svg class="animate-spin h-5 w-5 text-[#F36263]" xmlns="http://www.w3.org/2000/svg" fill="none"
+                      viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z">
+                      </path>
+                    </svg>
+                    <span class="text-[10px] font-bold text-[#F36263] uppercase tracking-widest">Uploading...</span>
+                  </div>
+                  <div id="doc4-state-done" class="hidden items-center gap-2">
+                    <span
+                      class="material-symbols-outlined text-slate-300 group-hover:text-primary cursor-pointer text-xl">visibility</span>
+                    <span
+                      class="material-symbols-outlined text-slate-300 group-hover:text-error cursor-pointer text-xl hover:scale-110 transition-transform"
+                      title="Remove File">delete</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- Right Sidebar (AI & Booking) -->
+        </div>
+
+        <!-- Auto Animation Script -->
+        <script>
+            (function () {
+              // === HELPERS: Timeline Steps ===
+              function setStepInProgress(circleId, iconId, statusId, labelId) {
+                var c = document.getElementById(circleId);
+                if (c) c.className = 'z-10 w-10 h-10 rounded-full bg-white text-on-tertiary-container flex items-center justify-center border-2 border-on-tertiary-container shadow-[0_0_15px_rgba(243,98,99,0.3)] transition-all duration-700';
+                var i = document.getElementById(iconId);
+                if (i) i.classList.add('animate-pulse');
+                var s = document.getElementById(statusId);
+                if (s) { s.className = 'text-[9px] text-on-tertiary-container uppercase font-bold'; s.textContent = 'In Progress'; }
+                var l = document.getElementById(labelId);
+                if (l) l.className = 'font-bold text-[11px] md:text-xs text-primary transition-colors duration-500';
+              }
+
+              function setStepCompleted(circleId, iconId, statusId, labelId) {
+                var c = document.getElementById(circleId);
+                if (c) c.className = 'z-10 w-10 h-10 rounded-full bg-on-tertiary-container text-white flex items-center justify-center shadow-md transition-all duration-700';
+                var i = document.getElementById(iconId);
+                if (i) {
+                  i.classList.remove('animate-pulse');
+                  i.style.fontVariationSettings = "'FILL' 1";
+                  i.textContent = 'check';
+                }
+                var s = document.getElementById(statusId);
+                if (s) { s.className = 'text-[9px] text-green-600 uppercase font-semibold'; s.textContent = 'Completed'; }
+                var l = document.getElementById(labelId);
+                if (l) l.className = 'font-bold text-[11px] md:text-xs text-primary transition-colors duration-500';
+              }
+
+              // === HELPERS: Doc Card States ===
+              function setDocState(n, state) {
+                var pending = document.getElementById('doc' + n + '-state-pending');
+                var uploading = document.getElementById('doc' + n + '-state-uploading');
+                var done = document.getElementById('doc' + n + '-state-done');
+                var locked = document.getElementById('doc' + n + '-state-locked');
+                if (pending) { pending.classList.toggle('hidden', state !== 'pending'); }
+                if (uploading) { uploading.classList.toggle('hidden', state !== 'uploading'); uploading.classList.toggle('flex', state === 'uploading'); }
+                if (done) { done.classList.toggle('hidden', state !== 'done'); done.classList.toggle('flex', state === 'done'); }
+                if (locked) { locked.classList.toggle('hidden', state !== 'locked'); }
+              }
+
+              // Set doc to "uploading file" state
+              function setDocUploading(n, filename) {
+                var card = document.getElementById('doc' + n + '-card');
+                if (card) card.className = 'bg-[#FFF5F5] p-4 rounded-xl flex items-center justify-between group border-2 border-solid border-[#F36263]/30 transition-all duration-500 shadow-sm';
+                var s = document.getElementById('doc' + n + '-status');
+                if (s) { s.className = 'text-xs text-[#F36263] font-semibold'; s.textContent = 'Uploading ' + filename + '...'; }
+                setDocState(n, 'uploading');
+              }
+
+              // Set doc to "AI/OCR scanning" state (amber)
+              function setDocScanning(n) {
+                var icon = document.getElementById('doc' + n + '-icon');
+                if (icon) {
+                  icon.className = 'p-2 bg-amber-50 text-amber-500 rounded-lg transition-all duration-300';
+                  icon.innerHTML = '<span class="material-symbols-outlined text-xl animate-pulse">document_scanner</span>';
+                }
+                var s = document.getElementById('doc' + n + '-status');
+                if (s) { s.className = 'text-xs text-amber-500 font-semibold'; s.textContent = '⏳ AI/OCR Scanning...'; }
+                var card = document.getElementById('doc' + n + '-card');
+                if (card) card.className = 'bg-amber-50/30 p-4 rounded-xl flex items-center justify-between group border-2 border-solid border-amber-400/40 transition-all duration-500 shadow-sm';
+                // show a scanning spinner
+                setDocState(n, 'uploading');
+              }
+
+              // Set doc to "KYC/HR verifying" state (blue)
+              function setDocVerifying(n, method) {
+                var icon = document.getElementById('doc' + n + '-icon');
+                if (icon) {
+                  icon.className = 'p-2 bg-blue-50 text-blue-500 rounded-lg transition-all duration-300';
+                  icon.innerHTML = '<span class="material-symbols-outlined text-xl animate-pulse">verified_user</span>';
+                }
+                var s = document.getElementById('doc' + n + '-status');
+                if (s) { s.className = 'text-xs text-blue-500 font-semibold'; s.textContent = '⏳ ' + method + ' Verifying...'; }
+                var card = document.getElementById('doc' + n + '-card');
+                if (card) card.className = 'bg-blue-50/30 p-4 rounded-xl flex items-center justify-between group border-2 border-solid border-blue-400/40 transition-all duration-500 shadow-sm';
+              }
+
+              // Set doc to "verified ✔" (green)
+              function setDocVerified(n, verifyMethod) {
+                var icon = document.getElementById('doc' + n + '-icon');
+                if (icon) {
+                  icon.className = 'p-2 bg-green-50 text-green-600 rounded-lg transition-all duration-300';
+                  icon.innerHTML = '<span class="material-symbols-outlined text-xl" style="font-variation-settings: \'FILL\' 1;">verified</span>';
+                }
+                var s = document.getElementById('doc' + n + '-status');
+                if (s) { s.className = 'text-xs text-green-600 font-semibold'; s.textContent = '✔ ' + verifyMethod; }
+                var title = document.getElementById('doc' + n + '-title');
+                if (title) title.className = 'text-sm font-bold text-primary';
+                var card = document.getElementById('doc' + n + '-card');
+                if (card) card.className = 'bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group border border-green-200 hover:border-secondary/20 transition-all duration-500 shadow-sm';
+                setDocState(n, 'done');
+              }
+
+              // Set doc to "rejected ❌" (red)
+              function setDocRejected(n, reason) {
+                var icon = document.getElementById('doc' + n + '-icon');
+                if (icon) {
+                  icon.className = 'p-2 bg-red-50 text-red-600 rounded-lg transition-all duration-300';
+                  icon.innerHTML = '<span class="material-symbols-outlined text-xl" style="font-variation-settings: \'FILL\' 1;">cancel</span>';
+                }
+                var s = document.getElementById('doc' + n + '-status');
+                if (s) { s.className = 'text-xs text-red-600 font-semibold'; s.textContent = '❌ ' + reason; }
+                var card = document.getElementById('doc' + n + '-card');
+                if (card) card.className = 'bg-red-50/50 p-4 rounded-xl flex items-center justify-between group border-2 border-red-300/60 transition-all duration-500 shadow-sm';
+                // Show re-upload button
+                setDocState(n, 'pending');
+              }
+
+              // Transform Doc4 locked → active upload
+              function setDoc4Active() {
+                var card = document.getElementById('doc4-card');
+                if (card) card.className = 'bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group border-2 border-dashed border-[#F36263]/50 bg-[#FFF5F5] transition-all duration-500 shadow-sm';
+                var icon = document.getElementById('doc4-icon');
+                if (icon) {
+                  icon.className = 'p-2 bg-[#F36263]/10 text-[#F36263] rounded-lg transition-all duration-300';
+                  icon.innerHTML = '<span class="material-symbols-outlined text-xl">description</span>';
+                }
+                var title = document.getElementById('doc4-title');
+                if (title) title.className = 'text-sm font-bold text-primary';
+                var status = document.getElementById('doc4-status');
+                if (status) { status.className = 'text-xs text-[#F36263] font-semibold'; status.textContent = 'Awaiting Upload'; }
+                var locked = document.getElementById('doc4-state-locked');
+                if (locked) locked.classList.add('hidden');
+                var pendingDiv = document.createElement('div');
+                pendingDiv.id = 'doc4-state-pending';
+                pendingDiv.innerHTML = '<button class="bg-[#F36263] hover:bg-[#e05555] text-white text-[11px] font-bold px-4 py-2 rounded-full transition-all hover:scale-105 flex items-center gap-1.5 shadow-md"><span class="material-symbols-outlined text-[14px]">upload</span> UPLOAD</button>';
+                card.appendChild(pendingDiv);
+              }
+
+              function updateCounter(verified, total) {
+                var el = document.getElementById('doc-counter');
+                if (el) el.textContent = verified + '/' + total + ' REQUIRED';
+              }
+
+              function updateProgress(pct) {
+                // Bar spans left-[10%] to right-[10%] = 80% of container
+                // Scale: 0% → 0%, 25% → 20%, 50% → 40%, 75% → 60%, 100% → 80%
+                var scaledWidth = (pct / 100) * 80;
+                document.getElementById('timeline-bar').style.width = scaledWidth + '%';
+                document.getElementById('timeline-percent').textContent = Math.round(pct) + '% Complete';
+              }
+
+              // ============================
+              // ANIMATION SEQUENCE
+              // Focus: Docs Upload (Step 2)
+              // Doc1 = verified, Doc2/3/4 = pending
+              // ============================
+              var t = 0;  // cumulative time offset
+
+              // T=0: Initial state — only Doc1 verified, Doc2 & Doc3 awaiting upload, Doc4 locked
+              setDocState(2, 'pending');
+              setDocState(3, 'pending');
+              setDocState(4, 'locked');
+              updateCounter(1, 4);
+              updateProgress(15);
+
+              // ============ DOC 2: Proof of Employment ============
+              // T+2s: Upload starts
+              t += 2000;
+              setTimeout(function () {
+                setDocUploading(2, 'employment_letter.pdf');
+              }, t);
+
+              // T+4s: AI/OCR scanning
+              t += 2000;
+              setTimeout(function () {
+                setDocScanning(2);
+              }, t);
+
+              // T+6s: HR verification
+              t += 2000;
+              setTimeout(function () {
+                setDocVerifying(2, 'KYC & HR');
+              }, t);
+
+              // T+8s: ✔ VERIFIED
+              t += 2000;
+              setTimeout(function () {
+                setDocVerified(2, 'Verified by KYC & HR');
+                updateCounter(2, 4);
+                updateProgress(22);
+              }, t);
+
+              // ============ DOC 3: Loan Pre-Approval (REJECTED → RE-UPLOAD) ============
+              // T+10s: Upload starts (first attempt)
+              t += 2000;
+              setTimeout(function () {
+                setDocUploading(3, 'loan_preapproval_v1.pdf');
+              }, t);
+
+              // T+12s: AI/OCR scanning
+              t += 2000;
+              setTimeout(function () {
+                setDocScanning(3);
+              }, t);
+
+              // T+14s: ❌ REJECTED — missing bank signature
+              t += 2000;
+              setTimeout(function () {
+                setDocRejected(3, 'Rejected — Missing bank signature');
+                var pending = document.getElementById('doc3-state-pending');
+                if (pending) {
+                  pending.innerHTML = '<button class="bg-[#F36263] hover:bg-[#e05555] text-white text-[11px] font-bold px-4 py-2 rounded-full transition-all hover:scale-105 flex items-center gap-1.5 shadow-md"><span class="material-symbols-outlined text-[14px]">refresh</span> RE-UPLOAD</button>';
+                }
+              }, t);
+
+              // T+17s: Re-upload starts (second attempt)
+              t += 3000;
+              setTimeout(function () {
+                setDocUploading(3, 'loan_preapproval_v2.pdf');
+              }, t);
+
+              // T+19s: AI/OCR scanning
+              t += 2000;
+              setTimeout(function () {
+                setDocScanning(3);
+              }, t);
+
+              // T+21s: KYC verification
+              t += 2000;
+              setTimeout(function () {
+                setDocVerifying(3, 'KYC');
+              }, t);
+
+              // T+23s: ✔ VERIFIED → Unlock Doc4
+              t += 2000;
+              setTimeout(function () {
+                setDocVerified(3, 'Verified by AI Concierge');
+                updateCounter(3, 4);
+                updateProgress(30);
+                // Unlock Doc4
+                setDoc4Active();
+              }, t);
+
+              // ============ DOC 4: Property Appraisal ============
+              // T+25.5s: Upload starts
+              t += 2500;
+              setTimeout(function () {
+                setDocUploading(4, 'appraisal_report.pdf');
+                var pending4 = document.getElementById('doc4-state-pending');
+                if (pending4) pending4.classList.add('hidden');
+              }, t);
+
+              // T+27.5s: AI/OCR scanning
+              t += 2000;
+              setTimeout(function () {
+                setDocScanning(4);
+              }, t);
+
+              // T+29.5s: HR verification
+              t += 2000;
+              setTimeout(function () {
+                setDocVerifying(4, 'HR');
+              }, t);
+
+              // T+31.5s: ✔ VERIFIED — ALL 4 DOCS COMPLETE!
+              t += 2000;
+              setTimeout(function () {
+                setDocVerified(4, 'Verified by AI Concierge');
+                updateCounter(4, 4);
+
+                // Update header
+                var btn = document.getElementById('upload-missing-btn');
+                btn.textContent = 'All Uploaded ✔';
+                btn.classList.remove('text-secondary');
+                btn.classList.add('text-green-600');
+                btn.onclick = null;
+              }, t);
+
+              // ============ TIMELINE PROGRESSION ============
+              // T+33.5s: Step 2 (Docs Upload) COMPLETES → Step 3 starts
+              t += 2000;
+              setTimeout(function () {
+                setStepCompleted('step2-circle', 'step2-icon', 'step2-status', null);
+                setStepInProgress('step3-circle', 'step3-icon', 'step3-status', 'step3-label');
+                updateProgress(42);
+              }, t);
+
+              // T+37.5s: Step 3 completes → Step 4 starts
+              t += 4000;
+              setTimeout(function () {
+                setStepCompleted('step3-circle', 'step3-icon', 'step3-status', 'step3-label');
+                setStepInProgress('step4-circle', 'step4-icon', 'step4-status', 'step4-label');
+                updateProgress(62);
+              }, t);
+
+              // T+41.5s: Step 4 completes → Step 5 starts
+              t += 4000;
+              setTimeout(function () {
+                setStepCompleted('step4-circle', 'step4-icon', 'step4-status', 'step4-label');
+                setStepInProgress('step5-circle', 'step5-icon', 'step5-status', 'step5-label');
+                updateProgress(82);
+              }, t);
+
+              // T+45.5s: ALL COMPLETE 🎉
+              t += 4000;
+              setTimeout(function () {
+                setStepCompleted('step5-circle', 'step5-icon', 'step5-status', 'step5-label');
+                updateProgress(100);
+                var pct = document.getElementById('timeline-percent');
+                pct.classList.remove('text-secondary', 'bg-secondary-fixed');
+                pct.classList.add('text-green-700', 'bg-green-100');
+              }, t);
+            })();
+        </script>
+        <!-- Visual Separator (Background Shift) -->
+        <div class="h-20"></div>
+      </div>
+    </main>
+  </div>
+  <!-- BottomNavBar (Visible on Mobile) -->
+  <nav
+    class="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex justify-around items-center px-4 py-3 bg-[#031632]/90 backdrop-blur-xl w-[90%] max-w-2xl rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/10">
+    <a class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200"
+      href="#" style="">
+      <span class="material-symbols-outlined" data-icon="trending_up" style="">trending_up</span>
+      <span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">Increase Down Payment</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200"
+      href="#" style="">
+      <span class="material-symbols-outlined" data-icon="calendar_today" style="">calendar_today</span>
+      <span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">Book a Tour</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200"
+      href="#" style="">
+      <span class="material-symbols-outlined" data-icon="tune" style="">tune</span>
+      <span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">Refine Search</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-[#F36263] p-2 hover:scale-105 transition-transform active:scale-95 duration-200"
+      href="#" style="">
+      <span class="material-symbols-outlined" data-icon="auto_awesome"
+        style='font-variation-settings: "FILL" 1;'>auto_awesome</span>
+      <span class="font-body font-bold text-[10px] uppercase tracking-widest mt-1" style="">View Matches</span>
+    </a>
+  </nav>
 </body>
+
 </html>
