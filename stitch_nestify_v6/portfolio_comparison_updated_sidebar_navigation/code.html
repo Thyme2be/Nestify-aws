@@ -1,266 +1,321 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Home Comparison Dashboard | Nestify</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "on-error": "#ffffff",
-              "surface-container-high": "#dfe8ff",
-              "on-surface": "#081b38",
-              "error-container": "#ffdad6",
-              "on-tertiary": "#ffffff",
-              "on-error-container": "#93000a",
-              "on-tertiary-fixed-variant": "#8c1520",
-              "secondary-container": "#00ccf9",
-              "inverse-primary": "#b6c7eb",
-              "surface": "#f9f9ff",
-              "on-secondary": "#ffffff",
-              "outline-variant": "#c5c6ce",
-              "tertiary-container": "#5e000d",
-              "surface-container-highest": "#d7e2ff",
-              "background": "#f9f9ff",
-              "on-primary": "#ffffff",
-              "secondary": "#00677f",
-              "on-primary-fixed": "#081b38",
-              "primary-fixed": "#d7e2ff",
-              "primary-container": "#1a2b48",
-              "surface-variant": "#d7e2ff",
-              "error": "#ba1a1a",
-              "surface-container-lowest": "#ffffff",
-              "on-secondary-fixed-variant": "#004e60",
-              "surface-container-low": "#f1f3ff",
-              "tertiary": "#370004",
-              "on-secondary-container": "#005266",
-              "on-tertiary-fixed": "#410006",
-              "surface-dim": "#cadaff",
-              "inverse-surface": "#20304e",
-              "on-primary-fixed-variant": "#374765",
-              "surface-tint": "#4e5f7e",
-              "on-surface-variant": "#44474d",
-              "surface-container": "#e8eeff",
-              "primary": "#031632",
-              "tertiary-fixed-dim": "#ffb3b0",
-              "outline": "#75777e",
-              "primary-fixed-dim": "#b6c7eb",
-              "surface-bright": "#f9f9ff",
-              "on-secondary-fixed": "#001f28",
-              "on-tertiary-container": "#f36263",
-              "secondary-fixed-dim": "#4cd6ff",
-              "on-primary-container": "#8293b5",
-              "tertiary-fixed": "#ffdad8",
-              "inverse-on-surface": "#ecf0ff",
-              "secondary-fixed": "#b7eaff",
-              "on-background": "#081b38"
-            },
-            fontFamily: {
-              "headline": ["Manrope"],
-              "body": ["Inter"],
-              "label": ["Inter"]
-            },
-            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Home Comparison Dashboard | Nestify</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-error": "#ffffff",
+            "surface-container-high": "#dfe8ff",
+            "on-surface": "#081b38",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#8c1520",
+            "secondary-container": "#00ccf9",
+            "inverse-primary": "#b6c7eb",
+            "surface": "#f9f9ff",
+            "on-secondary": "#ffffff",
+            "outline-variant": "#c5c6ce",
+            "tertiary-container": "#5e000d",
+            "surface-container-highest": "#d7e2ff",
+            "background": "#f9f9ff",
+            "on-primary": "#ffffff",
+            "secondary": "#00677f",
+            "on-primary-fixed": "#081b38",
+            "primary-fixed": "#d7e2ff",
+            "primary-container": "#1a2b48",
+            "surface-variant": "#d7e2ff",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed-variant": "#004e60",
+            "surface-container-low": "#f1f3ff",
+            "tertiary": "#370004",
+            "on-secondary-container": "#005266",
+            "on-tertiary-fixed": "#410006",
+            "surface-dim": "#cadaff",
+            "inverse-surface": "#20304e",
+            "on-primary-fixed-variant": "#374765",
+            "surface-tint": "#4e5f7e",
+            "on-surface-variant": "#44474d",
+            "surface-container": "#e8eeff",
+            "primary": "#031632",
+            "tertiary-fixed-dim": "#ffb3b0",
+            "outline": "#75777e",
+            "primary-fixed-dim": "#b6c7eb",
+            "surface-bright": "#f9f9ff",
+            "on-secondary-fixed": "#001f28",
+            "on-tertiary-container": "#f36263",
+            "secondary-fixed-dim": "#4cd6ff",
+            "on-primary-container": "#8293b5",
+            "tertiary-fixed": "#ffdad8",
+            "inverse-on-surface": "#ecf0ff",
+            "secondary-fixed": "#b7eaff",
+            "on-background": "#081b38"
           },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
         },
-      }
-    </script>
-<style>
-      .material-symbols-outlined {
-        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      }
-      body { font-family: 'Inter', sans-serif; }
-      h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
-    </style>
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    .font-headline {
+      font-family: 'Manrope', sans-serif;
+    }
+  </style>
 </head>
+
 <body class="bg-surface text-on-surface min-h-screen">
-<!-- TopNavBar -->
-    <!-- Top Navigation System (Injected via components.js) -->
-    <div id="topbar-placeholder"></div>
-    <div class="flex min-h-screen pt-[112px]">
-        <!-- Sidebar Navigation System -->
-        <div id="sidebar-placeholder"></div>
-        <main class="flex-1 md:ml-64 px-6 md:px-12 py-12 max-w-7xl mx-auto overflow-hidden">
-<!-- Header Section -->
-<header class="mb-12">
-<span class="text-secondary font-label text-sm font-bold uppercase tracking-widest mb-2 block" style="">Decision Engine</span>
-<h1 class="text-primary text-6xl font-extrabold tracking-tight mb-4" style="">Portfolio Comparison</h1>
-<p class="text-on-surface-variant max-w-2xl text-xl leading-relaxed opacity-70" style="">Evaluating your shortlisted assets through the lens of long-term appreciation and lifestyle alignment. Exactly two-property optimized view.</p>
-</header>
-<!-- Comparison Table -->
-<!-- Comparison Table Container with Horizontal Scroll -->
-<section class="bg-surface-container-low rounded-xl shadow-sm pt-6 overflow-x-auto border border-outline-variant/5">
-<div class="min-w-[900px]"> <!-- Force minimum width for comparison -->
-<div class="grid grid-cols-[240px_1fr_1fr] border-b border-outline-variant/10">
-<div class="p-8 flex items-end sticky left-0 bg-surface-container-low z-20">
-<h4 class="text-primary font-bold text-xs uppercase tracking-widest opacity-50" style="">Metric Details</h4>
-</div>
-<!-- Property A Header -->
-<div class="p-6 bg-surface-container-lowest border-r border-outline-variant/10 relative flex flex-col justify-between">
-<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00CCF9] text-primary px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg z-10" style="">AI Choice</div>
-<div class="h-56 rounded-xl mb-4 overflow-hidden border-2 border-secondary-container shadow-lg shadow-secondary-container/10">
-<img alt="Anasiri Krungthep - Pathumthani 2" class="w-full h-full object-cover" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-krungthep-pathumthani-2/img/housetype/anasiri-krungthep-pathumthani2-housetype-fuyu.webp" style=""/>
-</div>
-<h3 class="text-primary text-2xl font-extrabold" style="">Anasiri KTP 2</h3>
-<p class="text-on-surface-variant text-base" style="">Bangkhuwat, Pathum Thani</p>
-</div>
-<!-- Property B Header -->
-<div class="p-6 bg-surface-container-lowest">
-<div class="h-56 rounded-xl mb-4 overflow-hidden">
-<img alt="Setthasiri Krungthep - Pathumthani 2" class="w-full h-full object-cover" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/setthasiri-krungthep-pathumthani-2/img/plan/setthasiri-krungthep-pathumthani2-singlehouse-housetype-glory-200.webp" style=""/>
-</div>
-<h3 class="text-primary text-2xl font-extrabold" style="">Setthasiri KTP 2</h3>
-<p class="text-on-surface-variant text-base" style="">Krungthep - Pathumthani</p>
-</div>
-</div>
-<!-- Comparison Rows -->
-<!-- 1. ราคา (Price) -->
-<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
-<span class="flex items-center gap-2 text-primary font-bold" style="">
-<span class="material-symbols-outlined text-xl" style="">payments</span>Price</span>
-</div>
-<div class="p-8 border-r border-outline-variant/10 text-xl font-bold text-primary" style="">฿4.19M</div>
-<div class="p-8 text-xl font-bold text-primary" style="">฿8.99M</div>
-</div>
-<!-- 2. เวลาเดินทาง (Commute Time) -->
-<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
-<span class="flex items-center gap-2 text-primary font-bold" style="">
-<span class="material-symbols-outlined text-xl" style="">schedule</span>Commute</span>
-</div>
-<div class="p-8 border-r border-outline-variant/10">
-<div class="text-xl font-bold text-primary" style="">15 mins</div>
-<div class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-container text-[10px] font-bold uppercase mt-1" style="">Near Don Mueang</div>
-</div>
-<div class="p-8">
-<div class="text-xl font-bold text-primary" style="">9.5 km</div>
-<div class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-container text-[10px] font-bold uppercase mt-1" style="">Near Expressway</div>
-</div>
-</div>
-<!-- 3. ค่าใช้จ่ายรวมต่อเดือน (Total Monthly Cost) -->
-<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
-<span class="flex items-center gap-2 text-primary font-bold" style="">
-<span class="material-symbols-outlined text-xl" style="">calculate</span>Est. Monthly</span>
-</div>
-<div class="p-8 border-r border-outline-variant/10">
-<div class="text-xl font-bold text-primary" style="">฿17,106/mo</div>
-<div class="text-xs text-on-surface-variant" style="">Est. mortgage 30yr</div>
-</div>
-<div class="p-8">
-<div class="text-xl font-bold text-primary" style="">฿36,700/mo</div>
-<div class="text-xs text-on-surface-variant" style="">Est. mortgage 30yr</div>
-</div>
-</div>
-<!-- 4. Affordable Score -->
-<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
-<span class="flex items-center gap-2 text-primary font-bold" style="">
-<span class="material-symbols-outlined text-xl" style="">shield</span>
-                            Affordable Score
-                        </span>
-</div>
-<div class="p-8 border-r border-outline-variant/10">
-<div class="flex items-center gap-3">
-<div class="text-2xl font-black text-secondary" style="">8.5<span class="text-xs font-normal opacity-40" style="">/10</span></div>
-<div class="flex-1 h-2 bg-outline-variant/20 rounded-full overflow-hidden">
-<div class="bg-secondary-container h-full w-[85%]"></div>
-</div>
-</div>
-</div>
-<div class="p-8">
-<div class="flex items-center gap-3">
-<div class="text-2xl font-black text-primary" style="">7.8<span class="text-xs font-normal opacity-40" style="">/10</span></div>
-<div class="flex-1 h-2 bg-outline-variant/20 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[78%]"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- 5. Lifestyle Match -->
-<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
-<span class="flex items-center gap-2 text-primary font-bold" style="">
-<span class="material-symbols-outlined text-xl" style="">favorite</span>
-                            Lifestyle Match
-                        </span>
-</div>
-<div class="p-8 border-r border-outline-variant/10">
-<div class="flex gap-1 mb-2">
-<div class="w-full h-1 bg-secondary-container rounded"></div>
-<div class="w-full h-1 bg-secondary-container rounded"></div>
-<div class="w-full h-1 bg-secondary-container rounded"></div>
-<div class="w-full h-1 bg-secondary-container/20 rounded"></div>
-</div>
-<span class="text-sm font-medium text-on-surface-variant" style="">"Modern Japanese Family"</span>
-</div>
-<div class="p-8">
-<div class="flex gap-1 mb-2">
-<div class="w-full h-1 bg-primary rounded"></div>
-<div class="w-full h-1 bg-primary rounded"></div>
-<div class="w-full h-1 bg-primary rounded"></div>
-<div class="w-full h-1 bg-primary rounded"></div>
-</div>
-<span class="text-sm font-medium text-on-surface-variant" style="">"Luxury Golf Living"</span>
-</div>
-</div>
-<!-- 6. AI Recommendation -->
-<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors border-t border-outline-variant/10">
-<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
-<span class="flex items-center gap-2 text-primary font-bold" style="">
-<span class="material-symbols-outlined text-xl" style="">auto_awesome</span>
-                            AI Recommendation
-                        </span>
-</div>
-<!-- Recommendation A -->
-<div class="p-8 border-r border-outline-variant/10">
-<div class="bg-secondary-container/20 p-4 rounded-lg border border-secondary-container/30 backdrop-blur-sm">
-<div class="text-[10px] text-secondary font-black uppercase tracking-widest mb-1" style="">Top Match</div>
-<div class="text-primary text-sm font-medium" style="">Best price-to-space ratio with Modern Japanese design, full amenities, and easy city access.</div>
-</div>
-</div>
-<!-- Recommendation B -->
-<div class="p-8">
-<div class="bg-primary-container p-4 rounded-lg">
-<div class="text-[10px] text-on-primary-container uppercase font-bold tracking-widest mb-1" style="">High Potential</div>
-<div class="text-white text-sm font-medium" style="">Premium Modern Classic with golf course views, ideal for long-term appreciation and luxury lifestyle.</div>
-</div>
-</div>
-</div>
-</div>
-</div> <!-- End min-w container -->
-</section>
-<!-- Spacing to avoid bottom nav overlap on mobile -->
-<div class="h-32"></div>
-</main>
-</div>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex justify-around items-center px-4 py-3 bg-[#031632]/90 backdrop-blur-xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] w-[90%] max-w-2xl rounded-2xl">
-<button class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200" style="">
-<span class="material-symbols-outlined" style="">trending_up</span>
-<span class="Inter font-bold text-[10px] uppercase tracking-widest mt-1" style="">Increase Down Payment</span>
-</button>
-<button class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200" style="">
-<span class="material-symbols-outlined" style="">calendar_today</span>
-<span class="Inter font-bold text-[10px] uppercase tracking-widest mt-1" style="">Book a Tour</span>
-</button>
-<button class="flex flex-col items-center justify-center text-[#F36263] p-2 hover:scale-105 transition-transform active:scale-95 duration-200 bg-white/10 rounded-xl px-4" style="">
-<span class="material-symbols-outlined" style="">auto_awesome</span>
-<span class="Inter font-bold text-[10px] uppercase tracking-widest mt-1" style="">View Matches</span>
-</button>
-</nav>
-    <!-- Injection Script -->
-    <script src="../components.js"></script>
-    <script>
-        document.getElementById('topbar-placeholder').innerHTML = renderTopbar();
-        document.getElementById('sidebar-placeholder').innerHTML = renderSidebar('compare');
-    </script>
+  <!-- TopNavBar -->
+  <!-- Top Navigation System (Injected via components.js) -->
+  <div id="topbar-placeholder"></div>
+  <div class="flex min-h-screen pt-16">
+    <!-- Sidebar Navigation System -->
+    <div id="sidebar-placeholder"></div>
+    <main class="flex-1 md:ml-64 px-6 md:px-12 py-12 max-w-7xl mx-auto overflow-hidden">
+      <!-- Header Section -->
+      <header class="mb-12">
+        <span class="text-secondary font-label text-sm font-bold uppercase tracking-widest mb-2 block" style="">Decision
+          Engine</span>
+        <h1 class="text-primary text-6xl font-extrabold tracking-tight mb-4" style="">The Perfect Compare
+        </h1>
+        <p class="text-on-surface-variant max-w-2xl text-xl leading-relaxed opacity-70" style="">Every detail matters
+          when it’s Made for Life. Compare your selected residences side-by-side to discover the perfect synergy between
+          timeless aesthetics and your unique lifestyle.</p>
+      </header>
+      <!-- Comparison Table -->
+      <!-- Comparison Table Container with Horizontal Scroll -->
+      <section
+        class="bg-surface-container-low rounded-xl shadow-sm pt-6 overflow-x-auto border border-outline-variant/5">
+        <div class="min-w-[900px]"> <!-- Force minimum width for comparison -->
+          <div class="grid grid-cols-[240px_1fr_1fr] border-b border-outline-variant/10">
+            <div class="p-8 flex items-end sticky left-0 bg-surface-container-low z-20">
+              <h4 class="text-primary font-bold text-xs uppercase tracking-widest opacity-50" style="">Metric Details
+              </h4>
+            </div>
+            <!-- Property A Header -->
+            <div
+              class="p-6 bg-surface-container-lowest border-r border-outline-variant/10 relative flex flex-col justify-between">
+              <div
+                class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00CCF9] text-primary px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg z-10"
+                style="">AI Choice</div>
+              <div
+                class="h-56 rounded-xl mb-4 overflow-hidden border-2 border-secondary-container shadow-lg shadow-secondary-container/10">
+                <img alt="Anasiri Krungthep - Pathumthani 2" class="w-full h-full object-cover"
+                  src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-krungthep-pathumthani-2/img/housetype/anasiri-krungthep-pathumthani2-housetype-fuyu.webp"
+                  style="" />
+              </div>
+              <h3 class="text-primary text-2xl font-extrabold" style="">Anasiri KTP 2</h3>
+              <p class="text-on-surface-variant text-base" style="">Bangkhuwat, Pathum Thani</p>
+            </div>
+            <!-- Property B Header -->
+            <div class="p-6 bg-surface-container-lowest">
+              <div class="h-56 rounded-xl mb-4 overflow-hidden">
+                <img alt="Setthasiri Krungthep - Pathumthani 2" class="w-full h-full object-cover"
+                  src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/setthasiri-krungthep-pathumthani-2/img/plan/setthasiri-krungthep-pathumthani2-singlehouse-housetype-glory-200.webp"
+                  style="" />
+              </div>
+              <h3 class="text-primary text-2xl font-extrabold" style="">Setthasiri KTP 2</h3>
+              <p class="text-on-surface-variant text-base" style="">Krungthep - Pathumthani</p>
+            </div>
+          </div>
+          <!-- Comparison Rows -->
+          <!-- 1. ราคา (Price) -->
+          <div
+            class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
+            <div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
+              <span class="flex items-center gap-2 text-primary font-bold" style="">
+                <span class="material-symbols-outlined text-xl" style="">payments</span>Price</span>
+            </div>
+            <div class="p-8 border-r border-outline-variant/10 text-xl font-bold text-primary" style="">฿4.19M</div>
+            <div class="p-8 text-xl font-bold text-primary" style="">฿8.99M</div>
+          </div>
+          <!-- 2. เวลาเดินทาง (Commute Time) -->
+          <div
+            class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors">
+            <div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
+              <span class="flex items-center gap-2 text-primary font-bold" style="">
+                <span class="material-symbols-outlined text-xl" style="">schedule</span>Commute</span>
+            </div>
+            <div class="p-8 border-r border-outline-variant/10">
+              <div class="text-xl font-bold text-primary" style="">15 mins</div>
+              <div
+                class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-container text-[10px] font-bold uppercase mt-1"
+                style="">Near Don Mueang</div>
+            </div>
+            <div class="p-8">
+              <div class="text-xl font-bold text-primary" style="">9.5 km</div>
+              <div
+                class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-container text-[10px] font-bold uppercase mt-1"
+                style="">Near Expressway</div>
+            </div>
+          </div>
+          <!-- 3. ค่าใช้จ่ายรวมต่อเดือน (Total Monthly Cost) -->
+          <div
+            class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
+            <div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
+              <span class="flex items-center gap-2 text-primary font-bold" style="">
+                <span class="material-symbols-outlined text-xl" style="">calculate</span>Est. Monthly</span>
+            </div>
+            <div class="p-8 border-r border-outline-variant/10">
+              <div class="text-xl font-bold text-primary" style="">฿17,106/mo</div>
+              <div class="text-xs text-on-surface-variant" style="">Est. mortgage 30yr</div>
+            </div>
+            <div class="p-8">
+              <div class="text-xl font-bold text-primary" style="">฿36,700/mo</div>
+              <div class="text-xs text-on-surface-variant" style="">Est. mortgage 30yr</div>
+            </div>
+          </div>
+          <!-- 4. Affordable Score -->
+          <div
+            class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors">
+            <div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
+              <span class="flex items-center gap-2 text-primary font-bold" style="">
+                <span class="material-symbols-outlined text-xl" style="">shield</span>
+                Affordable Score
+              </span>
+            </div>
+            <div class="p-8 border-r border-outline-variant/10">
+              <div class="flex items-center gap-3">
+                <div class="text-2xl font-black text-secondary" style="">8.5<span class="text-xs font-normal opacity-40"
+                    style="">/10</span></div>
+                <div class="flex-1 h-2 bg-outline-variant/20 rounded-full overflow-hidden">
+                  <div class="bg-secondary-container h-full w-[85%]"></div>
+                </div>
+              </div>
+            </div>
+            <div class="p-8">
+              <div class="flex items-center gap-3">
+                <div class="text-2xl font-black text-primary" style="">7.8<span class="text-xs font-normal opacity-40"
+                    style="">/10</span></div>
+                <div class="flex-1 h-2 bg-outline-variant/20 rounded-full overflow-hidden">
+                  <div class="bg-primary h-full w-[78%]"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 5. Lifestyle Match -->
+          <div
+            class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
+            <div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
+              <span class="flex items-center gap-2 text-primary font-bold" style="">
+                <span class="material-symbols-outlined text-xl" style="">favorite</span>
+                Lifestyle Match
+              </span>
+            </div>
+            <div class="p-8 border-r border-outline-variant/10">
+              <div class="flex gap-1 mb-2">
+                <div class="w-full h-1 bg-secondary-container rounded"></div>
+                <div class="w-full h-1 bg-secondary-container rounded"></div>
+                <div class="w-full h-1 bg-secondary-container rounded"></div>
+                <div class="w-full h-1 bg-secondary-container/20 rounded"></div>
+              </div>
+              <span class="text-sm font-medium text-on-surface-variant" style="">"Modern Japanese Family"</span>
+            </div>
+            <div class="p-8">
+              <div class="flex gap-1 mb-2">
+                <div class="w-full h-1 bg-primary rounded"></div>
+                <div class="w-full h-1 bg-primary rounded"></div>
+                <div class="w-full h-1 bg-primary rounded"></div>
+                <div class="w-full h-1 bg-primary rounded"></div>
+              </div>
+              <span class="text-sm font-medium text-on-surface-variant" style="">"Luxury Golf Living"</span>
+            </div>
+          </div>
+          <!-- 6. AI Recommendation -->
+          <div
+            class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors border-t border-outline-variant/10">
+            <div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
+              <span class="flex items-center gap-2 text-primary font-bold" style="">
+                <span class="material-symbols-outlined text-xl" style="">auto_awesome</span>
+                AI Recommendation
+              </span>
+            </div>
+            <!-- Recommendation A -->
+            <div class="p-8 border-r border-outline-variant/10">
+              <div
+                class="bg-secondary-container/20 p-4 rounded-lg border border-secondary-container/30 backdrop-blur-sm">
+                <div class="text-[10px] text-secondary font-black uppercase tracking-widest mb-1" style="">Top Match
+                </div>
+                <div class="text-primary text-sm font-medium" style="">Best price-to-space ratio with Modern Japanese
+                  design, full amenities, and easy city access.</div>
+              </div>
+            </div>
+            <!-- Recommendation B -->
+            <div class="p-8">
+              <div class="bg-primary-container p-4 rounded-lg">
+                <div class="text-[10px] text-on-primary-container uppercase font-bold tracking-widest mb-1" style="">
+                  High Potential</div>
+                <div class="text-white text-sm font-medium" style="">Premium Modern Classic with golf course views,
+                  ideal for long-term appreciation and luxury lifestyle.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div> <!-- End min-w container -->
+  </section>
+  <!-- Spacing to avoid bottom nav overlap on mobile -->
+  <div class="h-32"></div>
+  </main>
+  </div>
+  <!-- BottomNavBar (Mobile Only) -->
+  <nav
+    class="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex justify-around items-center px-4 py-3 bg-[#031632]/90 backdrop-blur-xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] w-[90%] max-w-2xl rounded-2xl">
+    <button
+      class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200"
+      style="">
+      <span class="material-symbols-outlined" style="">trending_up</span>
+      <span class="Inter font-bold text-[10px] uppercase tracking-widest mt-1" style="">Increase Down Payment</span>
+    </button>
+    <button
+      class="flex flex-col items-center justify-center text-white p-2 hover:scale-105 transition-transform active:scale-95 duration-200"
+      style="">
+      <span class="material-symbols-outlined" style="">calendar_today</span>
+      <span class="Inter font-bold text-[10px] uppercase tracking-widest mt-1" style="">Book a Tour</span>
+    </button>
+    <button
+      class="flex flex-col items-center justify-center text-[#F36263] p-2 hover:scale-105 transition-transform active:scale-95 duration-200 bg-white/10 rounded-xl px-4"
+      style="">
+      <span class="material-symbols-outlined" style="">auto_awesome</span>
+      <span class="Inter font-bold text-[10px] uppercase tracking-widest mt-1" style="">View Matches</span>
+    </button>
+  </nav>
+  <!-- Injection Script -->
+  <script src="../components.js"></script>
+  <script>
+    document.getElementById('topbar-placeholder').innerHTML = renderTopbar();
+    document.getElementById('sidebar-placeholder').innerHTML = renderSidebar('compare');
+  </script>
 </body>
+
 </html>
