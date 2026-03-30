@@ -94,49 +94,12 @@
     </style>
 </head>
 <body class="bg-surface text-on-surface pb-32 md:pb-0">
-<!-- Top Navigation Bar -->
-<header class="bg-slate-50 dark:bg-[#031632] shadow-sm dark:shadow-none docked full-width top-0 z-50 flex justify-between items-center w-full px-6 py-4 max-w-full">
-<div class="flex items-center gap-8">
-<span class="text-2xl font-black tracking-tighter text-[#031632] dark:text-white" style=""><a href="../ai_matcher_updated_sidebar_icons/code.html" class="no-underline text-inherit">Nestify</a></span>
-<nav class="hidden md:flex gap-6">
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-full" style="">
-<span class="material-symbols-outlined text-[#031632] dark:text-white" data-icon="notifications" style="">notifications</span>
-</button>
-<div class="h-10 w-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/20">
-<img alt="User Profile Avatar" class="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWcwmzMMNFLaC0Mb5nMmOVzvXTpZ4LPPK15rwAeDbu4KxFf-NFmBdLjwumhsl08kkyfdHP_bWkKQddAE1qXzeZVIhTRQ6J_-osqJo2UDavqEmHN2vMKexLt2kMoqJ2CR77Myl29tbUN2KCVz2A5URNKGH3gij-tcTfHFm3p4DHMv5Hoi4KctQt7JwvJRNUfFpHaz9gJA6_LRU7wQttvsmJOXTzXi1IuqKfZVU3QcaC5LyEGNVstDxxgR2DrHgG9A0JDyvsu-pb" style=""/>
-</div>
-</div>
-</header>
-<div class="flex min-h-screen">
-<!-- Side Navigation -->
-<aside class="hidden md:flex flex-col h-screen w-64 bg-[#031632] dark:bg-[#020d1d] border-r border-white/10 py-6 gap-2 sticky top-0">
-<div class="px-6 mb-8">
-<h2 class="text-white text-xl font-bold font-headline" style="">Editorial Intel</h2>
-<p class="text-[#00CCF9] text-xs font-label uppercase tracking-widest" style="">AI-Driven Insights</p>
-</div>
-<nav class="flex-1">
-<a class="flex items-center gap-3 bg-[#1A2B48] text-[#00CCF9] rounded-lg px-4 py-3 mx-2 Active: translate-x-1 transition-transform" href="#" style="">
-<span class="material-symbols-outlined" data-icon="home" style="">home</span>
-<span class="font-label text-sm" style="">
-<p class="p1"><span class="s1"></span></p><ol start="2"><li>
-<p class="p1"><b>Matched Homes</b></p>
-</li></ol><p></p></span>
-</a>
-<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all" href="../portfolio_comparison_updated_sidebar_navigation/code.html" style="">
-<span class="material-symbols-outlined" data-icon="favorite" style="">compare_arrows</span>
-<span class="font-label text-sm" style="">Compare Homes</span>
-</a>
-<a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all" href="../acquisition_portal_focused_journey_view/code.html" style="">
-<span class="material-symbols-outlined" data-icon="account_balance_wallet" style="">donut_large</span>
-<span class="font-label text-sm" style="">Status</span>
-</a>
-</nav>
-</aside>
-<!-- Main Content Canvas -->
-<main class="flex-1 p-6 md:p-12 bg-surface">
+    <!-- Top Navigation System (Injected via components.js) -->
+    <div id="topbar-placeholder"></div>
+    <div class="flex min-h-screen pt-[112px]">
+        <!-- Sidebar Navigation System -->
+        <div id="sidebar-placeholder"></div>
+        <main class="flex-1 md:ml-64 overflow-x-hidden p-6 md:p-12">
 <!-- Header Section -->
 <div class="mb-12">
 <span class="text-secondary font-label text-xs font-medium uppercase tracking-wider mb-2 block" style="">Curation Engine</span>
@@ -407,4 +370,11 @@ document.querySelectorAll('[title="Add to Compare"], [title="Compare"]').forEach
     });
 });
 </script>
-</body></html>
+    <!-- Injection Script -->
+    <script src="../components.js"></script>
+    <script>
+        document.getElementById('topbar-placeholder').innerHTML = renderTopbar();
+        document.getElementById('sidebar-placeholder').innerHTML = renderSidebar('homes');
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Home Comparison Dashboard | The Curated Architect</title>
+<title>Home Comparison Dashboard | Nestify</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -81,43 +81,29 @@
 </head>
 <body class="bg-surface text-on-surface min-h-screen">
 <!-- TopNavBar -->
-<nav class="bg-slate-50 dark:bg-[#031632] shadow-sm dark:shadow-none docked full-width top-0 z-50 flex justify-between items-center w-full px-6 py-4 max-w-full">
-<div class="text-2xl font-black tracking-tighter text-[#031632] dark:text-white" style=""><a href="../ai_matcher_updated_sidebar_icons/code.html" class="no-underline text-inherit">Nestify</a></div>
-<div class="flex items-center gap-4">
-<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 rounded-full scale-95 duration-150 active:opacity-80" style="">
-<span class="material-symbols-outlined text-[#031632] dark:text-white" style="">notifications</span>
-</button>
-<div class="h-10 w-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/20">
-<img alt="User Profile Avatar" class="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWcwmzMMNFLaC0Mb5nMmOVzvXTpZ4LPPK15rwAeDbu4KxFf-NFmBdLjwumhsl08kkyfdHP_bWkKQddAE1qXzeZVIhTRQ6J_-osqJo2UDavqEmHN2vMKexLt2kMoqJ2CR77Myl29tbUN2KCVz2A5URNKGH3gij-tcTfHFm3p4DHMv5Hoi4KctQt7JwvJRNUfFpHaz9gJA6_LRU7wQttvsmJOXTzXi1IuqKfZVU3QcaC5LyEGNVstDxxgR2DrHgG9A0JDyvsu-pb" style=""/>
-</div>
-</div>
-</nav>
-<div class="flex">
-<!-- SideNavBar -->
-<aside class="bg-[#031632] dark:bg-[#020d1d] border-r border-white/10 shadow-2xl docked left-0 h-[calc(100vh-72px)] w-64 hidden md:flex flex-col py-6 gap-2 sticky top-[72px]">
-<div class="px-6 mb-8">
-<div class="text-xl font-bold text-white" style="">Editorial Intel</div>
-<div class="text-[#00CCF9] text-xs font-medium uppercase tracking-widest mt-1" style="">AI-Driven Insights</div>
-</div>
-<nav class="flex-1 space-y-1"><a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all" href="../ai_matcher_updated_sidebar_icons/code.html"><span class="material-symbols-outlined" style="">home</span><span class="font-body text-sm" style="">Matched Homes</span></a><a class="flex items-center gap-3 bg-[#1A2B48] text-[#00CCF9] rounded-lg px-4 py-3 mx-2 translate-x-1 transition-transform" href="#"><span class="material-symbols-outlined" style="">compare_arrows</span><span class="font-body text-sm" style="">Compare Homes</span></a><a class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 hover:bg-white/5 transition-all" href="../acquisition_portal_focused_journey_view/code.html"><span class="material-symbols-outlined" style="">donut_large</span><span class="font-body text-sm" style="">Status</span></a></nav>
-</aside>
-<!-- Main Content -->
-<main class="flex-1 px-6 md:px-12 py-12 max-w-7xl mx-auto overflow-hidden">
+    <!-- Top Navigation System (Injected via components.js) -->
+    <div id="topbar-placeholder"></div>
+    <div class="flex min-h-screen pt-[112px]">
+        <!-- Sidebar Navigation System -->
+        <div id="sidebar-placeholder"></div>
+        <main class="flex-1 md:ml-64 px-6 md:px-12 py-12 max-w-7xl mx-auto overflow-hidden">
 <!-- Header Section -->
 <header class="mb-12">
 <span class="text-secondary font-label text-sm font-bold uppercase tracking-widest mb-2 block" style="">Decision Engine</span>
-<h1 class="text-primary text-5xl font-extrabold tracking-tight mb-4" style="">Portfolio Comparison</h1>
-<p class="text-on-surface-variant max-w-2xl text-lg leading-relaxed" style="">Evaluating your shortlisted assets through the lens of long-term appreciation and lifestyle alignment.</p>
+<h1 class="text-primary text-6xl font-extrabold tracking-tight mb-4" style="">Portfolio Comparison</h1>
+<p class="text-on-surface-variant max-w-2xl text-xl leading-relaxed opacity-70" style="">Evaluating your shortlisted assets through the lens of long-term appreciation and lifestyle alignment. Exactly two-property optimized view.</p>
 </header>
 <!-- Comparison Table -->
-<section class="bg-surface-container-low rounded-xl overflow-hidden shadow-sm pt-6">
-<div class="grid grid-cols-3 border-b border-outline-variant/10">
-<div class="p-8 flex items-end">
+<!-- Comparison Table Container with Horizontal Scroll -->
+<section class="bg-surface-container-low rounded-xl shadow-sm pt-6 overflow-x-auto border border-outline-variant/5">
+<div class="min-w-[900px]"> <!-- Force minimum width for comparison -->
+<div class="grid grid-cols-[240px_1fr_1fr] border-b border-outline-variant/10">
+<div class="p-8 flex items-end sticky left-0 bg-surface-container-low z-20">
 <h4 class="text-primary font-bold text-xs uppercase tracking-widest opacity-50" style="">Metric Details</h4>
 </div>
 <!-- Property A Header -->
-<div class="p-6 bg-surface-container-lowest border-r border-outline-variant/10 relative">
-<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-on-tertiary-container text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg z-10" style="">AI Choice</div>
+<div class="p-6 bg-surface-container-lowest border-r border-outline-variant/10 relative flex flex-col justify-between">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00CCF9] text-primary px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg z-10" style="">AI Choice</div>
 <div class="h-56 rounded-xl mb-4 overflow-hidden border-2 border-secondary-container shadow-lg shadow-secondary-container/10">
 <img alt="Anasiri Krungthep - Pathumthani 2" class="w-full h-full object-cover" src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-krungthep-pathumthani-2/img/housetype/anasiri-krungthep-pathumthani2-housetype-fuyu.webp" style=""/>
 </div>
@@ -135,8 +121,8 @@
 </div>
 <!-- Comparison Rows -->
 <!-- 1. ราคา (Price) -->
-<div class="grid grid-cols-3 items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8">
+<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
+<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
 <span class="flex items-center gap-2 text-primary font-bold" style="">
 <span class="material-symbols-outlined text-xl" style="">payments</span>Price</span>
 </div>
@@ -144,8 +130,8 @@
 <div class="p-8 text-xl font-bold text-primary" style="">฿8.99M</div>
 </div>
 <!-- 2. เวลาเดินทาง (Commute Time) -->
-<div class="grid grid-cols-3 items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8">
+<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors">
+<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
 <span class="flex items-center gap-2 text-primary font-bold" style="">
 <span class="material-symbols-outlined text-xl" style="">schedule</span>Commute</span>
 </div>
@@ -159,8 +145,8 @@
 </div>
 </div>
 <!-- 3. ค่าใช้จ่ายรวมต่อเดือน (Total Monthly Cost) -->
-<div class="grid grid-cols-3 items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8">
+<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
+<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
 <span class="flex items-center gap-2 text-primary font-bold" style="">
 <span class="material-symbols-outlined text-xl" style="">calculate</span>Est. Monthly</span>
 </div>
@@ -174,8 +160,8 @@
 </div>
 </div>
 <!-- 4. Affordable Score -->
-<div class="grid grid-cols-3 items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8">
+<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors">
+<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
 <span class="flex items-center gap-2 text-primary font-bold" style="">
 <span class="material-symbols-outlined text-xl" style="">shield</span>
                             Affordable Score
@@ -199,8 +185,8 @@
 </div>
 </div>
 <!-- 5. Lifestyle Match -->
-<div class="grid grid-cols-3 items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
-<div class="p-8">
+<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest/50 hover:bg-surface-container-high/30 transition-colors">
+<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
 <span class="flex items-center gap-2 text-primary font-bold" style="">
 <span class="material-symbols-outlined text-xl" style="">favorite</span>
                             Lifestyle Match
@@ -226,8 +212,8 @@
 </div>
 </div>
 <!-- 6. AI Recommendation -->
-<div class="grid grid-cols-3 items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors border-t border-outline-variant/10">
-<div class="p-8">
+<div class="grid grid-cols-[240px_1fr_1fr] items-center bg-surface-container-lowest hover:bg-surface-container-high/30 transition-colors border-t border-outline-variant/10">
+<div class="p-8 sticky left-0 bg-surface-container-low/95 backdrop-blur-sm z-20">
 <span class="flex items-center gap-2 text-primary font-bold" style="">
 <span class="material-symbols-outlined text-xl" style="">auto_awesome</span>
                             AI Recommendation
@@ -248,6 +234,8 @@
 </div>
 </div>
 </div>
+</div>
+</div> <!-- End min-w container -->
 </section>
 <!-- Spacing to avoid bottom nav overlap on mobile -->
 <div class="h-32"></div>
@@ -268,4 +256,11 @@
 <span class="Inter font-bold text-[10px] uppercase tracking-widest mt-1" style="">View Matches</span>
 </button>
 </nav>
-</body></html>
+    <!-- Injection Script -->
+    <script src="../components.js"></script>
+    <script>
+        document.getElementById('topbar-placeholder').innerHTML = renderTopbar();
+        document.getElementById('sidebar-placeholder').innerHTML = renderSidebar('compare');
+    </script>
+</body>
+</html>
