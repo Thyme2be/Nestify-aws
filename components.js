@@ -3,13 +3,13 @@
  * Centralizes the branding (Header and Sidebar) for easy updates across the project.
  */
 
-// Configuration for Paths (Relative to the HTML files in subfolders)
+// Configuration for Paths (Relative to the HTML files in root)
 const PATHS = {
     logo: '../../nestify_logo-removebg-preview.png',
-    login: '../nestify_login_screen/code.html',
-    home: '../ai_matcher_updated_sidebar_icons/code.html',
-    compare: '../portfolio_comparison_updated_sidebar_navigation/code.html',
-    status: '../acquisition_portal_focused_journey_view/code.html',
+    login: 'nestify_login_screen.html',
+    home: 'ai_matcher_updated_sidebar_icons.html',
+    compare: 'portfolio_comparison_updated_sidebar_navigation.html',
+    status: 'acquisition_portal_focused_journey_view.html',
     privacy: '#',
     terms: '#',
     support: '#'
