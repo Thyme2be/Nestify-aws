@@ -919,39 +919,52 @@
                                 <div>
                                     <h3 class="font-headline font-extrabold text-2xl text-primary mb-2">Simulation
                                         Parameters</h3>
-                                    <p class="text-on-surface-variant text-sm font-medium">Adjust your horizon to see
-                                        long-term financial impact.</p>
+                                    <p class="text-on-surface-variant text-sm font-medium">Adjust your horizon and monthly payment to compare renting vs buying.</p>
                                 </div>
                                 <div
                                     class="bg-surface-container-low px-6 py-3 rounded-xl border border-outline-variant/10 flex items-center gap-6">
                                     <span
                                         class="text-xs font-black uppercase text-secondary tracking-widest">Timeframe</span>
-                                    <span class="font-headline font-black text-xl text-primary">10 Years</span>
+                                    <span class="font-headline font-black text-xl text-primary" id="sim-years-display">10 Years</span>
                                 </div>
                             </div>
-                            <div class="relative w-full h-12 flex items-center group">
-                                <!-- Real Range Input -->
-                                <input type="range" min="1" max="30" value="10" step="1" 
-                                    class="absolute w-full h-2 bg-surface-container-highest rounded-full appearance-none cursor-pointer z-20 opacity-0"
-                                    id="sim-slider" oninput="updateSimulation(this.value)">
-                                
-                                <!-- Custom Styled Track -->
-                                <div class="absolute w-full h-2 bg-surface-container-highest rounded-full z-0"></div>
-                                <div class="absolute h-2 bg-secondary-container rounded-full shadow-[0_0_10px_rgba(0,204,249,0.3)] z-10"
-                                     id="sim-track" style="width: 32%"></div>
-                                <!-- Custom Handle -->
-                                <div class="absolute -translate-x-1/2 w-7 h-7 bg-white border-[6px] border-secondary-container rounded-full shadow-xl pointer-events-none z-30 transition-transform group-hover:scale-110"
-                                     id="sim-handle" style="left: 32.5%"></div>
-                            </div>
-                                <div
-                                    class="absolute w-[calc(100%-16px)] flex justify-between top-10 px-0.5 text-[10px] font-black text-slate-400 uppercase tracking-tighter">
-                                    <span>1 Year</span>
-                                    <span>5 Years</span>
-                                    <span>10 Years</span>
-                                    <span>15 Years</span>
-                                    <span>20 Years</span>
-                                    <span>30 Years</span>
+                            <!-- Years Slider -->
+                            <div class="mb-8">
+                                <label class="block text-sm font-bold text-primary mb-3">Investment Horizon (Years)</label>
+                                <div class="relative w-full h-12 flex items-center group">
+                                    <!-- Real Range Input -->
+                                    <input type="range" min="1" max="30" value="10" step="1" 
+                                        class="absolute w-full h-2 bg-surface-container-highest rounded-full appearance-none cursor-pointer z-20 opacity-0"
+                                        id="sim-slider" oninput="updateSimulation()">
+                                    
+                                    <!-- Custom Styled Track -->
+                                    <div class="absolute w-full h-2 bg-surface-container-highest rounded-full z-0"></div>
+                                    <div class="absolute h-2 bg-secondary-container rounded-full shadow-[0_0_10px_rgba(0,204,249,0.3)] z-10"
+                                         id="sim-track" style="width: 32%"></div>
+                                    <!-- Custom Handle -->
+                                    <div class="absolute -translate-x-1/2 w-7 h-7 bg-white border-[6px] border-secondary-container rounded-full shadow-xl pointer-events-none z-30 transition-transform group-hover:scale-110"
+                                         id="sim-handle" style="left: 32.5%"></div>
                                 </div>
+                                    <div
+                                        class="absolute w-[calc(100%-16px)] flex justify-between top-10 px-0.5 text-[10px] font-black text-slate-400 uppercase tracking-tighter">
+                                        <span>1</span>
+                                        <span>5</span>
+                                        <span>10</span>
+                                        <span>15</span>
+                                        <span>20</span>
+                                        <span>30</span>
+                                    </div>
+                            </div>
+                            <!-- Monthly Payment Input -->
+                            <div class="mb-6">
+                                <label class="block text-sm font-bold text-primary mb-3">Monthly Payment (฿)</label>
+                                <div class="relative">
+                                    <input type="number" id="monthly-payment" value="12000" min="1000" max="50000" step="100" 
+                                        class="w-full px-4 py-3 border border-outline-variant/30 rounded-xl text-primary font-bold text-lg focus:border-secondary focus:outline-none transition-colors"
+                                        oninput="updateSimulation()">
+                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-outline-variant font-medium">฿</span>
+                                </div>
+                                <p class="text-xs text-on-surface-variant mt-2">Same monthly rate for both renting and buying scenarios</p>
                             </div>
                         </div>
 
@@ -971,30 +984,32 @@
                                 <h4 class="font-label text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
                                     Total Rental Expense</h4>
                                 <div class="text-4xl font-headline font-black text-primary mb-8 tracking-tight" id="rent-total">
-                                    ฿2,250,000</div>
+                                    ฿120,000</div>
                                 <ul class="space-y-6">
                                     <li
                                         class="flex justify-between items-center text-sm py-4 border-b border-surface-container-low">
-                                        <span class="text-on-surface-variant font-medium">Monthly Rent (Avg)</span>
-                                        <span class="font-bold text-primary">฿17,500</span>
+                                        <span class="text-on-surface-variant font-medium">Monthly Rent</span>
+                                        <span class="font-bold text-primary" id="rent-monthly">฿12,000</span>
                                     </li>
                                     <li
                                         class="flex justify-between items-center text-sm py-4 border-b border-surface-container-low">
-                                        <span class="text-on-surface-variant font-medium">Rental Inflation</span>
-                                        <span class="font-bold text-primary">3.5% p.a.</span>
+                                        <span class="text-on-surface-variant font-medium">Time Period</span>
+                                        <span class="font-bold text-primary" id="rent-years">10 Years</span>
                                     </li>
                                     <li class="flex justify-between items-center text-sm py-4">
-                                        <span class="text-on-surface-variant font-medium">Net Equity</span>
-                                        <span class="font-bold text-error">฿0.00</span>
+                                        <span class="text-on-surface-variant font-medium">Total Cost</span>
+                                        <span class="font-bold text-primary" id="rent-total-summary">฿1,440,000</span>
                                     </li>
                                 </ul>
                             </div>
                             <!-- Ownership Model -->
                             <div
-                                class="bg-[#f0fff9] p-10 rounded-2xl border-2 border-[#00ccf9]/20 shadow-xl shadow-[#00ccf9]/5 relative overflow-hidden group">
+                                class="bg-[#f0fff9] p-10 rounded-2xl border-2 border-[#00ccf9]/20 shadow-xl shadow-[#00ccf9]/5 relative overflow-hidden group"
+                                id="ownership-card">
                                 <div class="absolute top-0 right-0">
                                     <div
-                                        class="bg-[#00ccf9] text-[#031632] text-[10px] font-black uppercase tracking-[0.2em] px-6 py-2.5 rounded-bl-2xl flex items-center gap-2 shadow-sm">
+                                        class="bg-[#00ccf9] text-[#031632] text-[10px] font-black uppercase tracking-[0.2em] px-6 py-2.5 rounded-bl-2xl flex items-center gap-2 shadow-sm"
+                                        id="ai-recommendation">
                                         <span class="material-symbols-outlined text-sm"
                                             style='font-variation-settings: "FILL" 1;'>auto_awesome</span>
                                         AI Recommended
@@ -1009,25 +1024,31 @@
                                         class="text-[10px] font-black uppercase tracking-[0.2em] bg-[#00ccf9]/10 px-4 py-1.5 rounded-full text-secondary">Buy This Home</span>
                                 </div>
                                 <h4 class="font-label text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">
-                                    Net Cost of Ownership</h4>
+                                    Total Mortgage Payments</h4>
                                 <div class="text-4xl font-headline font-black text-primary mb-8 tracking-tight" id="buy-total">
-                                    ฿1,720,000</div>
+                                    ฿1,440,000</div>
                                 <ul class="space-y-6">
                                     <li
                                         class="flex justify-between items-center text-sm py-4 border-b border-[#00ccf9]/10">
-                                        <span class="text-on-surface-variant font-medium">Mortgage Payment</span>
-                                        <span class="font-bold text-primary">฿13,200</span>
+                                        <span class="text-on-surface-variant font-medium">Monthly Mortgage</span>
+                                        <span class="font-bold text-primary" id="mortgage-monthly">฿12,000</span>
                                     </li>
                                     <li
                                         class="flex justify-between items-center text-sm py-4 border-b border-[#00ccf9]/10">
-                                        <span class="text-on-surface-variant font-medium">Equity Growth Est.</span>
-                                        <span class="font-bold text-secondary">5.2% p.a.</span>
+                                        <span class="text-on-surface-variant font-medium">Time Period</span>
+                                        <span class="font-bold text-primary" id="mortgage-years">10 Years</span>
                                     </li>
                                     <li class="flex justify-between items-center text-sm py-4">
-                                        <span class="text-on-surface-variant font-medium">Projected Savings</span>
-                                        <span class="font-black text-[#00a884] text-lg" id="sim-savings">฿530,000</span>
+                                        <span class="text-on-surface-variant font-medium">Property Value</span>
+                                        <span class="font-bold text-secondary">฿4,190,000</span>
                                     </li>
                                 </ul>
+                                <div class="mt-6 p-4 bg-[#00ccf9]/10 rounded-xl border border-[#00ccf9]/20">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-bold text-primary">Recommendation</span>
+                                        <span class="text-sm font-black text-secondary" id="recommendation-text">Buying is better - you'll own the home!</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -1046,10 +1067,7 @@
                                         class="font-headline font-black uppercase tracking-[0.2em] text-xs mb-3 text-secondary-container">
                                         The Architect's Verdict</h4>
                                     <p class="text-xl font-medium leading-relaxed max-w-4xl" id="verdict-text">
-                                        "Buying Anasiri KTP 2 would save you <span
-                                            class="text-secondary-container font-black">฿530,000</span> over <span id="verdict-years">10</span> years.
-                                        The Japanese-inspired planning and Pathum Thani growth corridor ensure this
-                                        asset remains both a serene home and a solid financial anchor."
+                                        "With your selected parameters, buying this home appears to be the better financial choice. After 10 years of payments at ฿12,000 monthly, you'll have fully paid for a ฿4,190,000 property, building significant equity instead of paying rent indefinitely."
                                     </p>
                                 </div>
                             </div>
@@ -1196,58 +1214,66 @@
             maximumFractionDigits: 0
         });
 
-        function updateSimulation(years) {
-            const y = parseInt(years);
+        function updateSimulation() {
+            const years = parseInt(document.getElementById('sim-slider').value);
+            const monthlyPayment = parseInt(document.getElementById('monthly-payment').value) || 12000;
             
             // Update UI elements
-            document.querySelector('.text-primary.font-black.text-xl').innerText = `${y} Years`;
-            document.getElementById('verdict-years').innerText = y;
+            document.getElementById('sim-years-display').innerText = `${years} Years`;
             
             // Update Slider Track/Handle position
-            const percent = ((y - 1) / 29) * 100;
+            const percent = ((years - 1) / 29) * 100;
             document.getElementById('sim-track').style.width = `${percent}%`;
             document.getElementById('sim-handle').style.left = `${percent}%`;
 
-            // math logic (simplified)
-            const baseRent = 17500;
-            const rentInflation = 0.035;
-            const baseMortgage = 13200;
+            // Property value
             const propertyValue = 4190000;
-            const appreciation = 0.052;
 
-            // Rental Calculation (Compounded Inflation)
-            let totalRent = 0;
-            for(let i=0; i<y; i++) {
-                totalRent += baseRent * 12 * Math.pow(1 + rentInflation, i);
-            }
-
-            // Ownership Calculation
-            const totalMortgage = baseMortgage * 12 * y;
-            const futureValue = propertyValue * Math.pow(1 + appreciation, y);
-            const equity = futureValue - propertyValue; 
-            const netOwnership = totalMortgage - (equity * 0.4); // simplified net cost accounting for equity
-
-            const savings = totalRent - netOwnership;
-
+            // Calculations
+            const totalRent = monthlyPayment * 12 * years;
+            const totalMortgage = monthlyPayment * 12 * years;
+            
+            // Determine recommendation
+            const isBuyingBetter = totalMortgage >= propertyValue;
+            
             // Update DOM
             document.getElementById('rent-total').innerText = formatter.format(totalRent);
-            document.getElementById('buy-total').innerText = formatter.format(netOwnership);
-            document.getElementById('sim-savings').innerText = formatter.format(savings);
+            document.getElementById('rent-monthly').innerText = formatter.format(monthlyPayment);
+            document.getElementById('rent-years').innerText = `${years} Years`;
+            document.getElementById('rent-total-summary').innerText = formatter.format(totalRent);
             
-            // Update verdict text highlight
-            const verdictText = document.getElementById('verdict-text');
-            const verdictHighlight = verdictText.querySelector('span.text-secondary-container');
+            document.getElementById('buy-total').innerText = formatter.format(totalMortgage);
+            document.getElementById('mortgage-monthly').innerText = formatter.format(monthlyPayment);
+            document.getElementById('mortgage-years').innerText = `${years} Years`;
             
-            if (verdictHighlight) {
-                verdictHighlight.innerText = formatter.format(savings);
+            // Update recommendation
+            const recommendationText = document.getElementById('recommendation-text');
+            const aiRecommendation = document.getElementById('ai-recommendation');
+            const ownershipCard = document.getElementById('ownership-card');
+            
+            if (isBuyingBetter) {
+                recommendationText.innerText = "Buying is better - you'll own the home!";
+                recommendationText.className = "text-sm font-black text-secondary";
+                aiRecommendation.innerHTML = '<span class="material-symbols-outlined text-sm" style="font-variation-settings: \'FILL\' 1;">auto_awesome</span> AI Recommended';
+                ownershipCard.className = "bg-[#f0fff9] p-10 rounded-2xl border-2 border-[#00ccf9]/20 shadow-xl shadow-[#00ccf9]/5 relative overflow-hidden group";
+            } else {
+                recommendationText.innerText = "Renting might be better - payments won't cover the home value";
+                recommendationText.className = "text-sm font-black text-error";
+                aiRecommendation.innerHTML = '<span class="material-symbols-outlined text-sm" style="font-variation-settings: \'FILL\' 0;">warning</span> Consider Renting';
+                ownershipCard.className = "bg-[#fff5f5] p-10 rounded-2xl border-2 border-error/20 shadow-xl shadow-error/5 relative overflow-hidden group";
             }
             
-            // Reverted verdict sentence to English but kept context
-            verdictText.innerHTML = `"Buying Anasiri KTP 2 would save you <span class="text-secondary-container font-black">${formatter.format(savings)}</span> over <span id="verdict-years">${y}</span> years. The Japanese-inspired planning and Pathum Thani growth corridor ensure this asset remains both a serene home and a solid financial anchor."`;
+            // Update verdict text
+            const verdictText = document.getElementById('verdict-text');
+            if (isBuyingBetter) {
+                verdictText.innerHTML = `"With your selected parameters, buying this home appears to be the better financial choice. After ${years} years of payments at ${formatter.format(monthlyPayment)} monthly, you'll have fully paid for a ${formatter.format(propertyValue)} property, building significant equity instead of paying rent indefinitely."`;
+            } else {
+                verdictText.innerHTML = `"Based on your parameters, renting this home may be more practical. After ${years} years of ${formatter.format(monthlyPayment)} monthly payments, you would only cover ${((totalMortgage / propertyValue) * 100).toFixed(1)}% of the property value, making renting a potentially better option to avoid overpaying."`;
+            }
         }
 
-        // Initialize simulation at 10 years
-        updateSimulation(10);
+        // Initialize simulation
+        updateSimulation();
 
         // --- COMPARISON SYSTEM ---
         const compareItems = new Map();
