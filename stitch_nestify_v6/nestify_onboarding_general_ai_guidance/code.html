@@ -79,6 +79,14 @@
             background-image: radial-gradient(circle at 2px 2px, #dfe8ff 1px, transparent 0);
             background-size: 40px 40px;
         }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .suggestion-item {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
     </style>
 </head>
 <body class="bg-surface text-on-surface font-body architectural-pattern min-h-screen">
@@ -125,73 +133,80 @@
 <!-- Preferred Location -->
 <div class="bg-surface-container-low p-6 rounded-xl space-y-3">
 <label class="block text-xs font-bold uppercase tracking-widest text-secondary">Preferred Location</label>
-<div class="relative bg-surface-container-lowest rounded-lg overflow-hidden border border-outline-variant/20 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
-<input class="w-full bg-transparent border-none p-4 pr-12 focus:ring-0 text-on-surface placeholder:text-outline/50" placeholder="e.g. Sukhumvit, Ari" type="text"/>
-<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline">location_on</span>
-</div>
+                    <div class="relative bg-surface-container-lowest rounded-lg overflow-hidden border border-outline-variant/20 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+                        <input id="location-input" class="w-full bg-transparent border-none p-4 pr-12 focus:ring-0 text-on-surface placeholder:text-outline/50" placeholder="e.g. Sukhumvit, Ari" type="text" oninput="updateAI()"/>
+                        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline">location_on</span>
+                    </div>
 </div>
 <!-- Housing Type -->
 <div class="bg-surface-container-low p-6 rounded-xl space-y-3">
 <label class="block text-xs font-bold uppercase tracking-widest text-secondary">Housing Type</label>
-<div class="flex gap-2">
-<button class="flex-1 py-3 bg-surface-container-lowest rounded-lg border-2 border-transparent hover:border-secondary flex items-center justify-center gap-2 text-xs font-bold transition-all" type="button">
-<span class="material-symbols-outlined text-sm">apartment</span> Condo
-                                </button>
-<button class="flex-1 py-3 bg-primary text-white rounded-lg border-2 border-primary flex items-center justify-center gap-2 text-xs font-bold shadow-lg shadow-primary/20" type="button">
-<span class="material-symbols-outlined text-sm">home</span> House
-                                </button>
-</div>
+                    <div class="flex gap-2">
+                        <button id="condo-btn" class="flex-1 py-3 bg-surface-container-lowest rounded-lg border-2 border-transparent hover:border-secondary flex items-center justify-center gap-2 text-xs font-bold transition-all" type="button" onclick="toggleHousing('condo')">
+                            <span class="material-symbols-outlined text-sm">apartment</span> Condo
+                        </button>
+                        <button id="house-btn" class="flex-1 py-3 bg-primary text-white rounded-lg border-2 border-primary flex items-center justify-center gap-2 text-xs font-bold shadow-lg shadow-primary/20" type="button" onclick="toggleHousing('house')">
+                            <span class="material-symbols-outlined text-sm">home</span> House
+                        </button>
+                    </div>
 </div>
 <!-- Household Size -->
 <div class="bg-surface-container-low p-6 rounded-xl space-y-3">
 <label class="block text-xs font-bold uppercase tracking-widest text-secondary">Household Size</label>
-<div class="flex items-center bg-surface-container-lowest rounded-lg border border-outline-variant/20 overflow-hidden px-4 py-1">
-<input class="w-full bg-transparent border-none p-3 focus:ring-0 text-on-surface font-bold text-lg" type="number" value="2"/>
-<span class="text-on-surface-variant font-bold text-xs uppercase ml-2">People</span>
-</div>
+                    <div class="flex items-center bg-surface-container-lowest rounded-lg border border-outline-variant/20 overflow-hidden px-4 py-1">
+                        <input id="household-size" class="w-full bg-transparent border-none p-3 focus:ring-0 text-on-surface font-bold text-lg" type="number" value="2" oninput="updateAI()"/>
+                        <span class="text-on-surface-variant font-bold text-xs uppercase ml-2">People</span>
+                    </div>
 </div>
 <!-- Home Size -->
 <div class="bg-surface-container-low p-6 rounded-xl space-y-3">
 <label class="block text-xs font-bold uppercase tracking-widest text-secondary">Home Size</label>
-<div class="flex items-center bg-surface-container-lowest rounded-lg border border-outline-variant/20 overflow-hidden px-4 py-1">
-<input class="w-full bg-transparent border-none p-3 focus:ring-0 text-on-surface placeholder:text-outline/50 font-medium" placeholder="Min Sq.m" type="number"/>
+<input id="sqm-input" class="w-full bg-transparent border-none p-3 focus:ring-0 text-on-surface placeholder:text-outline/50 font-medium" placeholder="Min Sq.m" type="number" oninput="updateAI()"/>
 <span class="text-on-surface-variant font-bold text-xs uppercase ml-2">sqm</span>
-</div>
 </div>
 </div>
 <!-- Companions Checklist -->
 <div class="bg-surface-container-low p-8 rounded-xl">
 <h3 class="font-headline font-bold text-xl text-primary mb-6">Who's coming with you?</h3>
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-<label class="flex items-center gap-3 p-4 bg-surface-container-lowest rounded-lg cursor-pointer border border-transparent hover:border-secondary/20 transition-all">
-<input class="w-5 h-5 rounded border-outline-variant text-on-tertiary-container focus:ring-on-tertiary-container/20" type="checkbox"/>
-<span class="text-sm font-bold text-primary">Children</span>
-</label>
-<label class="flex items-center gap-3 p-4 bg-surface-container-lowest rounded-lg cursor-pointer border border-transparent hover:border-secondary/20 transition-all">
-<input class="w-5 h-5 rounded border-outline-variant text-on-tertiary-container focus:ring-on-tertiary-container/20" type="checkbox"/>
-<span class="text-sm font-bold text-primary">Elderly</span>
-</label>
-<label class="flex items-center gap-3 p-4 bg-surface-container-lowest rounded-lg cursor-pointer border border-transparent hover:border-secondary/20 transition-all">
-<input class="w-5 h-5 rounded border-outline-variant text-on-tertiary-container focus:ring-on-tertiary-container/20" type="checkbox"/>
-<span class="text-sm font-bold text-primary">Pets</span>
-</label>
+                        <label class="flex items-center gap-3 p-4 bg-surface-container-lowest rounded-lg cursor-pointer border border-transparent hover:border-secondary/20 transition-all">
+                            <input id="check-children" class="w-5 h-5 rounded border-outline-variant text-on-tertiary-container focus:ring-on-tertiary-container/20" type="checkbox" onchange="updateAI()"/>
+                            <span class="text-sm font-bold text-primary">Children</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-4 bg-surface-container-lowest rounded-lg cursor-pointer border border-transparent hover:border-secondary/20 transition-all">
+                            <input id="check-elderly" class="w-5 h-5 rounded border-outline-variant text-on-tertiary-container focus:ring-on-tertiary-container/20" type="checkbox" onchange="updateAI()"/>
+                            <span class="text-sm font-bold text-primary">Elderly</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-4 bg-surface-container-lowest rounded-lg cursor-pointer border border-transparent hover:border-secondary/20 transition-all">
+                            <input id="check-pets" class="w-5 h-5 rounded border-outline-variant text-on-tertiary-container focus:ring-on-tertiary-container/20" type="checkbox" onchange="updateAI()"/>
+                            <span class="text-sm font-bold text-primary">Pets</span>
+                        </label>
 </div>
 </div>
 <!-- Interests/Vibes Tags -->
 <div class="bg-surface-container-low p-8 rounded-xl">
 <h3 class="font-headline font-bold text-xl text-primary mb-2">Neighborhood Vibes</h3>
 <p class="text-on-surface-variant text-xs font-medium uppercase tracking-widest mb-6">Optional: What should be within a 15-minute walk?</p>
-<div class="flex flex-wrap gap-3">
-<button class="px-5 py-2.5 rounded-full bg-secondary-fixed text-on-secondary-container text-xs font-bold border border-secondary/10 hover:shadow-md transition-all" type="button">Near Cafe</button>
-<button class="px-5 py-2.5 rounded-full bg-surface-container-lowest text-primary text-xs font-bold border border-outline-variant/30 hover:border-secondary transition-all" type="button">Fitness</button>
-<button class="px-5 py-2.5 rounded-full bg-surface-container-lowest text-primary text-xs font-bold border border-outline-variant/30 hover:border-secondary transition-all" type="button">Mall</button>
-<button class="px-5 py-2.5 rounded-full bg-secondary-fixed text-on-secondary-container text-xs font-bold border border-secondary/10 hover:shadow-md transition-all" type="button">BTS</button>
-<button class="px-5 py-2.5 rounded-full bg-surface-container-lowest text-primary text-xs font-bold border border-outline-variant/30 hover:border-secondary transition-all" type="button">MRT</button>
-</div>
+                            <div class="flex flex-wrap gap-3" id="vibe-tags">
+                                <button
+                                    class="vibe-tag px-5 py-2.5 rounded-full bg-surface-container-lowest text-primary text-xs font-bold border border-outline-variant/30 hover:border-secondary transition-all"
+                                    type="button" onclick="toggleVibe(this, 'Cafes')">Near Cafe</button>
+                                <button
+                                    class="vibe-tag px-5 py-2.5 rounded-full bg-surface-container-lowest text-primary text-xs font-bold border border-outline-variant/30 hover:border-secondary transition-all"
+                                    type="button" onclick="toggleVibe(this, 'Fitness')">Fitness</button>
+                                <button
+                                    class="vibe-tag px-5 py-2.5 rounded-full bg-surface-container-lowest text-primary text-xs font-bold border border-outline-variant/30 hover:border-secondary transition-all"
+                                    type="button" onclick="toggleVibe(this, 'Shopping')">Mall</button>
+                                <button
+                                    class="vibe-tag px-5 py-2.5 rounded-full bg-surface-container-lowest text-primary text-xs font-bold border border-outline-variant/30 hover:border-secondary transition-all"
+                                    type="button" onclick="toggleVibe(this, 'BTS/MRT')">BTS/MRT</button>
+                                <button
+                                    class="vibe-tag px-5 py-2.5 rounded-full bg-surface-container-lowest text-primary text-xs font-bold border border-outline-variant/30 hover:border-secondary transition-all"
+                                    type="button" onclick="toggleVibe(this, 'Parks')">Parks</button>
+                            </div>
 </div>
 <!-- Additional Preferences -->
-<section class="mb-12">
-</section><div class="bg-surface-container-low p-8 rounded-xl space-y-4">
+<div class="bg-surface-container-low p-8 rounded-xl space-y-4">
 <label class="block text-xs font-bold uppercase tracking-widest text-secondary">Additional Preferences</label>
 <textarea class="w-full bg-surface-container-lowest border-none rounded-lg p-6 focus:ring-2 focus:ring-secondary/20 resize-none text-sm leading-relaxed" placeholder="Tell us more about your dream living experience..." rows="4"></textarea>
 </div>
@@ -210,22 +225,22 @@
 <div class="absolute -top-4 -right-4 w-24 h-24 bg-secondary-container/20 rounded-full blur-2xl"></div>
 <div class="flex items-center gap-4 mb-6">
 <div class="relative">
-<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-secondary">
-<img alt="The Architect AI Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOj7fe0AG9ld-ggvi67vh5e3MhoeOA8Rg1NrftGBgVQgr-13sQdNf3F67zY451JDMFy9LJDbkl89PQXUO7N4gy26w9lEAo8fLUo8PpVsY6gBxqxIeDI5IXUQxKDM_XeGqTytVmeUSTQ4YrgPJkwCK6wLB-X2SKvKds0nmMAfj6rilc-h5_wiCod3QCAyi6xVCsor4bs8J3b2NGhogRtdiAt8Z_-mq-mfDsqkRXkJEui1mBIeCZ2mmDd9K_Y-T0RBrXuF_nrR2M"/>
+                                <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-secondary">
+                                    <img alt="Nestify AI Avatar" class="w-full h-full object-cover" src="../nestify_ai_avatar.png"/>
+                                </div>
+                                <div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
 </div>
-<div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
-</div>
-<div>
-<h4 class="font-headline font-bold text-primary leading-tight">The Architect</h4>
-<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter">AI Assistant</span>
-</div>
+                            <div>
+                                <h4 class="font-headline font-bold text-primary leading-tight">Nestify AI</h4>
+                                <span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter">AI Assistant</span>
+                            </div>
 </div>
 <div class="space-y-4">
-<div class="bg-surface-container-lowest p-5 rounded-xl rounded-tl-none shadow-sm relative">
-<p class="text-sm text-on-surface leading-relaxed italic">
-                            "I see you're looking for a House. Properties in your preferred areas often provide more green space for children and pets. Would you like me to prioritize garden space in your score?"
-                        </p>
-</div>
+                        <div class="bg-surface-container-lowest p-5 rounded-xl rounded-tl-none shadow-sm relative">
+                            <div id="ai-quote" class="text-sm text-on-surface leading-relaxed italic min-h-[60px] flex flex-col justify-center">
+                                "I'm profiling your lifestyle trends. Tell me about your dream living experience, and I'll find the perfect match."
+                            </div>
+                        </div>
 <div class="p-4 bg-primary text-white rounded-xl text-xs font-bold flex items-center justify-between">
 <span>Current Match Accuracy</span>
 <span class="text-secondary-fixed-dim">84%</span>
@@ -260,8 +275,69 @@
 </main>
     <!-- Injection Script -->
     <script src="../components.js"></script>
-    <script>
+        <script>
         document.getElementById('topbar-placeholder').innerHTML = renderTopbar(PATHS.login);
+
+        function toggleHousing(type) {
+            const houseBtn = document.getElementById('house-btn');
+            const condoBtn = document.getElementById('condo-btn');
+            if (type === 'house') {
+                houseBtn.className = "flex-1 py-3 bg-primary text-white rounded-lg border-2 border-primary flex items-center justify-center gap-2 text-xs font-bold shadow-lg shadow-primary/20";
+                condoBtn.className = "flex-1 py-3 bg-surface-container-lowest rounded-lg border-2 border-transparent hover:border-secondary flex items-center justify-center gap-2 text-xs font-bold transition-all";
+            } else {
+                condoBtn.className = "flex-1 py-3 bg-primary text-white rounded-lg border-2 border-primary flex items-center justify-center gap-2 text-xs font-bold shadow-lg shadow-primary/20";
+                houseBtn.className = "flex-1 py-3 bg-surface-container-lowest rounded-lg border-2 border-transparent hover:border-secondary flex items-center justify-center gap-2 text-xs font-bold transition-all";
+            }
+            updateAI();
+        }
+
+        function toggleVibe(btn, vibe) {
+            btn.classList.toggle('selected');
+            if (btn.classList.contains('selected')) {
+                btn.className = "vibe-tag px-5 py-2.5 rounded-full bg-secondary-fixed text-on-secondary-container text-xs font-bold border border-secondary/10 hover:shadow-md transition-all selected";
+            } else {
+                btn.className = "vibe-tag px-5 py-2.5 rounded-full bg-surface-container-lowest text-primary text-xs font-bold border border-outline-variant/30 hover:border-secondary transition-all";
+            }
+            updateAI();
+        }
+
+        function updateAI() {
+            const location = document.getElementById('location-input').value;
+            const sqm = document.getElementById('sqm-input').value;
+            const quote = document.getElementById('ai-quote');
+
+            if (location && sqm) {
+                if (quote.dataset.state === 'complete') return;
+                
+                quote.innerHTML = `
+                    <div class="flex items-center gap-3 text-secondary font-bold italic animate-pulse">
+                        <span class="material-symbols-outlined animate-spin" style="font-size: 18px;">sync</span>
+                        Mapping lifestyle matrix...
+                    </div>
+                `;
+                quote.dataset.state = 'complete';
+
+                setTimeout(() => {
+                    const insights = [
+                        `• <strong class="text-secondary">Parks-adjacent properties</strong> in your area currently hold a 12% price premium.`,
+                        `• For your household size, I'll prioritize <strong class="text-secondary">2BR+ layouts</strong> with integrated home-office support.`,
+                        `• Neighborhood data matches your vibes to the <strong class="text-secondary">'Eco-Urban'</strong> demographic in the BTS corridor.`
+                    ];
+                    
+                    quote.innerHTML = '<div class="space-y-3"></div>';
+                    const container = quote.querySelector('div');
+                    
+                    insights.forEach((insight, i) => {
+                        setTimeout(() => {
+                            const p = document.createElement('div');
+                            p.className = 'suggestion-item text-xs md:text-sm text-on-surface leading-relaxed';
+                            p.innerHTML = insight;
+                            container.appendChild(p);
+                        }, i * 400);
+                    });
+                }, 1500);
+            }
+        }
     </script>
 </body>
 </html>

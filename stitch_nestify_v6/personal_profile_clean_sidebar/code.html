@@ -79,6 +79,14 @@
             background-image: radial-gradient(circle at 2px 2px, #dfe8ff 1px, transparent 0);
             background-size: 40px 40px;
         }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .suggestion-item {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
     </style>
 </head>
 <body class="bg-surface text-on-surface font-body architectural-pattern min-h-screen">
@@ -110,98 +118,175 @@
 <!-- Left Column: Form Content -->
 <div class="lg:col-span-8 space-y-12">
 <section>
-<div class="mb-8">
-<span class="text-secondary font-label text-xs font-medium uppercase tracking-[0.2em] mb-2 block">Architectural Blueprint</span>
-<h1 class="text-4xl lg:text-5xl font-headline font-extrabold text-primary tracking-tight leading-tight">Personal Profile</h1>
-<p class="mt-4 text-on-primary-container max-w-xl text-lg leading-relaxed">Let's establish the structural foundation of your real estate profile. Every detail helps our AI tailor your portfolio.</p>
-</div>
-<form class="space-y-6">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="group relative">
-<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Full Name</label>
-<div class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
-<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50" placeholder="e.g. Julian Alexander" type="text"/>
-</div>
-</div>
-<div class="group relative">
-<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Phone Number</label>
-<div class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
-<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50" placeholder="+1 (555) 000-0000" type="tel"/>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="group relative">
-<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Date of Birth</label>
-<div class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
-<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface" type="date"/>
-</div>
-</div>
-<div class="group relative">
-<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Current Occupation</label>
-<div class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
-<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50" placeholder="e.g. Senior Project Architect" type="text"/>
-</div>
-</div>
-</div>
-<div class="group relative">
-<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Residential Address</label>
-<div class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
-<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50" placeholder="Enter your current street address" type="text"/>
-</div>
-</div>
-<div class="pt-8 flex justify-start">
-<a href="../financial_profile_image_removed/code.html" class="w-full md:w-auto px-12 py-5 bg-on-tertiary-container text-white font-headline font-extrabold rounded-lg shadow-xl shadow-on-tertiary-container/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group no-underline">
+                    <div class="mb-8">
+                        <span
+                            class="text-secondary font-label text-xs font-medium uppercase tracking-[0.2em] mb-2 block">Step
+                            01 — Information Phase</span>
+                        <h1 class="text-4xl lg:text-5xl font-headline font-extrabold text-primary tracking-tight leading-tight">
+                            Personal Profile</h1>
+                        <p class="mt-4 text-on-primary-container max-w-xl text-lg leading-relaxed">Enter your personal details
+                            to get started. This builds the foundation of your matching profile.</p>
+                    </div>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="group relative">
+                                <label
+                                    class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Full
+                                    Name</label>
+                                <div
+                                    class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+                                    <input id="name-input"
+                                        class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50"
+                                        placeholder="e.g. Somchai Alexander" type="text" oninput="updatePersonalAI()"/>
+                                </div>
+                            </div>
+                            <div class="group relative">
+                                <label
+                                    class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Phone
+                                    Number</label>
+                                <div
+                                    class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+                                    <input id="phone-input"
+                                        class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50"
+                                        placeholder="+66(0) 00-000-0000" type="tel" oninput="updatePersonalAI()"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="group relative">
+                                <label
+                                    class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Date
+                                    of Birth</label>
+                                <div
+                                    class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+                                    <input id="dob-input" class="w-full bg-transparent border-none focus:ring-0 text-on-surface"
+                                        type="date" oninput="updatePersonalAI()"/>
+                                </div>
+                            </div>
+                            <div class="group relative">
+                                <label
+                                    class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Current
+                                    Occupation</label>
+                                <div
+                                    class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+                                    <input id="occ-input"
+                                        class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50"
+                                        placeholder="e.g. Senior Project Manager" type="text" oninput="updatePersonalAI()"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group relative">
+                            <label
+                                class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Residential
+                                Address</label>
+                            <div
+                                class="bg-surface-container-low p-4 rounded-lg shadow-sm ring-1 ring-outline-variant/10 focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+                                <input id="address-input"
+                                    class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50"
+                                    placeholder="Enter your current street address" type="text" oninput="updatePersonalAI()"/>
+                            </div>
+                        </div>
+                        <div class="pt-8 flex justify-start">
+                            <a href="../financial_profile_image_removed/code.html"
+                                class="w-full md:w-auto px-12 py-5 bg-on-tertiary-container text-white font-headline font-extrabold rounded-lg shadow-xl shadow-on-tertiary-container/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group no-underline">
                                 Next to Financial Health
-                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
-</a>
-</div>
-</form>
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform"
+                                    data-icon="arrow_forward">arrow_forward</span>
+                            </a>
+                        </div>
+                    </form>
 </section>
 </div>
 <!-- Right Column: Smart AI Assistant Widget -->
 <aside class="lg:col-span-4 sticky top-24">
-<div class="bg-secondary-container/10 backdrop-blur-xl border border-secondary-container/20 p-8 rounded-2xl relative overflow-hidden group">
-<div class="absolute -top-4 -right-4 w-24 h-24 bg-secondary-container/20 rounded-full blur-2xl"></div>
-<div class="flex items-center gap-4 mb-6">
-<div class="relative">
-<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-secondary">
-<img alt="The Architect AI Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOj7fe0AG9ld-ggvi67vh5e3MhoeOA8Rg1NrftGBgVQgr-13sQdNf3F67zY451JDMFy9LJDbkl89PQXUO7N4gy26w9lEAo8fLUo8PpVsY6gBxqxIeDI5IXUQxKDM_XeGqTytVmeUSTQ4YrgPJkwCK6wLB-X2SKvKds0nmMAfj6rilc-h5_wiCod3QCAyi6xVCsor4bs8J3b2NGhogRtdiAt8Z_-mq-mfDsqkRXkJEui1mBIeCZ2mmDd9K_Y-T0RBrXuF_nrR2M"/>
-</div>
-<div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
-</div>
-<div>
-<h4 class="font-headline font-bold text-primary leading-tight">The Architect</h4>
-<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter">AI Assistant</span>
-</div>
-</div>
-<div class="space-y-4">
-<div class="bg-surface-container-lowest p-5 rounded-xl rounded-tl-none shadow-sm relative">
-<p class="text-sm text-on-surface leading-relaxed italic">
-                                "Welcome to Nestify. Completing your personal profile allows me to cross-reference market demographics with your specific lifestyle needs."
+                <div
+                    class="bg-secondary-container/10 backdrop-blur-xl border border-secondary-container/20 p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-secondary-container/20 rounded-full blur-2xl"></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-secondary">
+                                <img alt="Nestify AI Avatar" class="w-full h-full object-cover"
+                                    src="../nestify_ai_avatar.png" />
+                            </div>
+                            <div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full">
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-headline font-bold text-primary leading-tight">Nestify AI</h4>
+                            <span
+                                class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter">AI
+                                Assistant</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-surface-container-lowest p-5 rounded-xl rounded-tl-none shadow-sm relative">
+                            <div id="ai-quote" class="text-sm text-on-surface leading-relaxed italic min-h-[60px] flex flex-col justify-center">
+                                "Welcome to Nestify. Please complete the fields above so I can prepare your individual demographic analysis."
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 px-1">
+                            <span class="material-symbols-outlined text-secondary text-lg"
+                                data-icon="auto_awesome">auto_awesome</span>
+                            <span class="text-xs font-semibold text-secondary tracking-wide">Syncing personal matrix...</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-secondary-container/20">
+                        <div class="bg-secondary-fixed text-on-secondary-container p-4 rounded-lg flex items-start gap-3">
+                            <span class="material-symbols-outlined" data-icon="info">info</span>
+                            <p class="text-xs font-medium leading-normal">
+                                92% of successful investors start with a verified identity to unlock premium real estate options.
                             </p>
-</div>
-<div class="flex items-center gap-2 px-1">
-<span class="material-symbols-outlined text-secondary text-lg" data-icon="auto_awesome">auto_awesome</span>
-<span class="text-xs font-semibold text-secondary tracking-wide">Syncing personal matrix...</span>
-</div>
-</div>
-<div class="mt-8 pt-8 border-t border-secondary-container/20">
-<div class="bg-secondary-fixed text-on-secondary-container p-4 rounded-lg flex items-start gap-3">
-<span class="material-symbols-outlined" data-icon="info">info</span>
-<p class="text-xs font-medium leading-normal">
-                                92% of successful investors start with a verified identity to unlock premium lending tiers.
-                            </p>
-</div>
-</div>
-</div>
+                        </div>
+                    </div>
+                </div>
 <!-- Subtle Brand Flourish -->
 </aside>
 </div>
 </main>
     <!-- Injection Script -->
     <script src="../components.js"></script>
-    <script>
+        <script>
         document.getElementById('topbar-placeholder').innerHTML = renderTopbar(PATHS.login);
+        
+        function updatePersonalAI() {
+            const name = document.getElementById('name-input').value;
+            const phone = document.getElementById('phone-input').value;
+            const dob = document.getElementById('dob-input').value;
+            const occ = document.getElementById('occ-input').value;
+            const addr = document.getElementById('address-input').value;
+            const quote = document.getElementById('ai-quote');
+
+            if (name && phone && dob && occ && addr) {
+                if (quote.dataset.state === 'complete') return;
+                
+                quote.innerHTML = `
+                    <div class="flex items-center gap-3 text-secondary font-bold italic animate-pulse">
+                        <span class="material-symbols-outlined animate-spin" style="font-size: 18px;">sync</span>
+                        Synthesizing market profile...
+                    </div>
+                `;
+                quote.dataset.state = 'complete';
+
+                setTimeout(() => {
+                    const insights = [
+                        `• Your profile aligns with the <strong class="text-secondary">Strategic Owner</strong> demographic in Bangkok's CBD.`,
+                        `• Based on your professional tier, an <strong class="text-secondary">8-year equity cycle</strong> is recommended for peak yield.`,
+                        `• You've unlocked <strong class="text-secondary">Verified Identity</strong> priority status for premium property viewings.`
+                    ];
+                    
+                    quote.innerHTML = '<div class="space-y-3"></div>';
+                    const container = quote.querySelector('div');
+                    
+                    insights.forEach((insight, i) => {
+                        setTimeout(() => {
+                            const p = document.createElement('div');
+                            p.className = 'suggestion-item text-xs md:text-sm text-on-surface leading-relaxed';
+                            p.innerHTML = insight;
+                            container.appendChild(p);
+                        }, i * 400);
+                    });
+                }, 1500);
+            }
+        }
     </script>
 </body></html>
