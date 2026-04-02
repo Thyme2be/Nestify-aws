@@ -969,39 +969,7 @@
                         </div>
 
                         <!-- 2. Comparison Cards -->
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            <!-- Rental Model -->
-                            <div
-                                class="bg-white p-10 rounded-2xl border border-outline-variant/20 shadow-sm relative overflow-hidden group hover:border-outline-variant/40 transition-colors">
-                                <div class="flex items-center justify-between mb-10">
-                                    <div
-                                        class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500">
-                                        <span class="material-symbols-outlined text-2xl">key</span>
-                                    </div>
-                                    <span
-                                        class="text-[10px] font-black uppercase tracking-[0.2em] bg-slate-100 px-4 py-1.5 rounded-full text-slate-500">Rent This Home</span>
-                                </div>
-                                <h4 class="font-label text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
-                                    Total Rental Expense</h4>
-                                <div class="text-4xl font-headline font-black text-primary mb-8 tracking-tight" id="rent-total">
-                                    ฿120,000</div>
-                                <ul class="space-y-6">
-                                    <li
-                                        class="flex justify-between items-center text-sm py-4 border-b border-surface-container-low">
-                                        <span class="text-on-surface-variant font-medium">Monthly Rent</span>
-                                        <span class="font-bold text-primary" id="rent-monthly">฿12,000</span>
-                                    </li>
-                                    <li
-                                        class="flex justify-between items-center text-sm py-4 border-b border-surface-container-low">
-                                        <span class="text-on-surface-variant font-medium">Time Period</span>
-                                        <span class="font-bold text-primary" id="rent-years">10 Years</span>
-                                    </li>
-                                    <li class="flex justify-between items-center text-sm py-4">
-                                        <span class="text-on-surface-variant font-medium">Total Cost</span>
-                                        <span class="font-bold text-primary" id="rent-total-summary">฿1,440,000</span>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="grid grid-cols-1 gap-8">
                             <!-- Ownership Model -->
                             <div
                                 class="bg-[#f0fff9] p-10 rounded-2xl border-2 border-[#00ccf9]/20 shadow-xl shadow-[#00ccf9]/5 relative overflow-hidden group"
@@ -1021,10 +989,10 @@
                                         <span class="material-symbols-outlined text-2xl">home</span>
                                     </div>
                                     <span
-                                        class="text-[10px] font-black uppercase tracking-[0.2em] bg-[#00ccf9]/10 px-4 py-1.5 rounded-full text-secondary">Buy This Home</span>
+                                        class="text-[10px] font-black uppercase tracking-[0.2em] bg-[#00ccf9]/10 px-4 py-1.5 rounded-full text-secondary"></span>
                                 </div>
                                 <h4 class="font-label text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">
-                                    Total Mortgage Payments</h4>
+                                    Total Mortgage/Rental Payments</h4>
                                 <div class="text-4xl font-headline font-black text-primary mb-8 tracking-tight" id="buy-total">
                                     ฿1,440,000</div>
                                 <ul class="space-y-6">
@@ -1230,18 +1198,12 @@
             const propertyValue = 4190000;
 
             // Calculations
-            const totalRent = monthlyPayment * 12 * years;
             const totalMortgage = monthlyPayment * 12 * years;
             
             // Determine recommendation
             const isBuyingBetter = totalMortgage >= propertyValue;
             
             // Update DOM
-            document.getElementById('rent-total').innerText = formatter.format(totalRent);
-            document.getElementById('rent-monthly').innerText = formatter.format(monthlyPayment);
-            document.getElementById('rent-years').innerText = `${years} Years`;
-            document.getElementById('rent-total-summary').innerText = formatter.format(totalRent);
-            
             document.getElementById('buy-total').innerText = formatter.format(totalMortgage);
             document.getElementById('mortgage-monthly').innerText = formatter.format(monthlyPayment);
             document.getElementById('mortgage-years').innerText = `${years} Years`;
@@ -1266,9 +1228,9 @@
             // Update verdict text
             const verdictText = document.getElementById('verdict-text');
             if (isBuyingBetter) {
-                verdictText.innerHTML = `"With your selected parameters, buying this home appears to be the better financial choice. After ${years} years of payments at ${formatter.format(monthlyPayment)} monthly, you'll have fully paid for a ${formatter.format(propertyValue)} property, building significant equity instead of paying rent indefinitely."`;
+                verdictText.innerHTML = `"With your selected parameters, buying this home appears to be the better financial choice. After ${years} years of payments at ${formatter.format(monthlyPayment)} monthly, you'll have fully paid for a ${formatter.format(propertyValue)} property, building significant equity."`;
             } else {
-                verdictText.innerHTML = `"Based on your parameters, renting this home may be more practical. After ${years} years of ${formatter.format(monthlyPayment)} monthly payments, you would only cover ${((totalMortgage / propertyValue) * 100).toFixed(1)}% of the property value, making renting a potentially better option to avoid overpaying."`;
+                verdictText.innerHTML = `"Based on your parameters, the total mortgage payments would only cover ${((totalMortgage / propertyValue) * 100).toFixed(1)}% of the property value. Consider if this aligns with your long-term financial goals."`;
             }
         }
 
