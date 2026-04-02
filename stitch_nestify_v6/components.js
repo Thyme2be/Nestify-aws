@@ -9,7 +9,10 @@ const PATHS = {
     login: '../nestify_login_screen/code.html',
     home: '../ai_matcher_updated_sidebar_icons/code.html',
     compare: '../portfolio_comparison_updated_sidebar_navigation/code.html',
-    status: '../acquisition_portal_focused_journey_view/code.html'
+    status: '../acquisition_portal_focused_journey_view/code.html',
+    privacy: '#',
+    terms: '#',
+    support: '#'
 };
 
 /**
@@ -67,4 +70,24 @@ function renderSidebar(activeId = '') {
             ${navHtml}
         </nav>
     </aside>`;
+}
+
+/**
+ * Renders the Standardized Footer
+ */
+function renderFooter() {
+    return `
+    <footer class="bg-white dark:bg-[#020d1d] py-12 px-12 border-t border-slate-200 dark:border-white/10 mt-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center w-full max-w-[1440px] mx-auto gap-6">
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <span class="font-headline font-bold text-primary dark:text-white">Nestify</span>
+                <p class="font-body text-xs tracking-wide uppercase text-slate-400">©2026 Nestify. All rights reserved.</p>
+            </div>
+            <div class="flex items-center gap-8">
+                <a class="font-body text-xs tracking-wide uppercase text-slate-400 hover:text-secondary transition-colors duration-200" href="${PATHS.privacy}">Privacy Policy</a>
+                <a class="font-body text-xs tracking-wide uppercase text-slate-400 hover:text-secondary transition-colors duration-200" href="${PATHS.terms}">Terms of Service</a>
+                <a class="font-body text-xs tracking-wide uppercase text-slate-400 hover:text-secondary transition-colors duration-200" href="${PATHS.support}">Support</a>
+            </div>
+        </div>
+    </footer>`;
 }

@@ -8,7 +8,7 @@
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>The Curated Architect | Smart Suggestion Engine</title>
+    <title>Nestify | Smart Suggestion Engine</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
@@ -136,19 +136,41 @@
 
         /* Tab functionality simulation */
         #tab-simulation:checked~#content-simulation {
-            display: block;
+            display: block !important;
         }
 
-        #tab-simulation:checked~#content-details {
-            display: none;
+        #tab-portal:checked~#content-portal {
+            display: block !important;
         }
 
         #tab-details:checked~#content-details {
-            display: block;
+            display: block !important;
         }
 
-        #tab-details:checked~#content-simulation {
-            display: none;
+        /* Hide logic */
+        #tab-details:checked~#content-simulation,
+        #tab-details:checked~#content-portal,
+        #tab-simulation:checked~#content-details,
+        #tab-simulation:checked~#content-portal,
+        #tab-portal:checked~#content-details,
+        #tab-portal:checked~#content-simulation {
+            display: none !important;
+        }
+
+        /* Active Tab Styling - Perfectly Matched to Image */
+        #tab-details:checked~div label[for="tab-details"] div,
+        #tab-simulation:checked~div label[for="tab-simulation"] div,
+        #tab-portal:checked~div label[for="tab-portal"] div {
+            color: #F36263;
+            background-color: rgba(243, 98, 99, 0.08);
+            /* Light pink/red background */
+            font-weight: 800;
+            border-bottom: 2px solid #F36263;
+            /* Salmon red bottom border */
+        }
+
+        #tab-portal:checked~div label[for="tab-portal"] {
+            display: block !important;
         }
 
         /* Custom scrollbar for thumbnails */
@@ -163,106 +185,74 @@
     </style>
     <!-- Top Navigation System (Injected via components.js) -->
     <div id="topbar-placeholder"></div>
-    
+
     <main class="flex min-h-screen pt-16">
         <!-- Sidebar Navigation System (Injected via components.js) -->
         <div id="sidebar-placeholder"></div>
-        
+
         <!-- Main Content Canvas -->
         <section class="flex-1 md:ml-64 px-8 py-12 bg-surface">
             <div class="max-w-7xl mx-auto">
                 <!-- Editorial Header -->
                 <header class="mb-12">
                     <span class="text-secondary font-label font-bold text-xs uppercase tracking-[0.2em] mb-2 block"
-                        style="">Exclusive Listing • Bangkok Riverside</span>
-                    <h1 class="text-primary font-headline font-extrabold text-5xl tracking-tight mb-4" style="">The
-                        Obsidian Penthouse</h1>
-                    <div class="flex items-center gap-4 text-on-surface-variant font-body">
-                        <span class="flex items-center gap-1" style=""><span class="material-symbols-outlined text-sm"
-                                data-icon="location_on" style="">location_on</span> Charoen Nakhon, Bangkok</span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
-                        <span class="font-bold text-primary" style="">฿45,000,000</span>
+                        style="">94% AI Match • Detached House • Pathum Thani</span>
+                    <h1 class="text-primary font-headline font-extrabold text-5xl tracking-tight mb-4" style="">Anasiri
+                        Krungthep - Pathumthani 2</h1>
+                    <div class="flex items-center justify-between gap-4 text-on-surface-variant font-body">
+                        <div class="flex items-center gap-4">
+                            <span class="flex items-center gap-1" style=""><span class="material-symbols-outlined text-sm"
+                                    data-icon="location_on" style="">location_on</span> Bangkhuwat, Mueang Pathum Thani</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+                            <span class="font-bold text-primary" style="">Starting from ฿4,190,000</span>
+                        </div>
+                        <button class="px-5 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 group" 
+                            title="Compare" data-main-compare="true">
+                            <span class="material-symbols-outlined text-lg group-hover:rotate-180 transition-transform duration-500">compare_arrows</span>
+                            Add to Compare
+                        </button>
                     </div>
                 </header>
                 <!-- Top Row: Hero Image and Sidebar -->
                 <div class="grid grid-cols-12 gap-8 items-start mb-12">
                     <!-- Left: Visuals -->
                     <div class="col-span-12 lg:col-span-7 space-y-4">
-                        <div class="relative group">
-                            <img alt="ultra-modern luxury penthouse interior with floor-to-ceiling windows overlooking a city river at twilight"
-                                class="w-full h-[500px] object-cover rounded-xl shadow-sm"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtfdtQfT8HBkDIkObTzPSFs9WEYjbPwB6sddozY0Vlt_k1Io1FJg2cYUJzYFqWCykCsKKXxSAp6SCeklVH5PbWqxKtHCPlXzpFLXkd-SEbm7XxCa6hBUM9dc7tAGVOfgG_qpSPd0PeWBMDfNgZmANEU2_LqZ2-T7ycXwNQcRzwhY4_L0rM6_F9UfhoXjcnyGvtra2tsBrjAlfVtX3nHESsfu_vgcqZeKHDfxf2JSRx4eOcjQWqBpAP739vfmMo67oucVeccu4d"
+                        <div class="relative group overflow-hidden rounded-xl">
+                            <img id="hero-image" alt="Anasiri Krungthep - Pathumthani 2 - Modern Japanese style house"
+                                class="w-full h-[500px] object-cover transition-all duration-500"
+                                src="https://www.sansiri.com/media/br0pqv2e/anasiri-krungthep-pathumthani2-cover-banner-desktop-1920x800-1.webp"
                                 style="">
                             <div class="absolute top-6 right-6 flex gap-2">
                                 <span
                                     class="bg-primary/80 backdrop-blur-md text-white px-4 py-2 rounded-full font-label text-xs font-bold flex items-center gap-2"
                                     style="">
                                     <span class="material-symbols-outlined text-sm" data-icon="photo_camera"
-                                        style="">photo_camera</span> 1/12
+                                        style="">photo_camera</span> 1/5
                                 </span>
                             </div>
                         </div>
-                        <!-- Horizontal Scrollable Gallery (thumbnails) -->
-                        <div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
-                            <img alt="Thumb 1"
-                                class="w-24 h-24 object-cover rounded-lg ring-2 ring-primary cursor-pointer shrink-0"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtfdtQfT8HBkDIkObTzPSFs9WEYjbPwB6sddozY0Vlt_k1Io1FJg2cYUJzYFqWCykCsKKXxSAp6SCeklVH5PbWqxKtHCPlXzpFLXkd-SEbm7XxCa6hBUM9dc7tAGVOfgG_qpSPd0PeWBMDfNgZmANEU2_LqZ2-T7ycXwNQcRzwhY4_L0rM6_F9UfhoXjcnyGvtra2tsBrjAlfVtX3nHESsfu_vgcqZeKHDfxf2JSRx4eOcjQWqBpAP739vfmMo67oucVeccu4d"
+                        <!-- Gallery Thumbnails -->
+                        <div class="grid grid-cols-4 gap-4" id="gallery-thumbs">
+                            <img alt="Exterior View 1"
+                                class="w-full h-24 object-cover rounded-lg cursor-pointer border-2 border-secondary hover:opacity-100 transition-all opacity-100"
+                                onclick="changeHero(this.src, this)"
+                                src="https://www.sansiri.com/media/br0pqv2e/anasiri-krungthep-pathumthani2-cover-banner-desktop-1920x800-1.webp"
                                 style="">
-                            <img alt="Thumb 2"
-                                class="w-24 h-24 object-cover rounded-lg opacity-70 hover:opacity-100 transition-opacity cursor-pointer shrink-0"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPCe8aHj4R6qs8MQJlskBBTb9I0UIfRFqQ_mrjisbEXEr-aCmV-SdVzJdtlAruq5cgJkUgDez7TPkv6WYDWhKQMQfYMkcRlN3VWZif33CK3X6-k21WtbDbYgs7Sz9Yyk_REzfBy2jHdG98Sv1jwZ3sTN5N1YK7LZN00MF8X1lYPYKYrADUtlfYDVWIAgQdZPhD9Aq8Gjc0U3e_elTPfZ3uSwUkXS2jVsD53LQcwxUxioKtPlWWotweERkZnqgK9eSgcAVMNE3f"
+                            <img alt="Facilities - Japanese Bridge"
+                                class="w-full h-24 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:opacity-100 transition-all opacity-60"
+                                onclick="changeHero(this.src, this)"
+                                src="https://www.sansiri.com/media/ri5lrcu4/anasiri-krungthep-pathumthani2-cover-banner-desktop-1920x800.webp"
                                 style="">
-                            <img alt="Thumb 3"
-                                class="w-24 h-24 object-cover rounded-lg opacity-70 hover:opacity-100 transition-opacity cursor-pointer shrink-0"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhqTiTqvQ9S38SiUr5D39f6Ejwpg3UbQLvdRNmnBL0rFGlPlH4EskERQjPL-bmiUftxSexhzH1EoiXjfXNQT14H02Efcb_iUjx5-8q-2LTNdYUjux6WFFBAlbqrwAsUMZXkSuMGxjA6jGjCu8nUsRcn_y-yXRyujwnGwIFvCAXW4qFZPPkUfoX7Gorvy_4yAQbup4oTsiQ9cXU3ZEHH4DSNQT4O7-R7BG7mW4_U90VgYFucww5Q3o_7HFOxR6EKo6FyBtyIbsd"
+                            <img alt="Exterior View 2"
+                                class="w-full h-24 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:opacity-100 transition-all opacity-60"
+                                onclick="changeHero(this.src, this)"
+                                src="https://www.sansiri.com/media/2i1jsbd4/anasiri-krungthep-pathumthani2-cover-banner-desktop-1920x800-2.webp"
                                 style="">
-                            <div class="w-24 h-24 bg-slate-200 rounded-lg flex items-center justify-center text-slate-500 font-bold shrink-0"
-                                style="">+9</div>
-                        </div>
-                        <!-- Comparison Tray -->
-                        <div
-                            class="bg-white p-4 rounded-xl border border-outline-variant/30 shadow-sm flex items-center gap-6 mt-4">
-                            <div class="flex-none pr-6 border-r border-outline-variant/20">
-                                <h5 class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1"
-                                    style="">Compare List</h5>
-                                <p class="text-xs font-bold text-primary" style="">2 Properties Selected</p>
-                            </div>
-                            <div class="flex flex-1 gap-4 overflow-x-auto no-scrollbar">
-                                <div
-                                    class="flex items-center gap-3 bg-surface-container-low/50 p-2 rounded-lg border border-outline-variant/20 flex-shrink-0">
-                                    <img alt="The Glass Pavilion" class="h-10 w-10 rounded-md object-cover"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPCe8aHj4R6qs8MQJlskBBTb9I0UIfRFqQ_mrjisbEXEr-aCmV-SdVzJdtlAruq5cgJkUgDez7TPkv6WYDWhKQMQfYMkcRlN3VWZif33CK3X6-k21WtbDbYgs7Sz9Yyk_REzfBy2jHdG98Sv1jwZ3sTN5N1YK7LZN00MF8X1lYPYKYrADUtlfYDVWIAgQdZPhD9Aq8Gjc0U3e_elTPfZ3uSwUkXS2jVsD53LQcwxUxioKtPlWWotweERkZnqgK9eSgcAVMNE3f"
-                                        style="">
-                                    <div class="hidden sm:block">
-                                        <p class="text-[11px] font-bold text-primary truncate max-w-[100px]" style="">
-                                            The Glass Pavilion</p>
-                                        <p class="text-[10px] text-on-surface-variant" style="">$4.25M</p>
-                                    </div>
-                                    <button class="text-outline hover:text-error transition-colors" style="">
-                                        <span class="material-symbols-outlined text-sm" style="">close</span>
-                                    </button>
-                                </div>
-                                <div
-                                    class="flex items-center gap-3 bg-surface-container-low/50 p-2 rounded-lg border border-outline-variant/20 flex-shrink-0">
-                                    <img alt="The Cedar Retreat" class="h-10 w-10 rounded-md object-cover"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhqTiTqvQ9S38SiUr5D39f6Ejwpg3UbQLvdRNmnBL0rFGlPlH4EskERQjPL-bmiUftxSexhzH1EoiXjfXNQT14H02Efcb_iUjx5-8q-2LTNdYUjux6WFFBAlbqrwAsUMZXkSuMGxjA6jGjCu8nUsRcn_y-yXRyujwnGwIFvCAXW4qFZPPkUfoX7Gorvy_4yAQbup4oTsiQ9cXU3ZEHH4DSNQT4O7-R7BG7mW4_U90VgYFucww5Q3o_7HFOxR6EKo6FyBtyIbsd"
-                                        style="">
-                                    <div class="hidden sm:block">
-                                        <p class="text-[11px] font-bold text-primary truncate max-w-[100px]" style="">
-                                            The Cedar Retreat</p>
-                                        <p class="text-[10px] text-on-surface-variant" style="">$2.1M</p>
-                                    </div>
-                                    <button class="text-outline hover:text-error transition-colors" style="">
-                                        <span class="material-symbols-outlined text-sm" style="">close</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <a href="../portfolio_comparison_updated_sidebar_navigation/code.html"
-                                class="bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-6 py-3 rounded-lg hover:brightness-110 transition-all flex items-center gap-2 flex-shrink-0 no-underline"
+                            <img alt="Clubhouse View"
+                                class="w-full h-24 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:opacity-100 transition-all opacity-60"
+                                onclick="changeHero(this.src, this)"
+                                src="https://www.sansiri.com/media/qz0liong/anasiri-krungthep-pathumthani2-cover-banner-desktop-1920x800-3.webp"
                                 style="">
-                                Compare Now
-                                <span class="material-symbols-outlined text-sm" style="">analytics</span>
-                            </a>
                         </div>
                     </div>
                     <!-- Right Side: Sidebar items -->
@@ -277,8 +267,7 @@
                                         <span class="material-symbols-outlined" data-icon="calendar_month"
                                             style="">calendar_month</span>
                                     </div>
-                                    <h4 class="font-headline text-lg font-bold text-primary" style="">Book a Personal
-                                        Tour</h4>
+                                    <h4 class="font-headline text-lg font-bold text-primary" style="">Book a Personal Tour</h4>
                                 </div>
                                 <span
                                     class="text-[10px] font-bold text-secondary-container bg-primary px-3 py-1 rounded-full uppercase tracking-widest"
@@ -292,34 +281,28 @@
                                         style="">F</span><span class="" style="">S</span><span class=""
                                         style="">S</span>
                                 </div>
-                                <div class="grid grid-cols-7 gap-3">
-                                    <div class="h-8 flex items-center justify-center text-xs text-outline/40" style="">
-                                        26</div>
-                                    <div class="h-8 flex items-center justify-center text-xs text-outline/40" style="">
-                                        27</div>
-                                    <div class="h-8 flex items-center justify-center text-xs text-outline/40" style="">
-                                        28</div>
-                                    <div class="h-8 flex items-center justify-center text-xs text-outline/40" style="">
-                                        29</div>
+                                <div class="grid grid-cols-7 gap-3" id="calendar-days">
+                                    <div class="h-8 flex items-center justify-center text-xs text-outline/40">26</div>
+                                    <div class="h-8 flex items-center justify-center text-xs text-outline/40">27</div>
+                                    <div class="h-8 flex items-center justify-center text-xs text-outline/40">28</div>
+                                    <div class="h-8 flex items-center justify-center text-xs text-outline/40">29</div>
                                     <div class="h-8 flex items-center justify-center text-xs font-bold text-primary hover:bg-surface-container-low rounded-full cursor-pointer transition-colors"
-                                        style="">30</div>
+                                        onclick="selectCalendarDay(30, this)">30</div>
                                     <div class="h-8 flex items-center justify-center text-xs font-bold text-primary hover:bg-surface-container-low rounded-full cursor-pointer transition-colors"
-                                        style="">31</div>
-                                    <div class="h-8 flex items-center justify-center text-xs font-bold bg-secondary text-white rounded-full shadow-md shadow-secondary/20 scale-110"
-                                        style="">01</div>
+                                        onclick="selectCalendarDay(31, this)">31</div>
+                                    <div class="h-8 flex items-center justify-center text-xs font-bold bg-secondary text-white rounded-full shadow-md shadow-secondary/20 scale-110 cursor-pointer"
+                                        onclick="selectCalendarDay(1, this)">01</div>
                                 </div>
                                 <div class="pt-4 space-y-3">
                                     <div
                                         class="flex items-center justify-between bg-surface-container-low/60 p-4 rounded-xl border border-outline-variant/20 group hover:border-secondary/40 transition-colors cursor-pointer">
                                         <div>
-                                            <p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1"
-                                                style="">Proposed Slot</p>
-                                            <div class="text-sm font-bold text-primary" style="">Friday, Nov 01 • 10:30
-                                                AM</div>
+                                            <p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1">Proposed Slot</p>
+                                            <div class="text-sm font-bold text-primary" id="proposed-slot">Friday, Nov 01 • 10:30 AM</div>
                                         </div>
                                         <span
                                             class="material-symbols-outlined text-secondary group-hover:scale-110 transition-transform"
-                                            data-icon="edit_calendar" style="">edit_calendar</span>
+                                            data-icon="edit_calendar">edit_calendar</span>
                                     </div>
                                     <button
                                         class="w-full bg-secondary-container text-primary font-bold py-4 rounded-xl text-sm hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg shadow-secondary-container/20"
@@ -335,43 +318,40 @@
                             class="bg-surface-container-low/30 p-6 rounded-2xl border border-outline-variant/20 space-y-6">
                             <div class="space-y-1">
                                 <h4 class="font-headline font-bold text-primary" style="">Choose Your Path</h4>
-                                <p class="text-xs text-on-surface-variant font-medium" style="">Continue with the
-                                    ownership option that fits your plan</p>
+                                <p class="text-xs text-on-surface-variant font-medium" style="">Select the ownership option that fits your financial plan</p>
                             </div>
                             <div class="grid grid-cols-1 gap-4">
                                 <button
                                     class="flex items-center justify-between py-4 px-5 rounded-xl bg-white border border-[#1A2B48]/20 hover:border-[#1A2B48] hover:bg-slate-50 transition-all group"
+                                    onclick="document.getElementById('tab-simulation').checked = true;"
                                     style="">
                                     <div class="flex items-center gap-4">
                                         <div
                                             class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-[#1A2B48] group-hover:bg-[#1A2B48]/10 transition-colors">
-                                            <span class="material-symbols-outlined" data-icon="key" style="">key</span>
+                                            <span class="material-symbols-outlined" data-icon="key">key</span>
                                         </div>
                                         <div class="text-left">
-                                            <p class="text-sm font-bold text-primary" style="">Rent This Home</p>
+                                            <p class="text-sm font-bold text-primary">Rent This Home</p>
                                         </div>
                                     </div>
                                     <span
-                                        class="material-symbols-outlined text-outline group-hover:text-primary transition-colors"
-                                        style="">chevron_right</span>
+                                        class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
                                 </button>
                                 <button
                                     class="flex items-center justify-between py-5 px-6 rounded-xl border-none transition-all group hover:brightness-105"
-                                    onclick="window.location.href='../acquisition_portal_focused_journey_view/code.html'"
+                                    onclick="document.getElementById('tab-simulation').checked = true;"
                                     style="background-color: rgb(255, 107, 107); box-shadow: rgba(255, 107, 107, 0.3) 0px 0px 20px;">
                                     <div class="flex items-center gap-4">
                                         <div
                                             class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center text-white">
-                                            <span class="material-symbols-outlined" data-icon="shopping_cart"
-                                                style="">shopping_cart</span>
+                                            <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
                                         </div>
                                         <div class="text-left">
-                                            <p class="text-sm font-extrabold text-white" style="">Buy This Home</p>
+                                            <p class="text-sm font-extrabold text-white">Buy This Home</p>
                                         </div>
                                     </div>
                                     <span
-                                        class="material-symbols-outlined text-white group-hover:translate-x-1 transition-transform"
-                                        style="">chevron_right</span>
+                                        class="material-symbols-outlined text-white group-hover:translate-x-1 transition-transform">chevron_right</span>
                                 </button>
                             </div>
                         </div>
@@ -379,24 +359,22 @@
                 </div>
                 <!-- New Full-Width Section for Tabbed Interface -->
                 <div class="w-full mt-12">
+                    <input type="radio" name="main-tabs" id="tab-details" class="hidden" checked>
+                    <input type="radio" name="main-tabs" id="tab-simulation" class="hidden">
+
                     <!-- Tabbed Navigation -->
                     <div class="flex border-b border-outline-variant/30 mb-8 overflow-x-auto">
-                        <label class="cursor-pointer" style="">
-                            <input checked="" class="hidden peer" id="tab-details" name="main-tabs" type="radio">
-                            <div class="px-6 py-4 text-sm font-bold uppercase tracking-widest text-[#F36263] peer-checked:text-[#F36263] transition-all relative bg-[#F36263]/5 font-extrabold"
+                        <label for="tab-details" class="cursor-pointer">
+                            <div class="px-6 py-4 text-sm font-bold uppercase tracking-widest text-on-surface-variant transition-all relative"
                                 style="transition: 0.3s;">
                                 Property Details
-                                <div
-                                    class="absolute bottom-0 left-0 w-full h-1 bg-[#F36263] rounded-t-full shadow-[0_-2px_8px_rgba(243,98,99,0.4)]">
-                                </div>
                             </div>
                         </label>
-                        <label class="cursor-pointer" style="">
-                            <input class="hidden peer" id="tab-simulation" name="main-tabs" type="radio">
-                            <div class="px-6 py-4 text-sm font-bold uppercase tracking-widest text-on-surface-variant peer-checked:text-primary peer-checked:border-b-2 peer-checked:border-primary transition-all flex items-center gap-2 hover:bg-surface-container-low transition-colors duration-300"
-                                style="">
-                                <span class="material-symbols-outlined text-lg" data-icon="auto_awesome"
-                                    style="">auto_awesome</span>
+                        <label for="tab-simulation" class="cursor-pointer">
+                            <div
+                                class="px-6 py-4 text-sm font-bold uppercase tracking-widest text-on-surface-variant transition-all relative flex items-center gap-2 hover:bg-surface-container-low transition-colors duration-300">
+                                <span class="material-symbols-outlined text-lg"
+                                    data-icon="auto_awesome">auto_awesome</span>
                                 Rent vs Buy
                             </div>
                         </label>
@@ -409,27 +387,27 @@
                                 <h3 class="font-headline font-bold text-lg text-primary mb-4 flex items-center gap-2"
                                     style="">
                                     <span class="material-symbols-outlined text-secondary" data-icon="architecture"
-                                        style="">architecture</span> Architecture &amp; Design
+                                        style="">architecture</span> Architecture & Design
                                 </h3>
                                 <ul class="space-y-3">
                                     <li class="flex justify-between items-center text-sm" style="">
                                         <span class="text-on-surface-variant" style="">Bedrooms</span>
-                                        <span class="font-bold text-primary" style="">5 Beds</span>
+                                        <span class="font-bold text-primary" style="">3 </span>
                                     </li>
                                     <li class="flex justify-between items-center text-sm" style="">
                                         <span class="text-on-surface-variant" style="">Bathrooms</span>
-                                        <span class="font-bold text-primary" style="">4 Baths</span>
+                                        <span class="font-bold text-primary" style="">3 </span>
                                     </li>
                                     <li class="flex justify-between items-center text-sm" style="">
                                         <span class="text-on-surface-variant" style="">Total Area</span>
-                                        <span class="font-bold text-primary" style="">4,500 sqft</span>
+                                        <span class="font-bold text-primary" style="">136 sqm.</span>
                                     </li>
                                     <li class="flex items-center gap-2 pt-2 border-t border-outline-variant/30 mt-2"
                                         style="">
-                                        <span class="material-symbols-outlined text-sm text-secondary"
-                                            data-icon="smart_home" style="">smart_home</span>
-                                        <span class="text-xs font-medium text-on-surface" style="">Integrated Smart Home
-                                            System</span>
+                                        <span class="material-symbols-outlined text-sm text-secondary" data-icon="park"
+                                            style="">park</span>
+                                        <span class="text-xs font-medium text-on-surface"
+                                            style="">Large Central Park</span>
                                     </li>
                                 </ul>
                             </div>
@@ -438,7 +416,7 @@
                                 <h3 class="font-headline font-bold text-lg text-primary mb-4 flex items-center gap-2"
                                     style="">
                                     <span class="material-symbols-outlined text-secondary" data-icon="map"
-                                        style="">map</span> Neighborhood Intel
+                                        style="">map</span> Location Intel
                                 </h3>
                                 <ul class="space-y-3">
                                     <li class="flex items-start gap-3" style="">
@@ -457,7 +435,18 @@
                                         <div>
                                             <p class="text-sm font-bold text-primary" style="">Top-Rated Int. Schools
                                             </p>
-                                            <p class="text-xs text-on-surface-variant" style="">Within 3km radius</p>
+                                            <span class="material-symbols-outlined text-secondary mt-0.5"
+                                                data-icon="commute" style="">commute</span>
+                                            <div>
+                                                <p class="text-sm font-bold text-primary" style="">15 mins to Don Mueang Airport</p>
+                                            </div>
+                                    </li>
+                                    <li class="flex items-start gap-3" style="">
+                                        <span class="material-symbols-outlined text-secondary mt-0.5" data-icon="train"
+                                            style="">train</span>
+                                        <div>
+                                            <p class="text-sm font-bold text-primary" style="">Quick access to Udon
+                                                Ratthaya Expwy</p>
                                         </div>
                                     </li>
                                     <li class="flex items-start gap-3" style="">
@@ -515,10 +504,8 @@
                                     class="material-symbols-outlined text-secondary-container bg-primary p-2 rounded-lg text-2xl"
                                     data-icon="auto_awesome" style="">auto_awesome</span>
                                 <div>
-                                    <h3 class="font-headline font-bold text-2xl text-primary" style="">AI Lifestyle
-                                        Match</h3>
-                                    <p class="text-on-surface-variant text-sm font-medium" style="">Personalized
-                                        insights based on your mobility profile</p>
+                                    <h3 class="font-headline font-bold text-2xl text-primary" style="">AI Lifestyle Match</h3>
+                                    <p class="text-on-surface-variant text-sm font-medium" style="">Personalized insights based on your mobility profile</p>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -598,8 +585,7 @@
                         </div>
                         <!-- Your Financial Health Check -->
                         <div class="bg-surface-container-low p-8 rounded-xl mt-8">
-                            <h3 class="font-headline text-xl font-bold mb-8 text-primary" style="">Your Financial Health
-                                Check</h3>
+                            <h3 class="font-headline text-xl font-bold mb-8 text-primary" style="">Your Financial Health Check</h3>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div
                                     class="bg-surface-container-lowest p-6 rounded-xl flex items-center justify-between shadow-sm">
@@ -609,9 +595,8 @@
                                             <span class="material-symbols-outlined" style="">payments</span>
                                         </div>
                                         <div>
-                                            <p class="text-xs text-slate-400 font-label uppercase" style="">Annual
-                                                Income</p>
-                                            <p class="text-xl font-bold font-headline" style="">$215k</p>
+                                            <p class="text-xs text-slate-400 font-label uppercase" style="">Annual Income</p>
+                                            <p class="text-xl font-bold font-headline" style="">฿5,250,000</p>
                                         </div>
                                     </div>
                                     <span
@@ -626,9 +611,8 @@
                                             <span class="material-symbols-outlined" style="">credit_card_off</span>
                                         </div>
                                         <div>
-                                            <p class="text-xs text-slate-400 font-label uppercase" style="">Monthly Debt
-                                            </p>
-                                            <p class="text-xl font-bold font-headline" style="">$1,250</p>
+                                            <p class="text-xs text-slate-400 font-label uppercase" style="">Monthly Debt Obligation</p>
+                                            <p class="text-xl font-bold font-headline" style="">฿32,500</p>
                                         </div>
                                     </div>
                                     <div class="text-right">
@@ -927,42 +911,200 @@
                             </div>
                         </div>
                     </div>
-                    <!-- AI Simulation Tab Content -->
-                    <div class="hidden space-y-8" id="content-simulation">
-                        <div class="bg-white p-8 rounded-xl border border-outline-variant/30 shadow-sm">
-                            <div
-                                class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+                    <!-- AI Simulation Tab Content (Full Restoration) -->
+                    <div class="hidden space-y-12" id="content-simulation">
+                        <!-- 1. Simulation Parameters -->
+                        <div class="bg-white p-10 rounded-2xl border border-outline-variant/20 shadow-sm">
+                            <div class="flex items-center justify-between mb-10">
                                 <div>
-                                    <h3 class="font-headline font-bold text-2xl text-primary" style="">Rent vs. Buy
-                                        Simulation</h3>
-                                    <p class="text-on-surface-variant text-sm mt-1" style="">AI-powered long-term
-                                        financial projection</p>
+                                    <h3 class="font-headline font-extrabold text-2xl text-primary mb-2">Simulation
+                                        Parameters</h3>
+                                    <p class="text-on-surface-variant text-sm font-medium">Adjust your horizon to see
+                                        long-term financial impact.</p>
                                 </div>
-                                <div class="bg-green-100 text-green-800 px-4 py-2 rounded-lg flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-lg" data-icon="recommend"
-                                        style="">recommend</span>
-                                    <span class="text-xs font-bold uppercase tracking-widest" style="">AI Recommended:
-                                        Buy</span>
+                                <div
+                                    class="bg-surface-container-low px-6 py-3 rounded-xl border border-outline-variant/10 flex items-center gap-6">
+                                    <span
+                                        class="text-xs font-black uppercase text-secondary tracking-widest">Timeframe</span>
+                                    <span class="font-headline font-black text-xl text-primary">10 Years</span>
                                 </div>
                             </div>
-                            <div class="mb-12 p-6 bg-surface-container-low rounded-xl">
-                                <label class="block text-sm font-bold text-primary mb-4 uppercase tracking-widest"
-                                    style="">Planned Duration of Residency</label>
-                                <div class="flex items-center gap-6">
-                                    <input
-                                        class="flex-1 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer accent-primary"
-                                        max="30" min="1" type="range" value="10">
-                                    <div class="w-24 px-4 py-2 bg-white border border-outline-variant/30 rounded-lg text-center font-bold text-primary"
-                                        style="">
-                                        10 Years
+                            <div class="relative w-full h-12 flex items-center group">
+                                <!-- Real Range Input -->
+                                <input type="range" min="1" max="30" value="10" step="1" 
+                                    class="absolute w-full h-2 bg-surface-container-highest rounded-full appearance-none cursor-pointer z-20 opacity-0"
+                                    id="sim-slider" oninput="updateSimulation(this.value)">
+                                
+                                <!-- Custom Styled Track -->
+                                <div class="absolute w-full h-2 bg-surface-container-highest rounded-full z-0"></div>
+                                <div class="absolute h-2 bg-secondary-container rounded-full shadow-[0_0_10px_rgba(0,204,249,0.3)] z-10"
+                                     id="sim-track" style="width: 32%"></div>
+                                <!-- Custom Handle -->
+                                <div class="absolute -translate-x-1/2 w-7 h-7 bg-white border-[6px] border-secondary-container rounded-full shadow-xl pointer-events-none z-30 transition-transform group-hover:scale-110"
+                                     id="sim-handle" style="left: 32.5%"></div>
+                            </div>
+                                <div
+                                    class="absolute w-[calc(100%-16px)] flex justify-between top-10 px-0.5 text-[10px] font-black text-slate-400 uppercase tracking-tighter">
+                                    <span>1 Year</span>
+                                    <span>5 Years</span>
+                                    <span>10 Years</span>
+                                    <span>15 Years</span>
+                                    <span>20 Years</span>
+                                    <span>30 Years</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Comparison Cards -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Rental Model -->
+                            <div
+                                class="bg-white p-10 rounded-2xl border border-outline-variant/20 shadow-sm relative overflow-hidden group hover:border-outline-variant/40 transition-colors">
+                                <div class="flex items-center justify-between mb-10">
+                                    <div
+                                        class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500">
+                                        <span class="material-symbols-outlined text-2xl">key</span>
+                                    </div>
+                                    <span
+                                        class="text-[10px] font-black uppercase tracking-[0.2em] bg-slate-100 px-4 py-1.5 rounded-full text-slate-500">Rent This Home</span>
+                                </div>
+                                <h4 class="font-label text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    Total Rental Expense</h4>
+                                <div class="text-4xl font-headline font-black text-primary mb-8 tracking-tight" id="rent-total">
+                                    ฿2,250,000</div>
+                                <ul class="space-y-6">
+                                    <li
+                                        class="flex justify-between items-center text-sm py-4 border-b border-surface-container-low">
+                                        <span class="text-on-surface-variant font-medium">Monthly Rent (Avg)</span>
+                                        <span class="font-bold text-primary">฿17,500</span>
+                                    </li>
+                                    <li
+                                        class="flex justify-between items-center text-sm py-4 border-b border-surface-container-low">
+                                        <span class="text-on-surface-variant font-medium">Rental Inflation</span>
+                                        <span class="font-bold text-primary">3.5% p.a.</span>
+                                    </li>
+                                    <li class="flex justify-between items-center text-sm py-4">
+                                        <span class="text-on-surface-variant font-medium">Net Equity</span>
+                                        <span class="font-bold text-error">฿0.00</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Ownership Model -->
+                            <div
+                                class="bg-[#f0fff9] p-10 rounded-2xl border-2 border-[#00ccf9]/20 shadow-xl shadow-[#00ccf9]/5 relative overflow-hidden group">
+                                <div class="absolute top-0 right-0">
+                                    <div
+                                        class="bg-[#00ccf9] text-[#031632] text-[10px] font-black uppercase tracking-[0.2em] px-6 py-2.5 rounded-bl-2xl flex items-center gap-2 shadow-sm">
+                                        <span class="material-symbols-outlined text-sm"
+                                            style='font-variation-settings: "FILL" 1;'>auto_awesome</span>
+                                        AI Recommended
                                     </div>
                                 </div>
-                                <p class="text-xs text-on-surface-variant mt-4" style="">Calculations adjusted for
-                                    market volatility and projected 4.2% annual growth in the riverside district.</p>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="relative p-8 rounded-2xl border-2 border-secondary/30 bg-secondary/5">
+                                <div class="flex items-center justify-between mb-10">
+                                    <div
+                                        class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center text-secondary">
+                                        <span class="material-symbols-outlined text-2xl">home</span>
+                                    </div>
+                                    <span
+                                        class="text-[10px] font-black uppercase tracking-[0.2em] bg-[#00ccf9]/10 px-4 py-1.5 rounded-full text-secondary">Buy This Home</span>
                                 </div>
+                                <h4 class="font-label text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">
+                                    Net Cost of Ownership</h4>
+                                <div class="text-4xl font-headline font-black text-primary mb-8 tracking-tight" id="buy-total">
+                                    ฿1,720,000</div>
+                                <ul class="space-y-6">
+                                    <li
+                                        class="flex justify-between items-center text-sm py-4 border-b border-[#00ccf9]/10">
+                                        <span class="text-on-surface-variant font-medium">Mortgage Payment</span>
+                                        <span class="font-bold text-primary">฿13,200</span>
+                                    </li>
+                                    <li
+                                        class="flex justify-between items-center text-sm py-4 border-b border-[#00ccf9]/10">
+                                        <span class="text-on-surface-variant font-medium">Equity Growth Est.</span>
+                                        <span class="font-bold text-secondary">5.2% p.a.</span>
+                                    </li>
+                                    <li class="flex justify-between items-center text-sm py-4">
+                                        <span class="text-on-surface-variant font-medium">Projected Savings</span>
+                                        <span class="font-black text-[#00a884] text-lg" id="sim-savings">฿530,000</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 3. The Architect's Verdict -->
+                        <div class="p-8 bg-primary text-white rounded-2xl relative overflow-hidden shadow-lg">
+                            <div class="absolute top-0 right-0 p-8 opacity-10">
+                                <span class="material-symbols-outlined text-[100px]">format_quote</span>
+                            </div>
+                            <div class="relative z-10 flex items-start gap-6">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-secondary-container text-primary flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined">verified</span>
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-headline font-black uppercase tracking-[0.2em] text-xs mb-3 text-secondary-container">
+                                        The Architect's Verdict</h4>
+                                    <p class="text-xl font-medium leading-relaxed max-w-4xl" id="verdict-text">
+                                        "Buying Anasiri KTP 2 would save you <span
+                                            class="text-secondary-container font-black">฿530,000</span> over <span id="verdict-years">10</span> years.
+                                        The Japanese-inspired planning and Pathum Thani growth corridor ensure this
+                                        asset remains both a serene home and a solid financial anchor."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acquisition Portal Tab Content Removed -->
+
+                </div>
+            </div>
+            
+            <!-- Recommended Properties for Comparison -->
+            <div class="max-w-7xl mx-auto mt-24 border-t border-outline-variant/20 pt-16">
+                <div class="flex items-end justify-between mb-10">
+                    <div>
+                        <h2 class="font-headline text-3xl font-black text-primary mb-2">Recommended for You</h2>
+                        <p class="text-on-surface-variant font-medium">Similar projects in this growth corridor worth comparing.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Siri Place Ratchapruek - 345 -->
+                    <div class="bg-white rounded-2xl border border-outline-variant/20 overflow-hidden group hover:shadow-xl transition-all h-full flex flex-col">
+                        <div class="relative h-48">
+                            <img src="https://www.sansiri.com/media/0p3j5q2e/siriplace-ratchapruek-345-cover-banner-desktop-1920x800.webp" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]">88% Match</div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col">
+                            <p class="text-[10px] font-black text-secondary uppercase mb-1">Townhome</p>
+                            <h4 class="font-bold text-primary font-headline text-lg mb-1">Siri Place Ratchapruek - 345</h4>
+                            <p class="text-xs text-on-surface-variant mb-4">Mueang Pathum Thani, Pathum Thani</p>
+                            <p class="text-xl font-black text-primary mb-6">฿2,990,000+</p>
+                            <div class="flex gap-2 mt-auto">
+                                <a href="#" class="flex-1 py-2.5 border border-primary/20 hover:bg-primary/5 rounded-xl text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit">Details</a>
+                                <button class="px-4 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center" 
+                                    title="Compare"><span class="material-symbols-outlined text-base">compare_arrows</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Setthasiri Don Mueang -->
+                    <div class="bg-white rounded-2xl border border-outline-variant/20 overflow-hidden group hover:shadow-xl transition-all h-full flex flex-col">
+                        <div class="relative h-48">
+                            <img src="https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/setthasiri-don-mueang/img/housetype/setthasiri-donmueang-single-house-plan-monro.webp" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute bottom-2 right-2 glass-panel px-2 py-0.5 rounded-full text-primary font-bold text-[10px]">75% Match</div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col">
+                            <p class="text-[10px] font-black text-secondary uppercase mb-1">Detached House</p>
+                            <h4 class="font-bold text-primary font-headline text-lg mb-1">Setthasiri Don Mueang</h4>
+                            <p class="text-xs text-on-surface-variant mb-4">Don Mueang, Bangkok</p>
+                            <p class="text-xl font-black text-primary mb-6">฿12,990,000+</p>
+                            <div class="flex gap-2 mt-auto">
+                                <a href="#" class="flex-1 py-2.5 border border-primary/20 hover:bg-primary/5 rounded-xl text-xs font-bold transition-all flex items-center justify-center no-underline text-inherit">Details</a>
+                                <button class="px-4 py-2 border border-primary/20 hover:bg-primary hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center" 
+                                    title="Compare"><span class="material-symbols-outlined text-base">compare_arrows</span></button>
                             </div>
                         </div>
                     </div>
@@ -970,12 +1112,219 @@
             </div>
         </section>
     </main>
+    
+    <!-- Floating Comparison Tray -->
+    <div class="fixed bottom-6 right-6 z-[100] hidden" id="comparison-tray">
+        <div class="bg-[#031632] text-white p-4 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/10 flex flex-col gap-3 w-80">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3 cursor-pointer"
+                onclick="document.getElementById('tray-content').classList.toggle('hidden');this.querySelector('.material-symbols-outlined').textContent=document.getElementById('tray-content').classList.contains('hidden')?'open_in_full':'close_fullscreen'">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    <span class="text-[10px] text-secondary font-black uppercase tracking-[0.2em]" id="tray-count">0 Properties Selected</span>
+                </div>
+                <button class="text-white/40 hover:text-white transition-colors"><span class="material-symbols-outlined text-sm">close_fullscreen</span></button>
+            </div>
+            <div id="tray-content" class="flex flex-col gap-3">
+                <div id="tray-items" class="flex flex-col gap-3"></div>
+                <a href="../portfolio_comparison_updated_sidebar_navigation/code.html"
+                    class="w-full py-3 bg-secondary hover:brightness-110 text-primary rounded-xl font-black text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-lg group no-underline">
+                    Compare Now 
+                    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">analytics</span>
+                </a>
+            </div>
+        </div>
+    </div>
     <!-- Injection Script -->
     <script src="../components.js"></script>
     <script>
+        // Image Gallery Swapper
+        function changeHero(src, el) {
+            const hero = document.getElementById('hero-image');
+            if (!hero) return;
+
+            // Fade out
+            hero.style.opacity = '0.4';
+
+            setTimeout(() => {
+                hero.src = src;
+                hero.style.opacity = '1';
+
+                // Update thumbnail active states
+                const thumbs = document.querySelectorAll('#gallery-thumbs img');
+                thumbs.forEach(thumb => {
+                    thumb.classList.replace('border-secondary', 'border-transparent');
+                    thumb.classList.replace('opacity-100', 'opacity-60');
+                });
+
+                el.classList.replace('border-transparent', 'border-secondary');
+                el.classList.replace('opacity-60', 'opacity-100');
+            }, 150);
+        }
+
+        // Initialize topbar/sidebar normally
         document.getElementById('topbar-placeholder').innerHTML = renderTopbar();
-        document.getElementById('sidebar-placeholder').innerHTML = renderSidebar('currentPageId');
+        document.getElementById('sidebar-placeholder').innerHTML = renderSidebar('homes');
+
+        // --- NEW ENHANCEMENTS ---
+
+        // 1. Calendar Selection Logic
+        function selectCalendarDay(day, el) {
+            // Update active state in UI
+            const allDays = document.querySelectorAll('#calendar-days div');
+            allDays.forEach(d => {
+                d.className = "h-8 flex items-center justify-center text-xs font-bold text-primary hover:bg-surface-container-low rounded-full cursor-pointer transition-colors";
+                if (d.innerText.includes('26') || d.innerText.includes('27') || d.innerText.includes('28') || d.innerText.includes('29')) {
+                    d.className = "h-8 flex items-center justify-center text-xs text-outline/40";
+                }
+            });
+
+            // Set selected style
+            el.className = "h-8 flex items-center justify-center text-xs font-bold bg-secondary text-white rounded-full shadow-md shadow-secondary/20 scale-110 cursor-pointer";
+            
+            // Update slot text
+            const dayNames = {30: "Wednesday", 31: "Thursday", 1: "Friday"};
+            const dayName = dayNames[day];
+            const monthName = "Nov";
+            document.getElementById('proposed-slot').innerText = `${dayName}, ${monthName} ${String(day).padStart(2, '0')} • 10:30 AM`;
+        }
+
+        // 2. Simulation Logic
+        const formatter = new Intl.NumberFormat('th-TH', {
+            style: 'currency',
+            currency: 'THB',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        });
+
+        function updateSimulation(years) {
+            const y = parseInt(years);
+            
+            // Update UI elements
+            document.querySelector('.text-primary.font-black.text-xl').innerText = `${y} Years`;
+            document.getElementById('verdict-years').innerText = y;
+            
+            // Update Slider Track/Handle position
+            const percent = ((y - 1) / 29) * 100;
+            document.getElementById('sim-track').style.width = `${percent}%`;
+            document.getElementById('sim-handle').style.left = `${percent}%`;
+
+            // math logic (simplified)
+            const baseRent = 17500;
+            const rentInflation = 0.035;
+            const baseMortgage = 13200;
+            const propertyValue = 4190000;
+            const appreciation = 0.052;
+
+            // Rental Calculation (Compounded Inflation)
+            let totalRent = 0;
+            for(let i=0; i<y; i++) {
+                totalRent += baseRent * 12 * Math.pow(1 + rentInflation, i);
+            }
+
+            // Ownership Calculation
+            const totalMortgage = baseMortgage * 12 * y;
+            const futureValue = propertyValue * Math.pow(1 + appreciation, y);
+            const equity = futureValue - propertyValue; 
+            const netOwnership = totalMortgage - (equity * 0.4); // simplified net cost accounting for equity
+
+            const savings = totalRent - netOwnership;
+
+            // Update DOM
+            document.getElementById('rent-total').innerText = formatter.format(totalRent);
+            document.getElementById('buy-total').innerText = formatter.format(netOwnership);
+            document.getElementById('sim-savings').innerText = formatter.format(savings);
+            
+            // Update verdict text highlight
+            const verdictText = document.getElementById('verdict-text');
+            const verdictHighlight = verdictText.querySelector('span.text-secondary-container');
+            
+            if (verdictHighlight) {
+                verdictHighlight.innerText = formatter.format(savings);
+            }
+            
+            // Reverted verdict sentence to English but kept context
+            verdictText.innerHTML = `"Buying Anasiri KTP 2 would save you <span class="text-secondary-container font-black">${formatter.format(savings)}</span> over <span id="verdict-years">${y}</span> years. The Japanese-inspired planning and Pathum Thani growth corridor ensure this asset remains both a serene home and a solid financial anchor."`;
+        }
+
+        // Initialize simulation at 10 years
+        updateSimulation(10);
+
+        // --- COMPARISON SYSTEM ---
+        const compareItems = new Map();
+        const tray = document.getElementById('comparison-tray');
+        const trayItems = document.getElementById('tray-items');
+        const trayCount = document.getElementById('tray-count');
+
+        function updateTray() {
+            trayItems.innerHTML = '';
+            compareItems.forEach((prop, name) => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center gap-3 bg-white/5 p-2 rounded-xl border border-white/5';
+                item.innerHTML = `
+                    <div class="h-10 w-10 rounded-lg overflow-hidden border border-white/10 shrink-0">
+                        <img alt="${name}" class="w-full h-full object-cover" src="${prop.img}" />
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] font-bold truncate text-white">${name}</p>
+                        <p class="text-[9px] font-black text-secondary/70 uppercase tracking-tighter">${prop.price}</p>
+                    </div>
+                    <button class="h-6 w-6 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors" onclick="removeCompare('${name.replace(/'/g, "\\'")}')">
+                        <span class="material-symbols-outlined text-xs text-white/40">close</span>
+                    </button>`;
+                trayItems.appendChild(item);
+            });
+            trayCount.textContent = `${compareItems.size} ${compareItems.size === 1 ? 'Property' : 'Properties'} Selected`;
+            tray.classList.toggle('hidden', compareItems.size === 0);
+        }
+
+        function removeCompare(name) {
+            compareItems.delete(name);
+            document.querySelectorAll('[title="Compare"]').forEach(btn => {
+                if (btn.dataset.compareName === name) {
+                    btn.classList.remove('bg-primary', 'text-white', 'border-primary');
+                    btn.classList.add('border-primary/20');
+                    btn.innerHTML = '<span class="material-symbols-outlined text-base">compare_arrows</span>' + (btn.dataset.mainCompare ? ' Add to Compare' : '');
+                }
+            });
+            updateTray();
+        }
+
+        document.querySelectorAll('[title="Compare"]').forEach(btn => {
+            let name, img, price;
+            
+            if (btn.dataset.mainCompare) {
+                name = "Anasiri Krungthep - Pathumthani 2";
+                img = "https://www.sansiri.com/media/br0pqv2e/anasiri-krungthep-pathumthani2-cover-banner-desktop-1920x800-1.webp";
+                price = "฿4.19M";
+            } else {
+                const card = btn.closest('.group');
+                name = card.querySelector('h4').textContent.trim();
+                img = card.querySelector('img').src;
+                price = card.querySelector('[class*="font-black"]').textContent.trim();
+            }
+
+            btn.dataset.compareName = name;
+
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (compareItems.has(name)) {
+                    compareItems.delete(name);
+                    btn.classList.remove('bg-primary', 'text-white', 'border-primary');
+                    btn.classList.add('border-primary/20');
+                    btn.innerHTML = '<span class="material-symbols-outlined text-base">compare_arrows</span>' + (btn.dataset.mainCompare ? ' Add to Compare' : '');
+                } else {
+                    if (compareItems.size >= 2) {
+                        alert("Max 2 properties for comparison.");
+                        return;
+                    }
+                    compareItems.set(name, { img, price });
+                    btn.classList.add('bg-primary', 'text-white', 'border-primary');
+                    btn.classList.remove('border-primary/20');
+                    btn.innerHTML = '<span class="material-symbols-outlined text-base">check</span> Added';
+                }
+                updateTray();
+            });
+        });
     </script>
 </body>
-
 </html>
