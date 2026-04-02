@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Purchase Journey | The Curated Architect</title>
+  <title>Purchase Journey | Nestify</title>
   <!-- Material Symbols -->
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -109,7 +109,7 @@
           <h2 class="text-primary font-headline text-4xl md:text-5xl font-extrabold tracking-tight" style="">Acquisition
             Portal</h2>
           <p class="text-on-surface-variant max-w-xl" style="">Finalizing your purchase of the <span
-              class="text-primary font-bold" style="">Brutalist Glass Villa</span>. Your AI Concierge has
+              class="text-primary font-bold" style="">Brutalist Glass Villa</span>. Your Nestify AI Concierge has
             updated your
             closing roadmap.</p>
         </div>
@@ -133,7 +133,7 @@
                   <!-- Active Progress Bar -->
                   <div id="timeline-bar"
                     class="absolute top-5 left-[10%] h-[2px] bg-on-tertiary-container transition-all duration-1000 z-0"
-                    style="width:30%">
+                    style="width:20%">
                   </div>
 
                   <!-- Step 1: Reservation -->
@@ -158,8 +158,8 @@
                     </div>
                     <div class="space-y-0.5">
                       <p class="font-bold text-[11px] md:text-xs text-primary" style="">Docs Upload</p>
-                      <p id="step2-status" class="text-[9px] text-on-tertiary-container uppercase font-bold" style="">In
-                        Progress</p>
+                      <p id="step2-status" class="text-[9px] text-on-tertiary-container uppercase font-bold" style="">
+                        Pending</p>
                     </div>
                   </div>
 
@@ -240,7 +240,7 @@
                     </div>
                     <div>
                       <p class="text-sm font-bold text-primary">Bank Statements (3mo)</p>
-                      <p class="text-xs text-slate-400">Verified by AI Concierge</p>
+                      <p class="text-xs text-slate-400">Verified by Nestify AI Assistant</p>
                     </div>
                   </div>
                   <div class="flex items-center gap-2">
@@ -379,7 +379,7 @@
                 var i = document.getElementById(iconId);
                 if (i) i.classList.add('animate-pulse');
                 var s = document.getElementById(statusId);
-                if (s) { s.className = 'text-[9px] text-on-tertiary-container uppercase font-bold'; s.textContent = 'In Progress'; }
+                if (s) { s.className = 'text-[9px] text-on-tertiary-container uppercase font-bold'; s.textContent = 'Pending'; }
                 var l = document.getElementById(labelId);
                 if (l) l.className = 'font-bold text-[11px] md:text-xs text-primary transition-colors duration-500';
               }
@@ -525,7 +525,7 @@
               setDocState(3, 'pending');
               setDocState(4, 'locked');
               updateCounter(1, 4);
-              updateProgress(15);
+              updateProgress(25);
 
               // ============ DOC 2: Proof of Employment ============
               // T+2s: Upload starts
@@ -551,7 +551,6 @@
               setTimeout(function () {
                 setDocVerified(2, 'Verified by KYC & HR');
                 updateCounter(2, 4);
-                updateProgress(22);
               }, t);
 
               // ============ DOC 3: Loan Pre-Approval (REJECTED → RE-UPLOAD) ============
@@ -598,9 +597,9 @@
               // T+23s: ✔ VERIFIED → Unlock Doc4
               t += 2000;
               setTimeout(function () {
-                setDocVerified(3, 'Verified by AI Concierge');
+                setDocVerified(3, 'Verified by Nestify AI Assistant');
                 updateCounter(3, 4);
-                updateProgress(30);
+                updateProgress(25);
                 // Unlock Doc4
                 setDoc4Active();
               }, t);
@@ -629,8 +628,9 @@
               // T+31.5s: ✔ VERIFIED — ALL 4 DOCS COMPLETE!
               t += 2000;
               setTimeout(function () {
-                setDocVerified(4, 'Verified by AI Concierge');
+                setDocVerified(4, 'Verified by Nestify AI Assistant');
                 updateCounter(4, 4);
+                updateProgress(44);
 
                 // Update header
                 var btn = document.getElementById('upload-missing-btn');
@@ -646,7 +646,7 @@
               setTimeout(function () {
                 setStepCompleted('step2-circle', 'step2-icon', 'step2-status', null);
                 setStepInProgress('step3-circle', 'step3-icon', 'step3-status', 'step3-label');
-                updateProgress(42);
+                updateProgress(50);
               }, t);
 
               // T+37.5s: Step 3 completes → Step 4 starts
@@ -654,7 +654,7 @@
               setTimeout(function () {
                 setStepCompleted('step3-circle', 'step3-icon', 'step3-status', 'step3-label');
                 setStepInProgress('step4-circle', 'step4-icon', 'step4-status', 'step4-label');
-                updateProgress(62);
+                updateProgress(75);
               }, t);
 
               // T+41.5s: Step 4 completes → Step 5 starts
@@ -662,7 +662,7 @@
               setTimeout(function () {
                 setStepCompleted('step4-circle', 'step4-icon', 'step4-status', 'step4-label');
                 setStepInProgress('step5-circle', 'step5-icon', 'step5-status', 'step5-label');
-                updateProgress(82);
+                updateProgress(100);
               }, t);
 
               // T+45.5s: ALL COMPLETE 🎉

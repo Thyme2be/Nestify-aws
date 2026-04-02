@@ -5,8 +5,8 @@
 
 // Configuration for Paths (Relative to the HTML files in root)
 const PATHS = {
-    logo: '../../nestify_logo-removebg-preview.png',
-    login: 'nestify_login_screen.html',
+    logo: 'nestify_logo-removebg-preview.png',
+    login: 'index.html',
     home: 'ai_matcher_updated_sidebar_icons.html',
     compare: 'portfolio_comparison_updated_sidebar_navigation.html',
     status: 'acquisition_portal_focused_journey_view.html',
