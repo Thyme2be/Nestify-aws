@@ -381,6 +381,84 @@
         PATHS.login,
       );
 
+      function calculateAge(dobString) {
+        if (!dobString) return null;
+        const dob = new Date(dobString);
+        const today = new Date();
+        let age = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+          age--;
+        }
+        return age;
+      }
+
+      function getLocation(addressStr) {
+        if (!addressStr) return "general market";
+        const address = addressStr.toLowerCase();
+        if (address.includes("bangkok") || address.includes("cbd")) return "Bangkok's CBD";
+        if (address.includes("sukhumvit")) return "Sukhumvit area";
+        if (address.includes("silom")) return "Silom district";
+        if (address.includes("ploenchit")) return "Ploenchit area";
+        return "Bangkok's market";
+      }
+
+      function getDemographicProfile(occupation, age) {
+        const occ = occupation.toLowerCase();
+        
+        // Determine demographic type based on occupation keywords
+        if (occ.match(/executive|ceo|director|manager|director/i)) {
+          return "Strategic Executive";
+        } else if (occ.match(/engineer|developer|architect|specialist/i)) {
+          return "Tech Professional";
+        } else if (occ.match(/accountant|finance|banker|analyst/i)) {
+          return "Financial Expert";
+        } else if (occ.match(/consultant|advisor|strategist/i)) {
+          return "Strategic Advisor";
+        } else if (occ.match(/business|entrepreneur|owner/i)) {
+          return "Business Owner";
+        } else if (occ.match(/marketing|sales|business/i)) {
+          return "Market strategist";
+        }
+        return "Professional";
+      }
+
+      function getEquityCycle(age, occupation) {
+        const occ = occupation.toLowerCase();
+        if (!age) return "7-year";
+        
+        if (age < 30) return "5-year";
+        if (age < 40) return "7-year";
+        if (age < 50) return "8-year";
+        return "10-year";
+      }
+
+      function getPropertyTier(age, occupation) {
+        const occ = occupation.toLowerCase();
+        if (occ.match(/executive|ceo|director|c-level/i) || age > 45) {
+          return "premium";
+        } else if (occ.match(/engineer|manager|senior/i) || age > 35) {
+          return "mid-premium";
+        }
+        return "standard";
+      }
+
+      function generateDynamicInsights(name, phone, dob, occupation, address) {
+        const age = calculateAge(dob);
+        const location = getLocation(address);
+        const demographic = getDemographicProfile(occupation, age);
+        const equityCycle = getEquityCycle(age, occupation);
+        const tier = getPropertyTier(age, occupation);
+        
+        const insights = [
+          `• Your profile aligns with the <strong class="text-secondary">${demographic}</strong> demographic in ${location}.`,
+          `• Based on your professional tier, a <strong class="text-secondary">${equityCycle} equity cycle</strong> is recommended for peak yield.`,
+          `• You've unlocked <strong class="text-secondary">Verified Identity</strong> priority status for ${tier} property viewings.`,
+        ];
+        
+        return insights;
+      }
+
       function updatePersonalAI() {
         const name = document.getElementById("name-input").value;
         const phone = document.getElementById("phone-input").value;
@@ -389,37 +467,25 @@
         const addr = document.getElementById("address-input").value;
         const quote = document.getElementById("ai-quote");
 
+        // Only update if all fields are filled
         if (name && phone && dob && occ && addr) {
           if (quote.dataset.state === "complete") return;
 
-          quote.innerHTML = `
-                    <div class="flex items-center gap-3 text-secondary font-bold italic animate-pulse">
-                        <span class="material-symbols-outlined animate-spin" style="font-size: 18px;">sync</span>
-                        Synthesizing market profile...
-                    </div>
-                `;
           quote.dataset.state = "complete";
+          const insights = generateDynamicInsights(name, phone, dob, occ, addr);
 
-          setTimeout(() => {
-            const insights = [
-              `• Your profile aligns with the <strong class="text-secondary">Strategic Owner</strong> demographic in Bangkok's CBD.`,
-              `• Based on your professional tier, an <strong class="text-secondary">8-year equity cycle</strong> is recommended for peak yield.`,
-              `• You've unlocked <strong class="text-secondary">Verified Identity</strong> priority status for premium property viewings.`,
-            ];
+          quote.innerHTML = '<div class="space-y-3"></div>';
+          const container = quote.querySelector("div");
 
-            quote.innerHTML = '<div class="space-y-3"></div>';
-            const container = quote.querySelector("div");
-
-            insights.forEach((insight, i) => {
-              setTimeout(() => {
-                const p = document.createElement("div");
-                p.className =
-                  "suggestion-item text-xs md:text-sm text-on-surface leading-relaxed";
-                p.innerHTML = insight;
-                container.appendChild(p);
-              }, i * 400);
-            });
-          }, 1500);
+          insights.forEach((insight, i) => {
+            setTimeout(() => {
+              const p = document.createElement("div");
+              p.className =
+                "suggestion-item text-xs md:text-sm text-on-surface leading-relaxed";
+              p.innerHTML = insight;
+              container.appendChild(p);
+            }, i * 400);
+          });
         }
       }
     </script>

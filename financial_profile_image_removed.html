@@ -221,33 +221,89 @@
         <script>
         document.getElementById('topbar-placeholder').innerHTML = renderTopbar();
 
-                function updateFinancialAI() {
+                function parseAmount(str) {
+            if (!str) return 0;
+            return parseInt(str.replace(/[^0-9]/g, '')) || 0;
+        }
+
+        function calculateDTI(income, debt) {
+            const incomeNum = parseAmount(income);
+            const debtNum = parseAmount(debt);
+            if (incomeNum === 0) return 0;
+            return ((debtNum / incomeNum) * 100).toFixed(1);
+        }
+
+        function getInterestRate(dti) {
+            const dtiNum = parseFloat(dti);
+            if (dtiNum <= 25) return "~2.8%";
+            if (dtiNum <= 35) return "~3.2%";
+            if (dtiNum <= 45) return "~4.1%";
+            return "~5.0%";
+        }
+
+        function getTaxDeduction(income) {
+            const incomeNum = parseAmount(income);
+            if (incomeNum < 50000) return "฿50k";
+            if (incomeNum < 100000) return "฿100k";
+            if (incomeNum < 150000) return "฿150k";
+            return "฿200k";
+        }
+
+        function getInvestmentSector(income, debt) {
+            const incomeNum = parseAmount(income);
+            const debtNum = parseAmount(debt);
+            const dti = (debtNum / incomeNum) * 100;
+            
+            if (dti < 25 && incomeNum > 150000) {
+                return "'Riverside Growth' and 'CBD Premium' sectors where yields consistently outperform inflation";
+            } else if (dti < 35 && incomeNum > 100000) {
+                return "'Riverside Growth' sectors where yields currently outperform inflation";
+            } else if (incomeNum > 80000) {
+                return "'Emerging Corridor' developments with strong growth potential and moderate risk";
+            }
+            return "'Stable Foundation' properties with consistent returns and lower risk profiles";
+        }
+
+        function generateFinancialInsights(income, extraIncome, debt) {
+            const totalIncome = parseAmount(income) + parseAmount(extraIncome);
+            const debtNum = parseAmount(debt);
+            const dti = calculateDTI(totalIncome.toString(), debt);
+            const rate = getInterestRate(dti);
+            const taxDed = getTaxDeduction(totalIncome.toString());
+            const sector = getInvestmentSector(totalIncome.toString(), debt);
+            
+            const insights = [
+                `• Maintaining a <strong class="text-secondary">${dti}% DTI ratio</strong> will unlock our Tier-1 institutional interest rates (${rate}).`,
+                `• Your profile is eligible for <strong class="text-secondary">primary residence tax deductions</strong> of up to ${taxDed} annually.`,
+                `• I recommend focusing on ${sector}.`
+            ];
+            
+            return insights;
+        }
+
+        function updateFinancialAI() {
             const income = document.getElementById('income-input').value;
             const extra = document.getElementById('extra-income-input').value;
             const debt = document.getElementById('debt-input').value;
             const quote = document.getElementById('ai-quote');
 
+            // Only update and animate once all fields are completed
             if (income && extra && debt) {
                 if (quote.dataset.state === 'complete') return;
-                
+
                 quote.innerHTML = `
                     <div class="flex items-center gap-3 text-secondary font-bold italic animate-pulse">
                         <span class="material-symbols-outlined animate-spin" style="font-size: 18px;">sync</span>
-                        Crunching financial matrix...
+                        Finalizing financing insights...
                     </div>
                 `;
-                quote.dataset.state = 'complete';
 
                 setTimeout(() => {
-                    const insights = [
-                        `• Maintaining a <strong class="text-secondary">35% DTI ratio</strong> will unlock our Tier-1 institutional interest rates (~3.2%).`,
-                        `• Your profile is eligible for <strong class="text-secondary">primary residence tax deductions</strong> of up to ฿200k annually.`,
-                        `• I recommend focusing on <strong class="text-secondary">'Riverside Growth'</strong> sectors where yields currently outperform inflation.`
-                    ];
-                    
+                    quote.dataset.state = 'complete';
+                    const insights = generateFinancialInsights(income, extra, debt);
                     quote.innerHTML = '<div class="space-y-3"></div>';
                     const container = quote.querySelector('div');
-                    
+
                     insights.forEach((insight, i) => {
                         setTimeout(() => {
                             const p = document.createElement('div');
@@ -256,7 +312,7 @@
                             container.appendChild(p);
                         }, i * 400);
                     });
-                }, 1500);
+                }, 1200);
             }
         }
     </script>
